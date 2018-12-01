@@ -55,6 +55,9 @@ file
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-18, 22-22}]{lstmys}
 }{lstmys}
+
+ \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Settings} setting for lstlisting}
+ 
 \end{frame}
 
 \begin{frame}[fragile]{Minted}\relax
@@ -71,7 +74,6 @@ file
          \item[listings] is a package, that you must tune by yourself, but it is the most ``tunnable'' package
     \end{description}
     
-    \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Settings} setting for lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Tips about the code packages}\relax
@@ -88,6 +90,7 @@ file
     \lstinputlisting[linerange={6-7, 11-11}]{incgraph}
     }{incgraph}
 
+\inclassFrag{Upload a picture into your papeeria project and try to include it into the pdf}[-1]
 \end{frame}
 
 \begin{frame}[fragile]{Include graphics}{params}\relax
@@ -105,6 +108,8 @@ the ratio will remain the same\+\\
 file name. You can ommit \\ ~~~the extension
 \end{tabbing}
 
+\inclassFrag{``Play'' with the params of your picture}[-1]
+
      \cprotect\skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics} \url{https://www.tug.org/TUGboat/tb17-1/tb50reck.pdf}\\ 
      you also can rotate, take only part of pic,.. \verb|\graphicspath{{path1/}{path2/}}| --- how I provide path to images}
 \end{frame}
@@ -114,9 +119,10 @@ file name. You can ommit \\ ~~~the extension
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-8, 11-18}]{floatgraph}
 }{floatgraph}
-\pause
 ~\\~\\
-Figure appeared not where it was declaired!
+\inclassFrag{Try to wrap your figure with this environment}
+\pause
+Figure appeared not where it was declaired! 
 \end{frame}
 
 \begin{frame}[fragile]{Tips}\relax
@@ -166,14 +172,17 @@ Figure appeared not where it was declaired!
      \skfootnote{\lvoc{VI.1}}
 \end{frame}
 
-\begin{frame}[fragile]{Tables}{tabbing}\relax
+\begin{frame}[fragile]{Tables}{tabular}\relax
     \cprotect\twocolImg{
     \lstinputlisting[linerange={10-15}]{tabularmy}
 }{tabularmy}
+
+\pause
+The same syntax was inside {\csk array} environment. {\csk array} is a {\csk tabular} for the math mode!
      \skfootnote{\lvoc{VI.2}}
 \end{frame}
 
-\begin{frame}[fragile]{Tables}{tabbing}\relax
+\begin{frame}[fragile]{Tables}{tabular}\relax
      \begin{itemize}
          \item Line: \verb!o & x & o\\\hline!
          \begin{itemize}
@@ -199,7 +208,7 @@ Figure appeared not where it was declaired!
 
 \begin{frame}[fragile]{Tabular: what else?}
      \begin{itemize}
-         \item It is hard to make a table without WYSIWYG. Use this \url{https://www.tablesgenerator.com/}
+         \item It is hard to make a table without WYSIWYG. Use this {\csk\url{https://www.tablesgenerator.com/}}
          \item To color every second row: \url{https://tex.stackexchange.com/questions/5363/how-to-create-alternating-rows-in-a-table}
          \item You can use multicells, change the size between cells, make horizontal line for not all cells,.. See \lvoc{VI.2}
           

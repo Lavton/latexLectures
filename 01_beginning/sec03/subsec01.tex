@@ -33,7 +33,12 @@ Math environments
 
 \cprotect[mm]\appendTline{lower ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_2$|}{ $x_2$}
 \cprotect[mm]\appendTline{lower and upper ind}{\lstinline[basicstyle=\tt\normalsize,]|$x^4_2$|}{ $x^4_2$}
+\cprotect\inclassFrag{
+Try to put more then one letter to the index}
 \cprotect[mm]\appendTline{more letters in ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_{ij}$|}{ $x_{ij}$}
+\cprotect\inclassFrag{
+
+How can you create ${}^3_2 He$?}[4]
 \cprotect[mm]\appendTline{empty block}{\lstinline[basicstyle=\tt\normalsize,]|${}^3_2He$|}{ ${}^3_2He$}
 \cprotect[mm]\appendTline{index in index}{\lstinline[basicstyle=\tt\normalsize,]|$x^{4^2}$|}{ $x^{4^2}$}
 
@@ -88,8 +93,42 @@ also $\sphericalangle$ \verb|\genfrac|
 }
 \end{frame}
 
+\inclassFrame{
+\begin{frame}{Type these equations}{simple}\relax
+\begin{equation}
+     x^2-2y = h_{l_0^k}\tag{1}
+\end{equation}
+\begin{equation}
+     \sqrt{h/(2a)}=t\tag{2}
+\end{equation}
+
+\begin{equation}
+     \frac{x+y}{z_2 - \frac{1}{2}}=m\tag{3}
+\end{equation}
+
+\begin{equation}
+     \left(\frac{x+y}{z}\right)=q\tag{4}
+\end{equation}
+
+\end{frame}
+}
+
+\inclassFrame{
+\begin{frame}{Type these equations}{harder}\relax
+\begin{equation}
+    T_{N_1}(t) = \left.\frac{d}{dx_i} f^{\sqrt{n}}(z)\right/\left(\sqrt{\frac{m+e}{a}}-N\right) \tag{1}
+\end{equation}
+
+\end{frame}
+}
+
 \begin{frame}[fragile]{More symbols}\relax
     \line{\hss\Large \url{http://detexify.kirelabs.org/classify.html}\hss}
+    
+    \inclassFrag{\centering
+    Try to find the following symbols: \\ $\exists$,  $\to$, $\notin$, $\sim$, $\equiv$
+    }[-1]
+    
     \skfootnote{\vspace{-3ex}
     \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \\
     \url{ftp://sunsite.icm.edu.pl/pub/CTAN/info/symbols/comprehensive/symbols-a4.pdf} (338 pages) \\ \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf} (22 pages)}
@@ -337,22 +376,20 @@ notice \lstinline[basicstyle=\tt\normalsize]|\notag| !
     \lstinputlisting[linerange={13-14, 17-22}]{splitmy}
 }{splitmy}
 
-\pause
-What do you think {\csk \&} for?
-\pause
-{\csk \&} for indent as in tables
+\inclassFrag{
+What do you think {\csk \&} stands for?}
+ampersand {\csk \&} is stands for indent (as in tables)
 \cprotect\skfootnote{{ }\lvoc{II.4.2}\\ \slshape also see \verb'align*' to ban numeration}
 \end{frame}
 
 \begin{frame}[fragile, t]{Text inside equations}\relax
-% \vspace{-1.3cm}
+
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong1.tex}
 }{alignеtextwrong1}
+\inclassFrag{What a problem can be there?}
 \pause
-% \vspace{-1cm}
 Problem:
-% \vspace{-1.3cm}
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong.tex}
 }{alignеtextwrong}
@@ -400,6 +437,22 @@ Please, notice this {\csk \{ccc\}, \{ccl\}}.
 
 \cprotect\skfootnote{{ } \lvoc{II.3, II.4.2}}
 \end{frame}
+
+\cprotect\inclassFrame{
+\begin{frame}[fragile]{Try to type the following}\relax
+\small
+\verb!$$\sum_a^b x$$!, \hfill\verb!$$\sum\nolimits_a^b x$$!, \hfill\verb!$$\sum\limits_a^b x$$!
+
+\verb!$\sum_a^b x$!, \hfill\verb!$\sum\nolimits_a^b x$!, \hfill\verb!$\sum\limits_a^b x$!
+
+\verb!$$\int_a^b x$$!, \hfill\verb!$$\int\nolimits_a^b x$$!, \hfill\verb!$$\int\limits_a^b x$$!
+
+\verb!$\int_a^b x$!, \hfill\verb!$\int\nolimits_a^b x$!, \hfill\verb!$\int\limits_a^b x$!
+~\\[2ex]
+compare the index position and the operator size
+     
+\end{frame}
+}
 
 \begin{frame}[fragile]{One over another}{operators}\relax
 

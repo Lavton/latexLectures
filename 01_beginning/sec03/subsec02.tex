@@ -6,7 +6,7 @@
 \lstset{inputpath=sec03/code/s2/}
 
 \begin{frame}[fragile]{Writing \textit{Text}}\relax
-
+\inclassFrag{Please, write a line of a text}[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-10},basicstyle=\tt\normalsize,showspaces=true]{general}
 }{general}
@@ -15,12 +15,29 @@
 \end{frame}
 
 \begin{frame}[fragile]{Spaces}\relax
+\inclassFrag{
+Do the following and compare results from previous step.
+\begin{itemize}
+     \item add spaces between two arbitrary words
+     \item add line break (<return>) between two arbitrary words
+     \item add spaces at the begin of a line
+     \item add \% at the end of the first line  
+\end{itemize}
+}[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-14},basicstyle=\tt\small,showspaces=true]{spaces}
 }{spaces}
 \end{frame}
 
 \begin{frame}[fragile]{Paragraph}\relax
+\inclassFrag{
+Do the following and compare results from previous step.
+\begin{itemize}
+     \item add \textbf{two} line breaks (<return>) between arbitrary words
+     \item add \textbf{three} line breaks (<return>) between arbitrary words
+     \item add \textbf{four} line breaks (<return>) between arbitrary words
+\end{itemize}
+}[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-17},basicstyle=\tt\small,showspaces=true]{paragr}
 }{paragr}
@@ -161,9 +178,11 @@
     \item ``group'' is
     \begin{itemize}
         \item \lstinline[basicstyle=\tt\normalsize]|{group}|
+        \item \lstinline[basicstyle=\tt\normalsize]|\begingroup group\endgroup|
         \item \lstinline[basicstyle=\tt\normalsize]|$group$|
         \item \lstinline[basicstyle=\tt\normalsize]|\begin{env}group\end{env}|
-    \end{itemize}     
+    \end{itemize}
+    \item often something inside \{group\} means ``indivisible'', ``atomic'', ``single'' for \TeX\ commands.
     \end{itemize}
 
 \end{frame}

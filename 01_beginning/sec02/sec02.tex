@@ -5,7 +5,7 @@
 \cwpa{
 {\csk WYSiWYG} -- \textit{What You See is What You Get} editor\\~\\
 
-Examples?
+\inclassFrag{Examples?}[0]
 }{
 Microsoft Word
 \insImg{wysiwyg.png}
@@ -18,8 +18,8 @@ Microsoft Word
 
 \cprotect\skfootnote{``\verb|\begin{frame}[fragile]|'' to put code inside}
 
-\vspace{-2em}
-Examples? \pause
+
+\inclassFrag{Examples?}[1]
 \cprotect[mm]\cwpa{
 {\small HTML }
 
@@ -100,3 +100,16 @@ but there is no ``fixed set'' of classes. Can build our own
 \end{frame}
 
 \note{practicully everything is from package }
+
+
+\inclassFrame{
+\begin{frame}{This slide means it is ``in-class task time!''}\relax
+\centering
+     \LARGE This slide means it is ``in-class task time!''
+\end{frame}
+}
+\cprotect\inclassFrame{
+\begin{frame}[fragile]{Try to compile your first doc}\relax
+     \lstinputlisting[basicstyle=\tt\small]{first.tex}
+\end{frame}
+}

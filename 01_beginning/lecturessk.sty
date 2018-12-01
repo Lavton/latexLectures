@@ -98,3 +98,48 @@
 %%%%/litreture
 
 \setlength{\skfootnotelen}{12cm}
+
+
+%%%%% inclass tasks commands
+\newcommand{\inclassFrame}[1]{{
+    \setbeamertemplate{background canvas}{
+        % \tikz[baseline]\node[anchor=base,draw=red,rounded corners,inner xsep=1ex,inner ysep =0.75ex, bottom color=red!20, top color=red!10]{\parbox{\textwidth}{oo}};%
+    {\color{red}\rule{10pt}{\dimexpr\paperheight-30pt\relax}}%
+    }
+    \setbeamercolor{frametitle}{fg=red}
+#1}
+}
+
+\newcommandx{\inclassFrag}[2][2=2]{%
+\newcommand{\insidesOfInClassFrag}{%
+\vspace*{-1ex}\vspace{1pt}%
+\vbox to 0pt{ %
+\vspace{0.51ex}
+\tikz[baseline]\node[anchor=base,draw=red,rounded corners,inner xsep=1ex,inner ysep =0.75ex, bottom color=red!20, top color=red!10]{\parbox{\textwidth}{#1}};%
+\vss%
+}%
+}%
+% if 0 -- exists for whole period as a box. 
+% if -1 -- it last appeared -- pause before, nothing after
+% if 1 -- we starts with it, but pause after
+\ifnum #2=0%
+    \insidesOfInClassFrag{}%
+\else%
+    \ifnum #2=-1%
+        \pause%
+        \insidesOfInClassFrag{}%
+    \else%
+        \only<#2>{%
+            \insidesOfInClassFrag{}%
+        }%
+        \ifnum #2=1%
+           \pause% 
+        \else%
+            \pause\pause%
+        \fi%
+    \fi%
+\fi%
+}
+
+% \renewcommand{\inclassFrame}[1]{}
+% \renewcommandx{\inclassFrag}[2][2=2]{}
