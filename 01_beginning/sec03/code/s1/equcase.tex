@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=55mm, paperheight=40mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\newcommand{\aroundbox}[1]{
+\noindent\fbox{%
+    \parbox{\textwidth}{
+    #1
+    }
+}
+}
+\usepackage{amsmath}
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+$$
+|x|=\begin{cases}
+x,&\text{if $x>0$;}\\
+0,&\text{if $x=0$;}\\
+-x,&\text{if $x<0$.}
+\end{cases}
+$$
+
+\vspace*{\fill}
+\end{document}

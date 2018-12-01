@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=65mm, paperheight=30mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+\newcommand{\aroundbox}[1]{
+\noindent\fbox{%
+    \parbox{\textwidth}{
+    #1
+    }
+}
+}
+\usepackage{amsmath}
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+\begin{align}
+7\times 9& =63 & 63:9& =7\\
+9\times 10& =90 & 90:10& =9
+\end{align}
+\vspace*{\fill}
+\end{document}

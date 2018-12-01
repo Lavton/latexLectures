@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=65mm, paperheight=55mm, layoutwidth=65mm, layoutheight=55mm, left=5mm, top=5mm, right=5mm, bottom=5mm}
+\newcommand{\aroundbox}[1]{
+\noindent\fbox{%
+    \parbox{\textwidth}{
+    #1
+    }
+}
+}
+\begin{document}
+\aroundbox{
+excluded formula
+      $$x=y$$
+}
+    \aroundbox{  
+included $x=y$ formula
+}
+\aroundbox{
+numbered formula
+\begin{equation}
+    x=y
+\end{equation}
+\vspace{-1em}
+}
+
+\end{document}

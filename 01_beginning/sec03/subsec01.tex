@@ -1,0 +1,445 @@
+% \knuthc  knuth the TeXBook
+% \lvoc   Lvovsky
+% \lamc  lamport latex 
+% \slshape different font for footnote
+\graphicspath{{sec03/images/s1/}{sec03/code/s1/}}
+\lstset{inputpath=sec03/code/s1/}
+
+\begin{frame}[fragile]{Going $\to$ Math}\relax
+\cprotect\skfootnote{
+\vspace{-0.5ex}
+\lvoc{I.3}, \lamc{3.1}\\ {\slshape 
+also try \verb|\(x=y\)| and \verb|\[x=y\]| and environment \verb|equation*|}\\
+\textt \verb|\|lstinputlisting[firstline=7, lastline=14,linerange=\{8-10\}]\{file.tex\}
+}
+
+\cprotect\twocolImg{
+Math environments
+
+\lstinputlisting[linerange={15-16,19-19,22-25}]{mdollar.tex}
+}{mdollar}
+\end{frame}
+
+
+\begin{frame}[fragile]{Indexes}\relax
+
+\newcommand{\appendTline}[3]{
+\makebox[10em]{#1\hfill} \hfill\hfill \makebox[5em]{\hfill #2\hfill} \hfill \makebox[5em]{\hfill #3\hfill} \hfill\hfill \strut
+    \hrule
+    \vspace{1ex}
+}
+
+\cprotect[mm]\appendTline{upper ind}{\lstinline[basicstyle=\tt\normalsize,]|$x^2$|}{ $x^2$}
+
+\cprotect[mm]\appendTline{lower ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_2$|}{ $x_2$}
+\cprotect[mm]\appendTline{lower and upper ind}{\lstinline[basicstyle=\tt\normalsize,]|$x^4_2$|}{ $x^4_2$}
+\cprotect[mm]\appendTline{more letters in ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_{ij}$|}{ $x_{ij}$}
+\cprotect[mm]\appendTline{empty block}{\lstinline[basicstyle=\tt\normalsize,]|${}^3_2He$|}{ ${}^3_2He$}
+\cprotect[mm]\appendTline{index in index}{\lstinline[basicstyle=\tt\normalsize,]|$x^{4^2}$|}{ $x^{4^2}$}
+
+\skfootnote{You really don't want to know, what code generate these lines...}
+\end{frame}
+
+\begin{frame}[fragile]{Fractions and (square) root}\relax
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\frac{x+z^2}{y-1}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\frac{x+z^2}{y-1}$$
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    \vphantom. 
+    \begin{columns}
+        \begin{column}{0.50\textwidth}
+          \hfill \lstinline"$\left.\left(\frac{x}{y}\right)\right|^a_b$" 
+        \end{column}
+        \begin{column}{0.5\textwidth}
+             $$\left.\left(\frac{x}{y}\right)\right|^a_b$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \hrule
+    \vphantom) 
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\sqrt{x}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\sqrt{x}$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \hrule
+    \vphantom) 
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\sqrt[y]{x}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\sqrt[y]{x}$$
+        \end{column}
+    \end{columns}
+    
+\cprotect\skfootnote{\slshape sometimes, if you want use fraction into fraction it is better to use \verb|\cfrac{x}{y}|.\\ See typeography section or \lvoc{II.4.1, II.5.1}
+also $\sphericalangle$ \verb|\genfrac|
+}
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}\relax
+    \line{\hss\Large \url{http://detexify.kirelabs.org/classify.html}\hss}
+    \skfootnote{\vspace{-3ex}
+    \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \\
+    \url{ftp://sunsite.icm.edu.pl/pub/CTAN/info/symbols/comprehensive/symbols-a4.pdf} (338 pages) \\ \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf} (22 pages)}
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}{Greek letters}\relax
+\footnotesize
+
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1$\hfill}\hfill}%
+}
+\showmsym{\alpha}\hfill
+\showmsym{\beta}\hfill
+\showmsym{\gamma}\hfill
+\showmsym{\delta}\hfill
+\showmsym{\epsilon}\hfill
+\showmsym{\zeta}\hfill
+\showmsym{\eta}\hfill
+\showmsym{\iota}\hfill
+\showmsym{\kappa}\hfill
+\showmsym{\lambda}\hfill
+\showmsym{\mu}\hfill
+\showmsym{\nu}\hfill
+\showmsym{\xi}\hfill
+\showmsym{\tau}\hfill
+\showmsym{\upsilon}\hfill
+\showmsym{\rho}\hfill
+\showmsym{\sigma}\hfill
+\showmsym{\pi}\hfill
+\showmsym{\phi}\hfill
+\showmsym{\chi}\hfill
+\showmsym{\psi}\hfill
+\showmsym{\omega}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\showmsym{\varepsilon}\hfill
+\showmsym{\vartheta}\hfill
+\showmsym{\varkappa}\hfill
+\showmsym{\varrho}\hfill
+\showmsym{\varphi}\hfill
+
+~\\
+\showmsym{\Gamma}\hfill
+\showmsym{\Delta}\hfill
+\showmsym{\Lambda}\hfill
+\showmsym{\Xi}\hfill
+\showmsym{\Sigma}\hfill
+\showmsym{\Upsilon}\hfill
+\showmsym{\Pi}\hfill
+\showmsym{\Phi}\hfill
+\showmsym{\Psi}\hfill
+\showmsym{\Omega}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}{Other common used symbols}\relax
+\footnotesize
+
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1$\hfill}\hfill}%
+}
+\showmsym{\infty}\hfill
+\showmsym{\nabla}\hfill
+\showmsym{\forall}\hfill
+\showmsym{\partial}\hfill
+\showmsym{\backslash}\hfill
+\showmsym{\aleph}\hfill
+\showmsym{\hbar}\hfill
+\showmsym{\Re}\hfill
+\showmsym{\Im}\hfill
+\showmsym{\cdot}\hfill
+\showmsym{\cdots}\hfill
+\showmsym{\ldots}\hfill
+\showmsym{\to}\hfill
+\showmsym{\times}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\normalsize
+\pause \showmsym{\imath}\hfill \showmsym{\jmath}\hfill are useful for accents.
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}{Accents}\relax
+% \footnotesize
+
+\skfootnote{\knuthc{17}}
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmacc}[2]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\hfill{\csk\string#1}\{#2\}}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1{#2}$\hfill}\hfill}%
+}
+\showmacc{\hat}{a}\hfill
+\showmacc{\check}{a}\hfill
+\showmacc{\tilde}{a}\hfill
+\showmacc{\acute}{a}\hfill
+\showmacc{\grave}{a}\hfill
+\showmacc{\dot}{a}\hfill
+\showmacc{\ddot}{a}\hfill
+\showmacc{\breve}{a}\hfill
+\showmacc{\vec}{a}\hfill
+~\\[2ex]
+\pause
+
+\setlength{\myboxlen}{12em}
+\Large \showmacc{\check}{a}\hfill \to \hfill
+\setlength{\myboxlen}{13em}
+{\csk \textbackslash{}skew5\textbackslash{}check}\{a\}{$\to$}$\skew5\check{a}$%
+
+\end{frame}
+
+
+\begin{frame}[fragile]{More symbols}{Math fonts}\relax
+    \begin{tabbing}
+    ааaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= \kill
+    \texttt{\textbackslash mathrm\{\textit{letters,etc}\}} \> $\mathrm{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathbf\{\textit{letters,etc}\}} \> $\mathbf{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathsf\{\textit{letters,etc}\}} \> $\mathsf{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathtt\{\textit{letters,etc}\}} \> $\mathtt{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathit\{\textit{letters,etc}\}} \> $\mathit{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathnormal\{\textit{letters,etc}\}} \> $\mathnormal{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathcal\{\textit{capital letters}\}} \> $\mathcal{ABC}$ \\ 
+    \texttt{\textbackslash mathds\{\textit{capital letters}\}} \> $\mathds{ABCRN}$ 
+    \end{tabbing}
+    \cprotect\skfootnote{\lstinline|\usepackage{dsfont}| for the last}
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}{Limiters}\relax
+\skfootnote{\knuthc{17}}
+
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{6em}
+% \small
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
+}
+\newcommand{\showidenti}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill$#1$}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
+}
+
+\showidenti{(}\hfill
+\showidenti{)}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\showidenti{[}\hfill
+\showidenti{]}\hfill
+\showmsym{\lbrack}\hfill
+\showmsym{\rbrack}\hfill
+\showmsym{\{}\hfill
+\showmsym{\}}\hfill
+\showmsym{\lbrace}\hfill
+\showmsym{\rbrace}\hfill
+\showmsym{\lfloor}\hfill
+\showmsym{\rfloor}\hfill
+\showmsym{\lceil}\hfill
+\showmsym{\rceil}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\showmsym{\langle}\hfill
+\showmsym{\rangle}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols}{Operators}\relax
+\skfootnote{\url{https://www.overleaf.com/learn/latex/Integrals,_sums_and_limits}}
+
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
+}
+\showmsym{\prod}\hfill
+\showmsym{\sum}\hfill
+\showmsym{\int}\hfill
+\showmsym{\iint}\hfill
+\showmsym{\oint}\hfill
+\showmsym{\idotsint}\hfill
+
+\end{frame}
+
+
+\begin{frame}[fragile]{More symbols}{Operators}\relax
+\vspace{-5ex}
+    \newcommand{\appendTline}[3]{ \vphantom{()}
+    \makebox[10em]{#1\hfill} \hfill\hfill \makebox[5em]{\hfill #2\hfill} \hfill \makebox[5em]{\hfill #3\hfill} \hfill\hfill \strut
+        \hrule
+        \vspace{1ex}
+    }
+    
+    \cprotect[mm]\appendTline{\csk source}{\csk operator}{\csk compare with}
+    \hrule height 0.05pt
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$\sin({x})$|}{$\sin({x})$}{$sin({x})$}
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$\log({x})$|}{$$\log({x})$$}{$$ log({x}) $$}
+    \cprotect[mm]\appendTline{\lstinline|$\lim({x})\limits_a^b$|}{$$\lim\limits_a^b({x})$$}{$$lim\limits_a^b({x})$$}
+    
+    \skfootnote{\url{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}}
+\end{frame}
+
+
+\begin{frame}[fragile]{Formula in multiple line}\relax
+\skfootnote{{ }\lvoc{II.4.2}\\ You can modify the line gaps, push string to left or right,..}
+
+    \cprotect\twocolImg{
+\lstinputlisting[linerange={13-14, 17-20}]{multilines.tex}
+}{multilines}
+
+\verb|AMS| --- American Math Society
+\end{frame}
+
+
+\begin{frame}[fragile]{Multiple formulas}\relax
+
+% \vspace{-10ex}
+    \cprotect\twocolImg{
+\lstinputlisting[linerange={13-14, 17-21}]{gathermy.tex}
+}{gathermy}
+
+\pause
+% \vspace{-10ex}
+notice \lstinline[basicstyle=\tt\normalsize]|\notag| !
+
+\cprotect\skfootnote{{} \lvoc{II.4.2}\\ \slshape  also see \verb'gather*' to ban numeration}
+
+\end{frame}
+
+\begin{frame}[fragile]{Multiple formulas and lines: alignment}\relax
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-20}]{alignmy.tex}
+}{alignmy}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-22}]{splitmy}
+}{splitmy}
+
+\pause
+What do you think {\csk \&} for?
+\pause
+{\csk \&} for indent as in tables
+\cprotect\skfootnote{{ }\lvoc{II.4.2}\\ \slshape also see \verb'align*' to ban numeration}
+\end{frame}
+
+\begin{frame}[fragile, t]{Text inside equations}\relax
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong1.tex}
+}{alignеtextwrong1}
+\pause
+% \vspace{-1cm}
+Problem:
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong.tex}
+}{alignеtextwrong}
+
+\end{frame}
+\begin{frame}[fragile]{Text inside equations}{solution}\relax
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-23}]{alignеtext.tex}
+}{alignеtext}
+\verb|\text| and \verb|\intertext|
+\skfootnote{{} \lvoc{II.4.2}}
+\end{frame}
+
+\begin{frame}[fragile]{System of equations}\relax
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-24}]{equsis.tex}
+}{equsis}
+% \vspace{-2cm}
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={13-14, 17-23}]{equcase}
+}{equcase}
+\skfootnote{{} \lvoc{II.4.2}}
+\end{frame}
+
+
+\begin{frame}[fragile]{Matrix}\relax
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={7-7, 11-18}]{matrixes}
+}{matrixes}
+\cprotect\skfootnote{{ } \lvoc{II.3}\\ \slshape Also see \lstinline!matrix! without borders and \lstinline!vmpatrix! for |border|}
+     
+\end{frame}
+
+\begin{frame}[fragile]{Without AMS}\relax
+     \cprotect\twocolImg{
+        \lstinputlisting[linerange={11-17}]{matrixesno}
+    }{matrixesno}
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={9-16}]{equcaseno}
+    }{equcaseno}
+\pause
+Please, notice this {\csk \{ccc\}, \{ccl\}}.  
+
+\cprotect\skfootnote{{ } \lvoc{II.3, II.4.2}}
+\end{frame}
+
+\begin{frame}[fragile]{One over another}{operators}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk operator}
+    \hrule height 0.05pt
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$$\int\limits_0^\pi$$|}{$$\int\limits_0^\pi$$}
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$$\int\nolimits_0^\pi$$|}{$$\int\nolimits_0^\pi$$}
+
+\end{frame}
+
+\begin{frame}[fragile]{One over another}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk operator}
+    \hrule height 0.05pt
+    \cprotect[mm]\appendTline{\lstinline|$\stackrel {\Leftrightarrow}{A}$|}{$\stackrel {\Leftrightarrow}{A}$}
+    \cprotect[mm]\appendTline{\lstinline|$A \stackrel{a'}{\rightarrow} D$|}{$A \stackrel{a'}{\rightarrow} D$}
+    \cprotect[mm]\appendTline{\lstinline|$\underbrace{a+\overbrace{b+c}+d}_{m}$|}{$\underbrace{a+\overbrace{b+c}+d}_{m}$}
+    
+\end{frame}

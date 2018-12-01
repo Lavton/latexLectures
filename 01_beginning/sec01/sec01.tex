@@ -1,0 +1,197 @@
+% view
+\begin{frame}{What we have}
+\skfootnote{\url{http://www.texample.net/tikz/examples/tree/}}
+\begin{center}
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=skoltechgreen!20}]]
+  \node {\TeX}
+    child { node {\LaTeX}
+      child { node {XeLaTeX} }
+      child { node {LuaTeX} }
+      } ;
+\end{tikzpicture}
+
+\end{center}
+\end{frame}
+
+\note[itemize]{
+\item Start from \LaTeX
+}
+
+% LaTeX
+\begin{frame}{Definitions}
+\skfootnote{\url{https://ru.wikipedia.org/wiki/LaTeX}}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=skoltechgreen!20}]]
+  \node {\TeX}
+    child { node[text=red] {\LaTeX}
+      child { node {XeLaTeX} }
+      child { node {LuaTeX} }
+      } ;
+\end{tikzpicture}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\small
+{\csk \LaTeX} --- is the most popular set of macro-extensions (or macro package) of the computer typesetting system \TeX, which facilitates a typesetting of complex documents.
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\note[itemize]{
+\item What is macro 
+\item macros = shortcuts 
+}
+
+% TeX
+\begin{frame}{Definitions}
+\skfootnote{\url{https://en.wikipedia.org/wiki/TeX}}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=skoltechgreen!20}]]
+  \node[text=red] {\TeX}
+    child { node {\LaTeX}
+      child { node {XeLaTeX} }
+      child { node {LuaTeX} }
+      } ;
+\end{tikzpicture}
+\end{column}
+
+\note{
+how to pronaunce\\
+Book The Art of Computer Programming \\ 
+History 1978 (pdf=1993)
+}
+
+\begin{column}{0.5\textwidth}
+\small
+{\csk \TeX} --- is a typesetting system designed and mostly written by Donald Knuth. TeX was designed with two main goals in mind: to allow anybody to produce high-quality books using minimal effort, and to provide a system that would give exactly the same results on all computers, at any point in time
+
+\end{column}
+\end{columns}
+\end{frame}
+
+% LuaTeX and XeLaTeX
+\begin{frame}{Definitions}
+\skfootnote{\url{https://en.wikipedia.org/wiki/LuaTeX}, \url{https://en.wikipedia.org/wiki/XeTeX}}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[sibling distance=10em,
+  every node/.style = {shape=rectangle, rounded corners,
+    draw, align=center,
+    top color=white, bottom color=skoltechgreen!20}]]
+  \node {\TeX}
+    child { node {\LaTeX}
+      child { node[text=red] {XeLaTeX} }
+      child { node[text=red] {LuaTeX} }
+      } ;
+\end{tikzpicture}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\small
+{\csk XeLaTeX} --- XeTeX is a \TeX typesetting engine using Unicode and supporting modern font technologies such as OpenType, Graphite and Apple Advanced Typography
+
+{\csk LuaTeX} --- LuaTeX is a \TeX-based computer typesetting system which started as a version of pdfTeX with a Lua scripting engine embedded
+\end{column}
+\end{columns}
+\end{frame}
+
+
+% pro and contr
+\begin{frame}[t, fragile]{Pros and Cons}
+\vspace{-3.5ex}
+\cwpa{
+    \small
+    \begin{itemize}
+        \item[$+$] When you have lots of equations\vspace{-1ex}
+        \item[$+$] When you have a complex, but typical document \vspace{-1ex}
+        \item[$+$] When you carry about device-independant view\vspace{-1ex}
+        \item[$+$] When you don't want not care about the beauty, but want it\vspace{-1ex}
+        \item[$+$] When you are care about the beauty wery much\vspace{-1ex}
+        \item[$+$] When you hate all these humanitarian GUI programs
+        % \item[$+$] When you love text files 
+        % \item[``+''] When you want to impress your partner
+        % yeah, I leave the commented item for you, source-code reader!
+    \end{itemize}
+}{
+    \small
+    \begin{itemize}
+        \item[$-$] when you want to put something in attributary position
+        \item[$-$] when you want to do something ``against the rules''
+        \item[$-$] when you want to work with visual-based things (tables,...)
+        \item[$-$] when you want to do something really simple
+    \end{itemize}
+}[t]
+
+\cprotect\skfootnote{
+\verb|\item[$+$]|
+}
+
+\end{frame}
+
+\begin{frame}{Resourses}%{Books etc}
+
+\vspace{-3.0ex}
+\begin{itemize}
+    \item Knuth ``The \TeX Book'' (en, ru)
+    \item L'vovsky ``Nabor i verstka v sisteme \LaTeX'' (ru)
+    \item Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual'' (en)
+    \item Gratzer ``Math into \LaTeX'' (en) 
+    \item Oetiker ``The Not So Short Introduction to \LaTeX'' (en, ru)
+    \item \url{https://www.overleaf.com/learn}
+    \item \url{https://www.latex-project.org/help/}
+    \item \url{https://texfaq.org/}
+\end{itemize}
+\end{frame}
+
+\note{
+We will use papeeria\\
+pointed about footnotes and colors!
+}
+
+\begin{frame}[fragile]{Resourses}{Interesting links}
+\cprotect\skfootnote{
+\verb|\begin{description} \item[questions about \TeX]\end{description}|
+}
+\small
+\begin{description}
+    \item[questions about \TeX] \url{https://tex.stackexchange.com} \vspace{-1ex}
+    \item[knowing a command of the symbol] \url{http://detexify.kirelabs.org/classify.html} \vspace{-1ex}
+    \item[beauty of TikZ] \url{http://www.texample.net/tikz/examples/} \vspace{-1ex}
+    \item[beauty of pictures] \url{https://tex.stackexchange.com/questions/158668/nice-scientific-pictures-show-off}\vspace{-1ex}
+    \item[beauty of typesetting] \url{https://tex.stackexchange.com/questions/1319/showcase-of-beautiful-typography-done-in-tex-friends}\vspace{-1ex}
+\end{description}
+\end{frame}
+
+\begin{frame}[fragile]{where to get}
+\begin{enumerate}
+    \item Online
+    \begin{itemize}
+        \item \url{http://papeeria.com}
+        \item \url{https://overleaf.com}
+    \end{itemize}
+    \item Offline
+    \begin{itemize}
+        \item \LaTeX{} \url{https://www.latex-project.org/get/}
+        \item package manager \verb'tlmgr'
+    \end{itemize}
+\end{enumerate}
+     
+\end{frame}
+
+
+
+
+
+

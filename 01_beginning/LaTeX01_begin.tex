@@ -1,0 +1,93 @@
+%https://tex.stackexchange.com/questions/114219/add-notes-to-latex-beamer
+\documentclass[14pt, aspectratio=169]{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{dsfont}
+\usepackage{multicol}
+% \usepackage{pgfpages}
+% \setbeameroption{show notes}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+% \setbeameroption{show notes on second screen=right} % Both
+%% USAGE: 
+% \usepackage[logo="sklogo.png"]{beamerskoltech} 
+%   if you have a stand-alone image file for Sk logo 
+% or
+% \usepackage[logo]{beamerskoltech} 
+%   if you has no logo-file, but want LaTeX to generate it. 
+%   In this case you probably will need to use `--enable-write18 -interaction=nonstopmode` arguments running the latex command.
+%   in papeeria and overleaf all works fine
+% or 
+% \usepackage{beamerskoltech}
+%   In case you don't want logo at all 
+%
+% provided commands:
+% color `skoltechgreen` -- the dark-green color for structure elements 
+% command `\logoname` -- the name of logo file if exist 
+% command `{\csk <text>}` -- the shortcut from `\color{skoltechgreen}`
+% command `skfootnote{text}` -- put some text for current slide
+% `\renewcommand{\skbeforetitle}{\vspace{-3ex}}` is useful in case you use `aspectratio=169`
+%%%%%%%%%%%%%%%%
+\usepackage[logo]{beamerskoltech} 
+\usepackage{lecturessk}
+\renewcommand{\skbeforetitle}{\vspace{-3ex}}
+
+\usepackage{xecyr}
+\usepackage{hyperref}
+
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\usepackage{listings}
+
+
+
+\begin{document}
+
+
+\title{\LaTeX:\\ \Large from dummy to \TeX nician}
+\subtitle{Overview and basis}
+\author{Anton Lioznov}
+\institute{Skoltech}
+\date{ISP 2019,\\ \textit{lesson 1}}
+\frame{\titlepage}
+\begin{frame}\frametitle{What we will know?}
+\tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection[] 
+{
+  \begin{frame}{What we will know?}
+  \tableofcontents[currentsection,hideallsubsections]
+  \end{frame}
+}
+% https://tex.stackexchange.com/questions/103444/show-toc-of-only-a-section-in-beamer-completely-hide-other-subsections
+\AtBeginSubsection[]
+{
+  \begin{frame}{What we will know?}
+  \tableofcontents[currentsubsection, hideothersubsections, sectionstyle=show/hide, subsectionstyle=show/shaded/hide]
+  
+  \end{frame}
+}
+
+\section{Introduction: on approaches to \LaTeX}
+
+\input{sec01/sec01}
+
+\section{``Hello, world'':  first steps in \LaTeX}
+
+\input{sec02/sec02}
+
+\section{Mastering the base}
+
+\input{sec03/sec03}
+
+\begin{frame}[allowframebreaks]{references}
+color from the footnotes corresponds to references' color.
+    \begin{itemize}
+        \item \knuthc{Knuth ``The \TeX Book''}
+        \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
+        \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+    \end{itemize}
+\end{frame}
+\end{document}

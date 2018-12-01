@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=55mm, layoutwidth=50mm, layoutheight=55mm, left=5mm, top=5mm, right=5mm, bottom=5mm}
+\newcommand{\aroundbox}[1]{
+\noindent\fbox{%
+    \parbox{\textwidth}{
+    #1
+    }
+}
+}
+\usepackage{amsmath}
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+\begin{multline}
+1 + 2 + 3 + 4 + \\ 
+54 + 43 + 43
+\end{multline}
+\vspace*{\fill}
+\end{document}

@@ -1,0 +1,207 @@
+% \knuthc  knuth the TeXBook
+% \lvoc   Lvovsky
+% \lamc  lamport latex 
+% \slshape different font for footnote
+\graphicspath{{sec03/images/s3/}{sec03/code/s3/}}
+\lstset{inputpath=sec03/code/s3/}
+
+\begin{frame}[fragile]{Input some elements}\relax
+\begin{itemize}
+     \item Code 
+     \item Figures (pictures)
+     \item Tabels
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Code}\relax
+
+\verb|\usepackage|
+
+\hspace{\fill} \verb|{verbatim}| \hfill \verb|{listings}| \hfill \verb|{minted}|
+
+inline
+
+\hspace{\fill} \verb|\verb!code!| \hfill \verb!\lstinline|code|! \hfill \verb|\mintinline{LaTeX}{Code}|
+
+{\csk \small note: \verb"||, !!" are any characters not found in \verb|code|}
+
+environment (\verb|\begin{env} ... \end{env}|)
+
+\hspace{\fill} \verb|{verbatim}| \hfill \verb|{lstlisting}| \hfill \verb|{minted}|
+
+file
+
+\hspace{\fill} \verb|{verbatiminput}| \hfill \verb|{lstinputlisting}| \hfill \verb|{inputminted}|
+
+\skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}}
+\end{frame}
+
+\begin{frame}[fragile]{Verbatim}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{vemy}
+}{vemy}
+\end{frame}
+
+\begin{frame}[fragile]{Listings}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{lstmyf}
+}{lstmyf}
+\end{frame}
+
+\begin{frame}[fragile]{Listings (also)}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-18, 22-22}]{lstmys}
+}{lstmys}
+\end{frame}
+
+\begin{frame}[fragile]{Minted}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-6, 11-11}]{mintmy}
+}{mintmy}
+\end{frame}
+
+\begin{frame}[fragile]{Comparison}\relax
+    \begin{description}
+         \item[verbatim] is the default package, when you need just to add code 
+         \item[minted] is the verbatim on steroids --- it will color your code in proper style, but in works through a python lybrary
+         \item[listings] is a package, that you must tune by yourself, but it is the most ``tunnable'' package
+    \end{description}
+    
+    \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Settings} setting for lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Tips about the code packages}\relax
+    \begin{itemize}
+         \item you must use {\csk \verb|[fragile]|} option in presentation slides (beamer) in the slides with code 
+         \item use {\csk \verb|\cprotect|} package and command if you want to bring code to the command
+         \item you can include only part of the code and provide a path to your src folder
+         \item you can can find lots about the code usage in the source of this presentation  
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Include graphics}\relax
+     \cprotect\twocolImg{
+    \lstinputlisting[linerange={6-7, 11-11}]{incgraph}
+    }{incgraph}
+
+\end{frame}
+
+\begin{frame}[fragile]{Include graphics}{params}\relax
+
+     {
+\scriptsize
+
+\begin{tabbing}
+\lstinline|\includegraphics[|\=\lstinline|width=|\=\lstinline|\textwidth,|\=\lstinline|height=|\=\lstinline|0.5\textheight,|\=\lstinline|keepaspectratio]{|\=\lstinline|papeeria}|\+\\
+the width of the picture\+\\ 
+means ``for whole width of the text''\+\\ 
+the height of the picture\+\\ 
+half of the whole page height\+\\ 
+the ratio will remain the same\+\\ 
+file name. You can ommit \\ ~~~the extension
+\end{tabbing}
+
+     \cprotect\skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics} \url{https://www.tug.org/TUGboat/tb17-1/tb50reck.pdf}\\ 
+     you also can rotate, take only part of pic,.. \verb|\graphicspath{{path1/}{path2/}}| --- how I provide path to images}
+\end{frame}
+
+\begin{frame}[fragile]{Floating}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-8, 11-18}]{floatgraph}
+}{floatgraph}
+\pause
+~\\~\\
+Figure appeared not where it was declaired!
+\end{frame}
+
+\begin{frame}[fragile]{Tips}\relax
+\begin{itemize}
+    \item {\csk \texttt \textbackslash{}caption} generate caption to the figure 
+    \item \LaTeX{} doesn't care of what is inside the {\csk \texttt figure}. You are responsable of the content.
+    \item You can knidly ask \LaTeX\ to put the illustration where you want: 
+    \begin{itemize}
+        \item[t] top
+        \item[b] bottom
+        \item[p] separate page
+        \item[h] in place
+    \end{itemize}
+\end{itemize}
+
+    \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions}\\ 
+    \lvoc{IV.8} for basis and \lvoc{IX.7.2} for advanced --- max fraction, gaps between text and illustration,..}
+\end{frame}
+
+
+\begin{frame}[fragile]{Wrapping graphics}\relax
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={6-7, 12-16}]{wrapgraph}
+}{wrapgraph}
+
+\skfootnote{\url{https://www.overleaf.com/learn/latex/Wrapping_text_around_figures}}
+\end{frame}
+
+\begin{frame}[fragile]{Tables: Floating and wrapping}\relax
+
+\verb|\begin{table}table\end{table}|
+
+\verb|\begin{wraptable}table\end{wraptable}|
+
+\skfootnote{\url{https://www.overleaf.com/learn/latex/Tables} \\ \url{http://texdoc.net/texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf}}     
+\end{frame}
+
+\begin{frame}[fragile]{Tables}{tabbing}\relax
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={10-14}]{tabbingmy}
+}{tabbingmy}
+     \pause
+     \begin{itemize}
+         \item ommit \verb|\kill| to show the first line
+         \item You can also reinstall tabular position inside the tabbing.
+     \end{itemize}
+     \skfootnote{\lvoc{VI.1}}
+\end{frame}
+
+\begin{frame}[fragile]{Tables}{tabbing}\relax
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={10-15}]{tabularmy}
+}{tabularmy}
+     \skfootnote{\lvoc{VI.2}}
+\end{frame}
+
+\begin{frame}[fragile]{Tables}{tabbing}\relax
+     \begin{itemize}
+         \item Line: \verb!o & x & o\\\hline!
+         \begin{itemize}
+             \item {\csk \&} --- moves to the next cell 
+             \item {\csk \verb!\\!} --- movest to the next line 
+             \item {\csk \verb!\hline!} --- provide a horizontal line between cells. You can ommit it.
+         \end{itemize}
+         \item preambula {\csk \verb!{||c|c|c|}!} 
+         \begin{itemize}
+             \item number of letters --- number of columns
+             \item {\csk \verb!|!} stand for vertical line 
+             \item available letters:
+             \begin{itemize}
+                 \item[l] pressed to the left
+                 \item[r] pressed to the right
+                 \item[c] centered
+                 \item[p\{<size>\}] place for a paragraph with some <size> width 
+             \end{itemize}
+         \end{itemize}
+     \end{itemize}
+     \skfootnote{\lvoc{VI.2}}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?}
+     \begin{itemize}
+         \item It is hard to make a table without WYSIWYG. Use this \url{https://www.tablesgenerator.com/}
+         \item To color every second row: \url{https://tex.stackexchange.com/questions/5363/how-to-create-alternating-rows-in-a-table}
+         \item You can use multicells, change the size between cells, make horizontal line for not all cells,.. See \lvoc{VI.2}
+          
+     \end{itemize}
+\end{frame}

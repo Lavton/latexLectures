@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=140mm, paperheight=80mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\graphicspath{{../../images/}} % optional
+\usepackage{lipsum}
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+\begin{wrapfigure}{l}{0.3\linewidth}
+     \includegraphics[width=\linewidth]{papeeria}
+     \caption{Papeeria}
+\end{wrapfigure}
+\lipsum[1]
+\vspace*{\fill}
+\end{document}

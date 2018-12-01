@@ -1,0 +1,100 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lecturessk}[2018/11/03 The style file for additional commands for lecture creating]
+\RequirePackage{beamerskoltech}
+\RequirePackage{tikz}
+
+\RequirePackage{url}
+\urlstyle{sf}
+
+\RequirePackage{verbatim}
+\RequirePackage{cmap}
+\RequirePackage{color}
+\RequirePackage{cprotect}
+\RequirePackage{setspace}
+% \RequirePackage{listings} 
+% \lstloadlanguages{[LaTeX]TeX}
+
+% \lstset{
+% language=[LaTeX]TeX, 
+% inputencoding=utf8,
+% extendedchars=\true, 
+% backgroundcolor=\color{skoltechgreen}, 
+% commentstyle=\color{green}, 
+% keywordstyle=\color{blue}, 
+% keepspaces=\true, 
+% basicstyle=\ttfamily, 
+% otherkeywords={usepackage,documentclass,begin,section,textit,slshape,ttfamily,small,
+% bfseries,upshape,mdseries,rmfamily,normalsize,textsl,texttt,textbf,textup,textmd,textrm,
+% scriptsize,part,chapter,subsection,subsubsection,paragraph,subparagraph},
+% escapeinside={\%*}{*)} } 
+
+
+\RequirePackage{listings}
+\lstset
+{
+    language=[LaTeX]TeX,
+    breaklines=true,
+    basicstyle=\tt\scriptsize,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{magenta},
+    numbers=right,
+    % stepnumber=1,
+}
+
+%https://texfaq.org/FAQ-twooptarg
+\RequirePackage{xargs}
+\newcommandx{\cwpa}[3][3=c]{
+    \begin{columns}[#3]
+        \begin{column}{0.45\textwidth}
+            #1
+        \end{column}
+        \pause
+        \begin{column}{0.45\textwidth}
+            #2
+        \end{column}
+    \end{columns}
+}
+
+\RequirePackage{graphicx}
+\newcommand{\insImg}[1]{
+    \begin{center}
+        \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{#1}%
+    \end{center}
+}
+
+\newcommand{\twocolImg}[2]{
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            #1
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            % https://tex.stackexchange.com/questions/3166/how-can-the-dimensions-of-a-box-be-retrieved-with-latex
+            \savebox{\Abox}{\includegraphics[width=\textwidth, keepaspectratio]{#2}}
+            \newlength{\myhh}
+            \settoheight{\myhh}{\usebox{\Abox}}
+            \raisebox{-0.5\myhh+1ex}[0pt][0pt]{\includegraphics[width=\textwidth, keepaspectratio]{#2}}
+        \end{column}
+    \end{columns}
+}
+\RequirePackage{pdfpages}
+
+\RequirePackage{xcolor}
+%%%%litreture
+% https://yandex.ru/search/?text=цвета%20html&lr=213&rnd=63188 
+% knuth the TeXBook
+\definecolor{knuthcolor}{RGB}{215, 125, 49}
+\newcommand{\knuthc}[1]{{\normalfont\color{knuthcolor}#1}}
+
+%Lvovsky
+\definecolor{lvocolor}{RGB}{0, 253, 250}
+\newcommand{\lvoc}[1]{{\normalfont\color{lvocolor}#1}}
+
+% lamport latex 
+
+\definecolor{lamcolor}{RGB}{184, 143, 255}
+\newcommand{\lamc}[1]{{\normalfont\color{lamcolor}#1}}
+%%%%/litreture
+
+\setlength{\skfootnotelen}{12cm}
