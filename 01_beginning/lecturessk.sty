@@ -80,37 +80,131 @@
 }
 \RequirePackage{pdfpages}
 
+\RequirePackage{tikzpagenodes}
+
+\def\magicPage{%
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+\node[anchor=north east,xshift=-0cm,yshift=-0cm]{%
+{\includegraphics[width=1cm]{images/magic}}%
+};
+\end{tikzpicture}%
+}
+
+% this appear before magic slide 
+\def\preMagicPage{\inClass{%
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+%\node[anchor=north east,xshift=-2cm,yshift=-2cm]{%
+%{
+\draw[fill, anchor=north east,xshift=-1cm,yshift=-0.7cm] circle [radius=0.06];
+%}%
+% };
+\end{tikzpicture}}%
+}
+
+
+\let\oldSkFootnote\skfootnote
+\def\skfootnote#1{\oldSkFootnote{\slshape #1}}
+
 \RequirePackage{xcolor}
-%%%%litreture
+%%%%literature
 % https://yandex.ru/search/?text=цвета%20html&lr=213&rnd=63188 
 % knuth the TeXBook
+%% .pdf#page=10
+
+% http://www.ctex.org/documents/shredder/src/texbook.pdf
 \definecolor{knuthcolor}{RGB}{215, 125, 49}
-\newcommand{\knuthc}[1]{{\normalfont\color{knuthcolor}#1}}
+% \newcommand{\knuthc}[1]{{\normalfont\color{knuthcolor}knuth: #1}}
+\newcommandx{\knuthc}[2][2=0]{%
+{\normalfont\color{knuthcolor}%
+\href{%
+http://www.ctex.org/documents/shredder/src/texbook.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{kn:~#1}%
+}%
+}
 
 %Lvovsky
 \definecolor{lvocolor}{RGB}{0, 253, 250}
-\newcommand{\lvoc}[1]{{\normalfont\color{lvocolor}#1}}
+% \newcommand{\lvoc}[1]{{\normalfont\color{lvocolor}\href{https://www.mccme.ru/free-books/llang/newllang.pdf}{lvovsky: #1}}}
+\newcommandx{\lvoc}[2][2=0]{%
+{\normalfont\color{lvocolor}%
+\href{%
+https://www.mccme.ru/free-books/llang/newllang.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{lv:~#1}%
+}%
+}
 
+%Lvovsky
+\definecolor{lmancolor}{RGB}{32, 21, 94}
+\newcommandx{\lmanc}[2][2=0]{%
+{\normalfont\color{lmancolor}%
+\href{%
+http://mirrors.mi.ras.ru/CTAN/info/latex2e-help-texinfo/latex2e.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{man:~#1}%
+}%
+}
 % lamport latex 
 
 \definecolor{lamcolor}{RGB}{184, 143, 255}
-\newcommand{\lamc}[1]{{\normalfont\color{lamcolor}#1}}
-%%%%/litreture
+\newcommand{\lamc}[1]{{\normalfont\color{lamcolor}lamport: #1}}
+
+% https://en.wikibooks.org/wiki/LaTeX/
+% https://www.overleaf.com/learn/latex/
+% https://tex.stackexchange.com/
+\RequirePackage{url}
+
+\def\stRepl https://tex.stackexchange.com/questions#1 {#1}
+\newcommand{\stExC}[1]{
+{\normalfont \href{https://tex.stackexchange.com/questions\stRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/se_icon}}\!\!\url{\stRepl #1 }}}}
+
+\def\wikiRepl https://en.wikibooks.org/wiki/LaTeX#1 {#1}
+\newcommand{\wikiC}[1]{
+{\normalfont \href{https://en.wikibooks.org/wiki/LaTeX\wikiRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/wikibooks}}\!\!\url{\wikiRepl #1 }}}}
+
+\def\overRepl https://www.overleaf.com/learn/latex#1 {#1}
+\newcommand{\overC}[1]{
+{\normalfont \href{https://www.overleaf.com/learn/latex\overRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/overleaflogo}}\!\!\url{\overRepl #1 }}}}
+
+\def\tugRepl https://www.tug.org/utilities/plain/cseq.html#1 {#1}
+\newcommand{\tugC}[1]{
+{\normalfont \href{https://www.tug.org/utilities/plain/cseq.html\tugRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/tuglogo}}\!\url{\tugRepl #1 }}}}
+
+
+%%%%/literature
 
 \setlength{\skfootnotelen}{12cm}
 
+% = command's color 
+\newcommand{\ccol}[1]{{\csk \string#1}}
 
 %%%%% inclass tasks commands
-\newcommand{\inclassFrame}[1]{{
+
+\newcommand{\inClass}[1]{#1}
+
+\newcommand{\inclassFrame}[1]{{\inClass{
     \setbeamertemplate{background canvas}{
         % \tikz[baseline]\node[anchor=base,draw=red,rounded corners,inner xsep=1ex,inner ysep =0.75ex, bottom color=red!20, top color=red!10]{\parbox{\textwidth}{oo}};%
     {\color{red}\rule{10pt}{\dimexpr\paperheight-30pt\relax}}%
     }
     \setbeamercolor{frametitle}{fg=red}
-#1}
+#1}}
 }
 
-\newcommandx{\inclassFrag}[2][2=2]{%
+\newcommandx{\inclassFrag}[2][2=2]{{\inClass{%
 \newcommand{\insidesOfInClassFrag}{%
 \vspace*{-1ex}\vspace{1pt}%
 \vbox to 0pt{ %
@@ -138,8 +232,10 @@
             \pause\pause%
         \fi%
     \fi%
-\fi%
+\fi}}%
 }
 
-% \renewcommand{\inclassFrame}[1]{}
-% \renewcommandx{\inclassFrag}[2][2=2]{}
+\newcommand{\incPause}{\inClass{\pause}}
+
+%%% uncomment to stop in-class action
+% \renewcommand{\inClass}[1]{}

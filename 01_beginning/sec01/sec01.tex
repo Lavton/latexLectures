@@ -1,6 +1,68 @@
+% pro and contr
+\begin{frame}[t, fragile]{Pros and Cons}
+\vspace{-3.5ex}
+\cwpa{
+    \small
+    \begin{itemize}
+        \item[$+$] When you have lots of equations\vspace{-1ex}
+        \item[$+$] When you have a complex, but typical document \vspace{-1ex}
+        \item[$+$] When you carry about device-independant view\vspace{-1ex}
+        \item[$+$] When you don't want not care about the beauty, but want it\vspace{-1ex}
+        \item[$+$] When you are care about the beauty wery much\vspace{-1ex}
+        \item[$+$] When you hate all these humanitarian GUI programs
+        % \item[$+$] When you love text files 
+        % \item[``+''] When you want to impress your partner
+        % yeah, I leave the commented item for you, source-code reader!
+    \end{itemize}
+}{
+    \small
+    \begin{itemize}
+        \item[$-$] when you want to put something in attributary position\vspace{-1ex}
+        \item[$-$] when you want to do something ``against the rules''\vspace{-1ex}
+        \item[$-$] when you want to work with visual-based things (tables,...)\vspace{-1ex}
+        \item[$-$] when you want to do something really simple \vspace{-1ex}
+    \end{itemize}
+}[t]
+
+\cprotect\skfootnote{
+\verb|\item[$+$]|
+}
+\end{frame}
+
+\begin{frame}{Common belief}\relax
+    \begin{center}
+        \begin{tikzpicture}
+             \node[align=center] (0,0) {
+             \huge \LaTeX\ is only for use\\ \huge  in academic area
+             };
+             \uncover<2>{\node[rotate=30, bottom color=red!50, top color=red!50] (0,0) {\Huge WRONG}};
+        \end{tikzpicture}
+         
+    \end{center}
+    \skfootnote{It was done with \tt TikZ}
+\end{frame}
+
+\begin{frame}[t]{The power of \LaTeX\ in it's templates and flexability!}\relax
+\vspace{-1ex}
+     Look at examples at:
+     \begin{itemize}
+         \item \url{https://www.latextemplates.com/}
+         \item \url{https://tex.stackexchange.com/questions/158668/nice-scientific-pictures-show-off}
+         \item \url{https://tex.stackexchange.com/questions/1319/showcase-of-beautiful-typography-done-in-tex-friends}
+        \item $\cdots$
+     \end{itemize}
+     
+     \vspace{-1ex}
+\inclassFrag{  Please, look at these sites for two minutes  }[-1]
+     
+     \skfootnote{here are some more links \stExC{https://tex.stackexchange.com/questions/1362/latex-template-gallery}
+     }
+\end{frame}
+
+
 % view
 \begin{frame}{What we have}
-\skfootnote{\url{http://www.texample.net/tikz/examples/tree/}}
+\skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Introduction}\\ \normalfont\url{http://www.texample.net/tikz/examples/tree/}}
 \begin{center}
 \begin{tikzpicture}[sibling distance=10em,
   every node/.style = {shape=rectangle, rounded corners,
@@ -22,7 +84,7 @@
 
 % LaTeX
 \begin{frame}{Definitions}
-\skfootnote{\url{https://ru.wikipedia.org/wiki/LaTeX}}
+\skfootnote{\normalfont\url{https://ru.wikipedia.org/wiki/LaTeX}}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{tikzpicture}[sibling distance=10em,
@@ -52,7 +114,7 @@
 
 % TeX
 \begin{frame}{Definitions}
-\skfootnote{\url{https://en.wikipedia.org/wiki/TeX}}
+\skfootnote{\normalfont\url{https://en.wikipedia.org/wiki/TeX}}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{tikzpicture}[sibling distance=10em,
@@ -82,8 +144,8 @@ History 1978 (pdf=1993)
 \end{frame}
 
 % LuaTeX and XeLaTeX
-\begin{frame}{Definitions}
-\skfootnote{\url{https://en.wikipedia.org/wiki/LuaTeX}, \url{https://en.wikipedia.org/wiki/XeTeX}}
+\begin{frame}{Definitions\preMagicPage}
+\skfootnote{\normalfont\url{https://en.wikipedia.org/wiki/LuaTeX}, \url{https://en.wikipedia.org/wiki/XeTeX}}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{tikzpicture}[sibling distance=10em,
@@ -108,39 +170,8 @@ History 1978 (pdf=1993)
 \end{frame}
 
 
-% pro and contr
-\begin{frame}[t, fragile]{Pros and Cons}
-\vspace{-3.5ex}
-\cwpa{
-    \small
-    \begin{itemize}
-        \item[$+$] When you have lots of equations\vspace{-1ex}
-        \item[$+$] When you have a complex, but typical document \vspace{-1ex}
-        \item[$+$] When you carry about device-independant view\vspace{-1ex}
-        \item[$+$] When you don't want not care about the beauty, but want it\vspace{-1ex}
-        \item[$+$] When you are care about the beauty wery much\vspace{-1ex}
-        \item[$+$] When you hate all these humanitarian GUI programs
-        % \item[$+$] When you love text files 
-        % \item[``+''] When you want to impress your partner
-        % yeah, I leave the commented item for you, source-code reader!
-    \end{itemize}
-}{
-    \small
-    \begin{itemize}
-        \item[$-$] when you want to put something in attributary position
-        \item[$-$] when you want to do something ``against the rules''
-        \item[$-$] when you want to work with visual-based things (tables,...)
-        \item[$-$] when you want to do something really simple
-    \end{itemize}
-}[t]
 
-\cprotect\skfootnote{
-\verb|\item[$+$]|
-}
-
-\end{frame}
-
-\begin{frame}{Resourses}%{Books etc}
+\begin{frame}{Resourses\magicPage}%{Books etc}
 
 \vspace{-3.0ex}
 \begin{itemize}
@@ -160,7 +191,7 @@ We will use papeeria\\
 pointed about footnotes and colors!
 }
 
-\begin{frame}[fragile]{Resourses}{Interesting links}
+\begin{frame}[fragile]{Resourses \magicPage}{Interesting links}
 \cprotect\skfootnote{
 \verb|\begin{description} \item[questions about \TeX]\end{description}|
 }

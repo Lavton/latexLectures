@@ -5,69 +5,69 @@
 \graphicspath{{sec03/images/s3/}{sec03/code/s3/}}
 \lstset{inputpath=sec03/code/s3/}
 
-\begin{frame}[fragile]{Input some elements}\relax
+\begin{frame}[fragile]{Input some elements\preMagicPage}\relax
 \begin{itemize}
      \item Code 
      \item Figures (pictures)
      \item Tabels
+     \item \TeX\ files
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Code}\relax
+\begin{frame}[fragile]{Code\magicPage}\relax
+\begin{center}
+\begin{tabular}{c|c|c}
+\hline
+\multicolumn{3}{c}{{\ccol{\usepackage}} }\\\hline
+ verbatim  &  listings  &  minted  \\\hline
+\multicolumn{3}{c}{{\csk inline} }\\\hline
+\textbackslash{}verb!code! & \textbackslash{}lstinline|code| & \textbackslash{}mintinline\{LaTeX\}\{Code\}\\\hline
 
-\verb|\usepackage|
+\multicolumn{3}{c}{{\csk environment (\textbackslash{}begin\{env\} code \textbackslash{}end\{env\})} }\\\hline
+\{verbatim\} & \{lstlisting\} &\{minted\}\\\hline
+\multicolumn{3}{c}{{\csk file} }\\\hline
+\textbackslash{}verbatiminput & \textbackslash{}lstinputlisting& \textbackslash{}inputminted\\\hline
+\end{tabular}
+\end{center}
 
-\hspace{\fill} \verb|{verbatim}| \hfill \verb|{listings}| \hfill \verb|{minted}|
-
-inline
-
-\hspace{\fill} \verb|\verb!code!| \hfill \verb!\lstinline|code|! \hfill \verb|\mintinline{LaTeX}{Code}|
-
-{\csk \small note: \verb"||, !!" are any characters not found in \verb|code|}
-
-environment (\verb|\begin{env} ... \end{env}|)
-
-\hspace{\fill} \verb|{verbatim}| \hfill \verb|{lstlisting}| \hfill \verb|{minted}|
-
-file
-
-\hspace{\fill} \verb|{verbatiminput}| \hfill \verb|{lstinputlisting}| \hfill \verb|{inputminted}|
-
-\skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}}
+\cprotect\skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}\\ note: \verb"||, !!" are any characters that cannot be found in \verb|code|}
 \end{frame}
 
-\begin{frame}[fragile]{Verbatim}\relax
+\begin{frame}[fragile]{Verbatim\magicPage}\relax
 
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{vemy}
 }{vemy}
+
+\skfootnote{\lmanc{8.27}[87]}
 \end{frame}
 
-\begin{frame}[fragile]{Listings}\relax
+\begin{frame}[fragile]{Listings\magicPage}\relax
 
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{lstmyf}
 }{lstmyf}
 \end{frame}
 
-\begin{frame}[fragile]{Listings (also)}\relax
+\begin{frame}[fragile]{Listings (also)\magicPage}\relax
 
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-18, 22-22}]{lstmys}
 }{lstmys}
 
- \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings#Settings} setting for lstlisting}
+ \skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings\#Settings} setting for lstlisting}
  
 \end{frame}
 
-\begin{frame}[fragile]{Minted}\relax
+\begin{frame}[fragile]{Minted\magicPage}\relax
 
 \cprotect\twocolImg{
     \lstinputlisting[linerange={6-6, 11-11}]{mintmy}
 }{mintmy}
+\skfootnote{\overC{https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted} \stExC{https://tex.stackexchange.com/questions/389191/minted-vs-listings-pros-and-cons}}
 \end{frame}
 
-\begin{frame}[fragile]{Comparison}\relax
+\begin{frame}[fragile]{Comparison\magicPage}\relax
     \begin{description}
          \item[verbatim] is the default package, when you need just to add code 
          \item[minted] is the verbatim on steroids --- it will color your code in proper style, but in works through a python lybrary
@@ -76,21 +76,26 @@ file
     
 \end{frame}
 
-\begin{frame}[fragile]{Tips about the code packages}\relax
+\begin{frame}[fragile]{Tips about the code packages\magicPage}\relax
     \begin{itemize}
          \item you must use {\csk \verb|[fragile]|} option in presentation slides (beamer) in the slides with code 
          \item use {\csk \verb|\cprotect|} package and command if you want to bring code to the command
          \item you can include only part of the code and provide a path to your src folder
          \item you can can find lots about the code usage in the source of this presentation  
     \end{itemize}
+    \skfootnote{\normalfont \url{http://mirror.macomnet.net/pub/CTAN/macros/latex/contrib/cprotect/cprotect.pdf}}
 \end{frame}
 
 \begin{frame}[fragile]{Include graphics}\relax
      \cprotect\twocolImg{
     \lstinputlisting[linerange={6-7, 11-11}]{incgraph}
     }{incgraph}
+    
+\inclassFrag{
+Write a bunch of paragraphs (don't forget about \url{https://en.lipsum.com/feed/html})
 
-\inclassFrag{Upload a picture into your papeeria project and try to include it into the pdf}[-1]
+Upload a picture into your papeeria project and try to include it into the pdf}[-1]
+
 \end{frame}
 
 \begin{frame}[fragile]{Include graphics}{params}\relax
@@ -107,10 +112,7 @@ half of the whole page height\+\\
 the ratio will remain the same\+\\ 
 file name. You can ommit \\ ~~~the extension
 \end{tabbing}
-
-\inclassFrag{``Play'' with the params of your picture}[-1]
-
-     \cprotect\skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics} \url{https://www.tug.org/TUGboat/tb17-1/tb50reck.pdf}\\ 
+     \cprotect\skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics} \lmanc{22.3.1}[193] \url{https://www.tug.org/TUGboat/tb17-1/tb50reck.pdf}\\ 
      you also can rotate, take only part of pic,.. \verb|\graphicspath{{path1/}{path2/}}| --- how I provide path to images}
 \end{frame}
 
@@ -123,9 +125,10 @@ file name. You can ommit \\ ~~~the extension
 \inclassFrag{Try to wrap your figure with this environment}
 \pause
 Figure appeared not where it was declaired! 
+
 \end{frame}
 
-\begin{frame}[fragile]{Tips}\relax
+\begin{frame}[fragile]{Tips\preMagicPage}\relax
 \begin{itemize}
     \item {\csk \texttt \textbackslash{}caption} generate caption to the figure 
     \item \LaTeX{} doesn't care of what is inside the {\csk \texttt figure}. You are responsable of the content.
@@ -138,29 +141,28 @@ Figure appeared not where it was declaired!
     \end{itemize}
 \end{itemize}
 
-    \skfootnote{\url{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions}\\ 
-    \lvoc{IV.8} for basis and \lvoc{IX.7.2} for advanced --- max fraction, gaps between text and illustration,..}
+    \skfootnote{\lmanc{8.10.62}[62] \lvoc{IV.8}[185] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions} \overC{https://www.overleaf.com/learn/latex/Positioning_images_and_tables} (advanced: \lvoc{IX.7.2}[329] \lmanc{5}[38] -- max fraction, gaps between text and illustration,.., \knuthc{15}[115])}
 \end{frame}
 
 
-\begin{frame}[fragile]{Wrapping graphics}\relax
+\begin{frame}[fragile]{Wrapping graphics\magicPage}\relax
     \cprotect\twocolImg{
     \lstinputlisting[linerange={6-7, 12-16}]{wrapgraph}
 }{wrapgraph}
 
-\skfootnote{\url{https://www.overleaf.com/learn/latex/Wrapping_text_around_figures}}
+\skfootnote{\lvoc{IV.8.2}[188] \overC{https://www.overleaf.com/learn/latex/Wrapping_text_around_figures} \wikiC{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions\#Wrapping_text_around_figures}}
 \end{frame}
 
-\begin{frame}[fragile]{Tables: Floating and wrapping}\relax
+\begin{frame}[fragile]{Tables: Floating and wrapping\preMagicPage}\relax
 
 \verb|\begin{table}table\end{table}|
 
 \verb|\begin{wraptable}table\end{wraptable}|
 
-\skfootnote{\url{https://www.overleaf.com/learn/latex/Tables} \\ \url{http://texdoc.net/texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf}}     
+\skfootnote{\lvoc{IV.8.1}[187] \lmanc{8.22}[86] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions\#Tables} \overC{https://www.overleaf.com/learn/latex/Tables} \normalfont \url{http://texdoc.net/texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf}}     
 \end{frame}
 
-\begin{frame}[fragile]{Tables}{tabbing}\relax
+\begin{frame}[fragile]{Tables\magicPage}{tabbing}\relax
     \cprotect\twocolImg{
     \lstinputlisting[linerange={10-14}]{tabbingmy}
 }{tabbingmy}
@@ -169,7 +171,7 @@ Figure appeared not where it was declaired!
          \item ommit \verb|\kill| to show the first line
          \item You can also reinstall tabular position inside the tabbing.
      \end{itemize}
-     \skfootnote{\lvoc{VI.1}}
+     \skfootnote{\lvoc{VI.1}[206] \lmanc{8.21}[83] (advanced: \knuthc{22}[241])}
 \end{frame}
 
 \begin{frame}[fragile]{Tables}{tabular}\relax
@@ -177,17 +179,19 @@ Figure appeared not where it was declaired!
     \lstinputlisting[linerange={10-15}]{tabularmy}
 }{tabularmy}
 
-\pause
-The same syntax was inside {\csk array} environment. {\csk array} is a {\csk tabular} for the math mode!
-     \skfootnote{\lvoc{VI.2}}
+\inclassFrag{Guess, what {\csk \&} and \ccol{\\} hear for?}[-1]
 \end{frame}
 
-\begin{frame}[fragile]{Tables}{tabular}\relax
+\begin{frame}[fragile]{Tables\preMagicPage}{tabular}\relax
      \begin{itemize}
          \item Line: \verb!o & x & o\\\hline!
          \begin{itemize}
-             \item {\csk \&} --- moves to the next cell 
-             \item {\csk \verb!\\!} --- movest to the next line 
+             $\left.
+             \begin{tabular}{p{.4\textwidth}} \vspace{-2ex}
+             \item {\csk \&} --- moves to the next cell
+             \item {\csk \verb!\\!} --- moves to the next line
+             \end{tabular}
+             \right\}\text{{\csk it is common, remember!}}$
              \item {\csk \verb!\hline!} --- provide a horizontal line between cells. You can ommit it.
          \end{itemize}
          \item preambula {\csk \verb!{||c|c|c|}!} 
@@ -203,14 +207,49 @@ The same syntax was inside {\csk array} environment. {\csk array} is a {\csk tab
              \end{itemize}
          \end{itemize}
      \end{itemize}
-     \skfootnote{\lvoc{VI.2}}
+     \skfootnote{\lvoc{VI.2}[212] \lmanc{8.23}[87] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Tables} \overC{https://www.overleaf.com/learn/latex/Tables} (advanced: \knuthc{22}[232])\\ 
+     for this bracket (\}) I also used tabular!}
 \end{frame}
 
-\begin{frame}[fragile]{Tabular: what else?}
-     \begin{itemize}
-         \item It is hard to make a table without WYSIWYG. Use this {\csk\url{https://www.tablesgenerator.com/}}
-         \item To color every second row: \url{https://tex.stackexchange.com/questions/5363/how-to-create-alternating-rows-in-a-table}
-         \item You can use multicells, change the size between cells, make horizontal line for not all cells,.. See \lvoc{VI.2}
-          
-     \end{itemize}
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{WYSiWYG}\relax
+It is hard to make a table without WYSIWYG. Use this {\csk\url{https://www.tablesgenerator.com/}}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{color}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={6-6, 10-18}]{tabularcolored}
+}{tabularcolored}
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/5363/how-to-create-alternating-rows-in-a-table}. because of \normalfont \url{https://imgur.com/gallery/ZY8dKpA}}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{more complex cells}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={10-14}]{tabularcomplex}
+}{tabularcomplex}
+
+\begin{itemize}
+     \item \ccol{\cline} is as \ccol{\hline} for several columns
+     \item \ccol{\multicolumn} is a multi column
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{Preambula}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={10-16}]{tabularcopy}
+}{tabularcopy}
+
+The word ``lunch'' isn't inside cells!
+\end{frame}
+
+
+\begin{frame}{Including a \LaTeX\ file}
+
+\centering\Huge\ccol{\input}\{filename\}
+     
+     \skfootnote{\lmanc{24}[208] \overC{https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects} \stExC{https://tex.stackexchange.com/questions/123226/how-to-include-tex-files} \stExC{https://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include}}
 \end{frame}

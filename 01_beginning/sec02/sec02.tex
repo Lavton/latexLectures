@@ -1,9 +1,9 @@
 \graphicspath{{sec02/images/}}
 \lstset{inputpath=sec02/code}
 
-\begin{frame}{WYSiWYG vs not-WYSiWYG editors}
+\begin{frame}{WYSiWYG vs not-WYSiWYG approaches}
 \cwpa{
-{\csk WYSiWYG} -- \textit{What You See is What You Get} editor\\~\\
+{\csk WYSiWYG} -- \textit{What You See is What You Get} approach\\~\\
 
 \inclassFrag{Examples?}[0]
 }{
@@ -16,12 +16,12 @@ Microsoft Word
 \begin{frame}[fragile]{not-WYSiWYG}
 
 
-\cprotect\skfootnote{``\verb|\begin{frame}[fragile]|'' to put code inside}
+\skfootnote{about \TeX\ and CSS \normalfont \url{https://www.wiumlie.no/2006/phd/}}
 
 
 \inclassFrag{Examples?}[1]
 \cprotect[mm]\cwpa{
-{\small HTML }
+{\small HTML (and CSS)}
 
 \begin{lstlisting}[language=html]
 <html>
@@ -34,13 +34,13 @@ Microsoft Word
   </body>
 </html>
 \end{lstlisting}
-
 }{
 {\small \LaTeX}
 \lstinputlisting{helloworld.tex}
 
 }[t]
 
+\pause {\csk CSS} was most probable created influenced by \TeX
 \end{frame}
 
 \begin{frame}[fragile]{Commands}
@@ -48,7 +48,8 @@ Microsoft Word
     (o = optional argument, n = necessary argument)~\\[2ex]
 
 \pause
-    \skfootnote{\knuthc{ch 3}, \lvoc{ch 2.3, 2.7}}
+    \skfootnote{\knuthc{3}[19], \lvoc{I.2.3}[19], \lvoc{I.2.7}[24], \wikiC{https://en.wikibooks.org/wiki/LaTeX/Basics}
+    }
 
     {\csk Command symbols}
     \verb|\$ \# \{ \} \^{} \& \_ \~{} \\|
@@ -63,11 +64,13 @@ Microsoft Word
 
 \begin{frame}[fragile]{Document structure}{overview}
     \lstinputlisting{structureOfDocument.tex}
+    
+    \skfootnote{\lvoc{I.2.4}[20] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Basics\#Our_first_document} \overC{https://www.overleaf.com/learn/latex/Creating_a_document_in_LaTeX}}
 \end{frame}
 
 \begin{frame}[fragile]{Document structure}{class files}
 
-Class of the document responsable for the large-scale settings
+Class of the document is responsable for the large-scale settings
     \cprotect\skfootnote{\lvoc{IV.1}, \lamc{2.2.2} \url{https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/}\\ envirament \lstinline|tabbing|} 
 {
 \scriptsize
@@ -83,7 +86,7 @@ Class of the document responsable for the large-scale settings
 \> \> \lstinline|[twocolumns] %number of columns in document| \> \\ 
 \> \> \> \lstinline|[a5paper] %paper size| \> \\ 
 \end{tabbing}}
-\cprotect\skfootnote{\slshape in this presentation \verb|[aspectratio=169]|}
+\cprotect\skfootnote{\lmanc{3}[17]\\ in this presentation \verb|[aspectratio=169]|}
 \end{frame}
 \note{
 but there is no ``fixed set'' of classes. Can build our own 
@@ -101,15 +104,8 @@ but there is no ``fixed set'' of classes. Can build our own
 
 \note{practicully everything is from package }
 
-
-\inclassFrame{
-\begin{frame}{This slide means it is ``in-class task time!''}\relax
-\centering
-     \LARGE This slide means it is ``in-class task time!''
-\end{frame}
-}
 \cprotect\inclassFrame{
 \begin{frame}[fragile]{Try to compile your first doc}\relax
-     \lstinputlisting[basicstyle=\tt\small]{first.tex}
+     \lstinputlisting[basicstyle=\tt\small, numbers=none]{first.tex}
 \end{frame}
 }

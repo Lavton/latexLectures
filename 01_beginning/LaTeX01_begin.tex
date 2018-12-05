@@ -5,6 +5,7 @@
 \usepackage{xltxtra}
 \usepackage{dsfont}
 \usepackage{multicol}
+\usepackage{soul}
 % \usepackage{pgfpages}
 % \setbeameroption{show notes}
 %\setbeameroption{hide notes} % Only slides
@@ -55,6 +56,68 @@
 \tableofcontents[hideallsubsections]
 \end{frame}
 
+\begin{frame}{Acknowledgments}\relax
+We acknowledge 
+\begin{description}
+    \item[Vlad Yurchenko] for beeing co-author of the first version of this presentation in 2015 
+    \item[Dmitry Barashev] for useful comments, that was included in the presentation
+    \item[Alexey Dmitriev] for useful comments, that was included in the presentation
+    \item[Peter Borisovets] for beeing a tester of the presentation
+\end{description}
+\end{frame}
+
+\begin{frame}{Agreements}{I}\relax
+
+
+{ \Large Footnotes }
+\smash{
+\raisebox{-5.4cm}{
+\begin{tikzpicture}
+\draw[white] (0,0) -- (0, 0.0);
+\draw[->,ultra thick] (0,0) to[out=0,in=45] (8, -1.5) -- (4,-5.5);
+\end{tikzpicture}}
+}
+
+\skfootnote{Like this}
+\begin{itemize}
+    \item Only in the ``out-class'' version
+     \item For second reading
+     \item Containe advanced usage of the command 
+     \item Containe references to read more 
+     \begin{itemize}
+         \item to the exact chapter 
+         \item (often) with the href to exact page  
+     \end{itemize}
+     \item Containe some comments 
+\end{itemize}
+\end{frame}
+
+% \renewcommand{\skfootnote}[1]{}
+
+\begin{frame}{Agreements}{II}\relax
+{ \Large Addition information -- ``magic'' } 
+\smash{\begin{tikzpicture}
+\draw[white] (0,0) -- (0, 0.6);
+\draw[->,ultra thick] (0,0.3) --(3,1.8);
+\end{tikzpicture}}
+\magicPage
+
+\begin{itemize}
+     \item To have the full picture 
+     \item Not to analyze or to puzzle out in class 
+\end{itemize}
+\end{frame}
+
+\inclassFrame{
+\begin{frame}{Agreements}{III}\relax
+\centering
+     {\LARGE This slide means it is ``in-class task time''\par
+     \inclassFrag{This box means it is ``in-class task time''}}
+     These slides and boxes will be removed in the ``out-class'' version. However, they still be in the source code. 
+\end{frame}
+}
+
+
 \AtBeginSection[] 
 {
   \begin{frame}{What we will know?}
@@ -69,6 +132,11 @@
   
   \end{frame}
 }
+
+%%%% TODO:
+% взять шляпу и надевать её для "справочных" слайдов
+% для версии "в классе" все эти заметки убрать. Вернуть для чистовой версии. Ибо отвлекают
+
 
 \section{Introduction: on approaches to \LaTeX}
 
@@ -92,13 +160,18 @@ color from the footnotes corresponds to references' color.
         \item \knuthc{Knuth ``The \TeX Book''}
         \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
         \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+        \item \lmanc{``\LaTeX 2e: An unofficial reference manual''} also at website \url{https://latexref.xyz/}
+        \item \stExC{https://tex.stackexchange.com/questions} : \url{https://tex.stackexchange.com/questions}
+        \item \wikiC{https://en.wikibooks.org/wiki/LaTeX} : \url{https://en.wikibooks.org/wiki/LaTeX}
+        \item \overC{https://www.overleaf.com/learn/latex} : \url{https://www.overleaf.com/learn/latex}
+        \item \tugC{https://www.tug.org/utilities/plain/cseq.html} : \url{https://www.tug.org/utilities/plain/cseq.html}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Distribution}\relax
 \begin{itemize}
      \item the pdf-version of the presentation and all printed materials can be distributed under license Creative Commons Attribution-ShareAlike 4.0 \url{https://creativecommons.org/licenses/by-sa/4.0/}
-     \item The source code of the presentation is available on \url{https://github.com/lavton/} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License#License_terms}
+     \item The source code of the presentation is available on {\csk\url{https://github.com/Lavton/latexLectures}} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License\#License_terms}
 \end{itemize}
      
 \end{frame}

@@ -6,37 +6,43 @@
 \lstset{inputpath=sec03/code/s2/}
 
 \begin{frame}[fragile]{Writing \textit{Text}}\relax
-\inclassFrag{Please, write a line of a text}[1]
+\inclassFrag{Please, write a single line of text
+
+use {\csk\url{https://en.lipsum.com/feed/html}} in case of \st{laziness} optimization of resources
+}[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-10},basicstyle=\tt\normalsize,showspaces=true]{general}
 }{general}
 
-\skfootnote{showspaces=true}
+\cprotect\skfootnote{\knuthc{8}[53]\\ \verb|\lstinputlisting[showspaces=true]|}
 \end{frame}
 
 \begin{frame}[fragile]{Spaces}\relax
+
 \inclassFrag{
-Do the following and compare results from previous step.
-\begin{itemize}
-     \item add spaces between two arbitrary words
-     \item add line break (<return>) between two arbitrary words
-     \item add spaces at the begin of a line
+Do the following and compare results {\csk each} from previous step.
+\begin{enumerate}
+     \item add bunch of spaces between two arbitrary words
+     \item create two more lines of text 
+     \item add spaces at the begin of the last line
      \item add \% at the end of the first line  
-\end{itemize}
+\end{enumerate}
 }[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-14},basicstyle=\tt\small,showspaces=true]{spaces}
 }{spaces}
+\skfootnote{\lvoc{III.9}[141], \overC{https://www.overleaf.com/learn/latex/Line_breaks_and_blank_spaces}}
 \end{frame}
 
 \begin{frame}[fragile]{Paragraph}\relax
+\skfootnote{\overC{https://www.overleaf.com/learn/latex/Paragraphs_and_new_lines}}
 \inclassFrag{
-Do the following and compare results from previous step.
-\begin{itemize}
+Do the following and compare the result from {\csk each} previous step.
+\begin{enumerate}
      \item add \textbf{two} line breaks (<return>) between arbitrary words
      \item add \textbf{three} line breaks (<return>) between arbitrary words
      \item add \textbf{four} line breaks (<return>) between arbitrary words
-\end{itemize}
+\end{enumerate}
 }[1]
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-17},basicstyle=\tt\small,showspaces=true]{paragr}
@@ -47,6 +53,7 @@ Do the following and compare results from previous step.
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-11},basicstyle=\tt\small,showspaces=true]{indents}
 }{indents}
+\skfootnote{\knuthc{13}[97], \knuthc{24}[294] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Paragraph_Formatting} \stExC{https://tex.stackexchange.com/questions/45501/how-to-add-indentation}}
 \end{frame}
 
 \begin{frame}[fragile]{More spaces}\relax
@@ -95,6 +102,12 @@ Do the following and compare results from previous step.
 
 \begin{frame}[fragile]{Fonts}{shape (form)}\relax
 
+\let\oldOp\{
+\let\oldCl\} 
+\let\oldBck\textbackslash
+\def\{{{\normalfont\oldOp}}
+\def\}{{\normalfont\oldCl}}
+\def\textbackslash{{\normalfont\oldBck}}
 
 % `\csname textit\endcsname` creates \textit
 \newcommand{\putinside}[1]{\csname #1\endcsname{{\csk \textbackslash #1}\{text\}} }\relax
@@ -107,13 +120,18 @@ Do the following and compare results from previous step.
     \textsc{Small caps shape} & \putinside{textsc} & \putoutside{scshape}\\
     \hphantom{\textsc{Small caps shape}} & \hphantom{\putinside{textsc}} & \hphantom{\putoutside{scshape}}\\
 \end{tabular}
-\skfootnote{{} \lvoc{III.5.2}\\ code generate this slide is interesting. Look at it :) }
+\skfootnote{{} \lvoc{III.5.2}[111] \lmanc{4}[26] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Fonts} \overC{https://www.overleaf.com/learn/latex/Bold,_italics_and_underlining} \\ code generate this slide is interesting. Look at it :) }
 \end{frame}
 
 
 \begin{frame}[fragile]{Fonts}{saturation (series)}\relax
 
-
+\let\oldOp\{
+\let\oldCl\} 
+\let\oldBck\textbackslash
+\def\{{{\normalfont\oldOp}}
+\def\}{{\normalfont\oldCl}}
+\def\textbackslash{{\normalfont\oldBck}}
 % `\csname textit\endcsname` creates \textit
 \newcommand{\putinside}[1]{\csname #1\endcsname{{\csk \textbackslash #1}\{text\}} }\relax
 \newcommand{\putoutside}[1]{ { \csname #1\endcsname \{{\csk \textbackslash #1} text\} } }
@@ -127,7 +145,12 @@ Do the following and compare results from previous step.
 
 \begin{frame}[fragile]{Fonts}{garniture (family)}\relax
 
-
+\let\oldOp\{
+\let\oldCl\} 
+\let\oldBck\textbackslash
+\def\{{{\normalfont\oldOp}}
+\def\}{{\normalfont\oldCl}}
+\def\textbackslash{{\normalfont\oldBck}}
 % `\csname textit\endcsname` creates \textit
 \newcommand{\putinside}[1]{\csname #1\endcsname{{\csk \textbackslash #1}\{text\}} }\relax
 \newcommand{\putoutside}[1]{ { \csname #1\endcsname \{{\csk \textbackslash #1} text\} } }
@@ -160,7 +183,7 @@ Do the following and compare results from previous step.
 \end{itemize}
 \end{multicols}
 
-\skfootnote{{ }\lvoc{III.5.1}  \url{https://texblog.org/2012/08/29/changing-the-font-size-in-latex/}}
+\cprotect\skfootnote{{ }\lvoc{III.5.1}[108] {\normalfont \url{https://texblog.org/2012/08/29/changing-the-font-size-in-latex/}}\\ \verb|\fontsize{<size>}{<line space>}\selectfont| for arbitrary sizes}
 
 \end{frame}
 
@@ -171,7 +194,7 @@ Do the following and compare results from previous step.
      \Huge text \ttfamily text \itshape text \normalfont\normalsize text
 \end{frame}
 
-\begin{frame}[fragile]{to Default: ``GROUPS''}\relax
+\begin{frame}[fragile]{to Default: ``GROUPS''\preMagicPage}\relax
     \begin{itemize}
     \item Lots of \LaTeX{} commands are ``local''
     \item Local commands loose their effect outside the group 
@@ -185,40 +208,11 @@ Do the following and compare results from previous step.
     \item often something inside \{group\} means ``indivisible'', ``atomic'', ``single'' for \TeX\ commands.
     \end{itemize}
 
+\skfootnote{\lvoc{I.2.5}[21] \knuthc{5}[29]}
 \end{frame}
 
 
-% \begin{frame}[fragile]{More symbols}{Accents}\relax
-% % \footnotesize
-
-% \skfootnote{\knuthc{17}}
-% \newlength{\myboxlen}%
-% \setlength{\myboxlen}{9em}
-
-% \newcommand{\showmacc}[2]{%
-% \makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\hfill{\csk\string#1}\{#2\}}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1{#2}$\hfill}\hfill}%
-% }
-% \showmacc{\hat}{a}\hfill
-% \showmacc{\check}{a}\hfill
-% \showmacc{\tilde}{a}\hfill
-% \showmacc{\acute}{a}\hfill
-% \showmacc{\grave}{a}\hfill
-% \showmacc{\dot}{a}\hfill
-% \showmacc{\ddot}{a}\hfill
-% \showmacc{\breve}{a}\hfill
-% \showmacc{\vec}{a}\hfill
-% ~\\[2ex]
-% \pause
-
-% \setlength{\myboxlen}{12em}
-% \Large \showmacc{\check}{a}\hfill \to \hfill
-% \setlength{\myboxlen}{13em}
-% {\csk \textbackslash{}skew5\textbackslash{}check}\{a\}{$\to$}$\skew5\check{a}$%
-
-% \end{frame}
-
-
-\begin{frame}[fragile]{Other languages}{accents}\relax
+\begin{frame}[fragile]{Other languages}{accents\magicPage}\relax
 \newlength{\myboxlen}%
 \setlength{\myboxlen}{9em}
 
@@ -246,10 +240,10 @@ Do the following and compare results from previous step.
 \showacc{\i}{}\hfill
 \showacc{\j}{}\hfill
 
-    \skfootnote{\url{https://tex.stackexchange.com/tags/accents/info} \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters}}
+    \skfootnote{\url{https://tex.stackexchange.com/tags/accents/info} \wikiC{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \tugC{https://www.tug.org/utilities/plain/cseq.html\#accent-rp}}
 \end{frame}
 
-\begin{frame}[fragile, t]{Other languages}{complite solution: russian}\relax
+\begin{frame}[fragile, t]{Other languages\magicPage}{complite solution: russian}\relax
      \begin{columns}[t]
           \begin{column}{0.45\textwidth}
           XeLaTeX
@@ -264,7 +258,7 @@ Do the following and compare results from previous step.
      \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]{Enumirate}\relax
+\begin{frame}[fragile]{Enumerate}\relax
 \cprotect\twocolImg{
     \lstinputlisting[linerange={10-16},basicstyle=\tt\footnotesize]{enumimy}
 }{enumimy}
@@ -273,7 +267,13 @@ Do the following and compare results from previous step.
     \lstinputlisting[linerange={10-16},basicstyle=\tt\footnotesize]{itemimy}
 }{itemimy}
     
-    \cprotect\skfootnote{{ }\lvoc{III.7.2}\\ 
-    \slshape also look at env. \verb|description| and at \verb|\item[x]|}
+    \cprotect\skfootnote{{ }\lvoc{III.7.4}[131] \lmanc{8.7}[59] \lmanc{8.14}[65] \wikiC{https://en.wikibooks.org/wiki/LaTeX/List_Structures} \overC{https://www.overleaf.com/learn/latex/Lists}\\ 
+    \slshape also look at env. \verb|description| \lmanc{8.4}[57] and at \verb|\item[x]| \lmanc{8.16.1}[71] }
      
 \end{frame}
+
+\inclassFrame{
+\begin{frame}{Try it out!}
+     
+\end{frame}
+}

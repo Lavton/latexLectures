@@ -6,9 +6,10 @@
 \lstset{inputpath=sec03/code/s1/}
 
 \begin{frame}[fragile]{Going $\to$ Math}\relax
+
 \cprotect\skfootnote{
 \vspace{-0.5ex}
-\lvoc{I.3}, \lamc{3.1}\\ {\slshape 
+\lvoc{I.3.29}, \lamc{3.1}, \knuthc{16}[137] \\ {\slshape 
 also try \verb|\(x=y\)| and \verb|\[x=y\]| and environment \verb|equation*|}\\
 \textt \verb|\|lstinputlisting[firstline=7, lastline=14,linerange=\{8-10\}]\{file.tex\}
 }
@@ -18,6 +19,15 @@ Math environments
 
 \lstinputlisting[linerange={15-16,19-19,22-25}]{mdollar.tex}
 }{mdollar}
+
+\end{frame}
+
+\begin{frame}{Going $\to$ Math}\relax
+{\centering \Large
+``Because mathematics is supposedly expensive.''\par} 
+
+\hfill \textcopyright D.~Knuth``the \TeX Book''
+     \skfootnote{\knuthc{16}[138]}
 \end{frame}
 
 
@@ -42,7 +52,7 @@ How can you create ${}^3_2 He$?}[4]
 \cprotect[mm]\appendTline{empty block}{\lstinline[basicstyle=\tt\normalsize,]|${}^3_2He$|}{ ${}^3_2He$}
 \cprotect[mm]\appendTline{index in index}{\lstinline[basicstyle=\tt\normalsize,]|$x^{4^2}$|}{ $x^{4^2}$}
 
-\skfootnote{You really don't want to know, what code generate these lines...}
+\skfootnote{\knuthc{16}[139]\\You really don't want to know, what code generate these lines...}
 \end{frame}
 
 \begin{frame}[fragile]{Fractions and (square) root}\relax
@@ -55,17 +65,6 @@ How can you create ${}^3_2 He$?}[4]
         \end{column}
     \end{columns}
     \vphantom.
-    \hrule
-    \vphantom. 
-    \begin{columns}
-        \begin{column}{0.50\textwidth}
-          \hfill \lstinline"$\left.\left(\frac{x}{y}\right)\right|^a_b$" 
-        \end{column}
-        \begin{column}{0.5\textwidth}
-             $$\left.\left(\frac{x}{y}\right)\right|^a_b$$
-        \end{column}
-    \end{columns}
-    \vphantom(
     \hrule
     \vphantom) 
     \begin{columns}
@@ -88,9 +87,77 @@ How can you create ${}^3_2 He$?}[4]
         \end{column}
     \end{columns}
     
-\cprotect\skfootnote{\slshape sometimes, if you want use fraction into fraction it is better to use \verb|\cfrac{x}{y}|.\\ See typeography section or \lvoc{II.4.1, II.5.1}
+\cprotect\skfootnote{\lmanc{16.7.3}[159] \lmanc{16.7.5}[160] \overC{https://www.overleaf.com/learn/latex/Fractions_and_Binomials} \slshape sometimes, if you want use fraction into fraction it is better to use \verb|\cfrac{x}{y}|. See typeography section or \lvoc{II.4.1, II.5.1}
 also $\sphericalangle$ \verb|\genfrac|
 }
+\end{frame}
+
+\begin{frame}[fragile]{Brackets\preMagicPage}\relax
+
+You can't write just
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$(\frac{x}{y})$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$(\frac{x}{y})$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \incPause
+use \ccol{\left} and \ccol{\right}
+     \vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$\left(\frac{x}{y}\right)$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$\left(\frac{x}{y}\right)$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \incPause
+or even like 
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$\left.\frac{x}{y}\right|_a^b$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$\left.\frac{x}{y}\right|_a^b$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+\end{frame}
+
+\begin{frame}[fragile]{Brackets\magicPage}\relax
+
+Sometimes you need to manually set the bracket size. Then use something like this 
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$(\bigl( \Bigl( \biggl( \Biggl($$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$(\bigl( \Bigl( \biggl( \Biggl($$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    
+    \vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$]\bigr] \Bigr] \biggr] \Biggr]$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$]\bigr] \Bigr] \biggr] \Biggr]$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+
+\skfootnote{\knuthc{17}[147] \overC{https://www.overleaf.com/learn/latex/Brackets_and_Parentheses}}
+     
 \end{frame}
 
 \inclassFrame{
@@ -122,7 +189,28 @@ also $\sphericalangle$ \verb|\genfrac|
 \end{frame}
 }
 
-\begin{frame}[fragile]{More symbols}\relax
+\begin{frame}[fragile]{Text inside equations}\relax
+Sometimes, you need to write a text \textit{inside} an equation
+
+$$\frac{x+1}{y} = z; \hbox{if $x - 1 < y$, but not always!}$$
+
+\cprotect\inclassFrag{try to type \lstinline[basicstyle=\tt]|$$\frac{x+1}{y} = z; if x - 1 < y, but not always!$$|}
+but the direct solution remove all spaces! 
+$$\frac{x+1}{y} = z; if x - 1 < y, but not always!$$
+\incPause
+Use \ccol{\hbox}:
+
+\lstinline[basicstyle=\tt]|$$\frac{x+1}{y} = z; \hbox{if $x - 1 < y$, but not always!}$$| \incPause \hfill or~\ccol{\text}~from~{\csk amsmath}~package.  
+
+\end{frame}
+
+\inclassFrame{
+\begin{frame}{g}\relax
+     How will you type $g = 9.8 \frac{\hbox{m}}{\hbox{s}^2}$?
+\end{frame}
+}
+
+\begin{frame}[fragile]{More symbols\preMagicPage}\relax
     \line{\hss\Large \url{http://detexify.kirelabs.org/classify.html}\hss}
     
     \inclassFrag{\centering
@@ -130,11 +218,11 @@ also $\sphericalangle$ \verb|\genfrac|
     }[-1]
     
     \skfootnote{\vspace{-3ex}
-    \url{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \\
+    \wikiC{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \\
     \url{ftp://sunsite.icm.edu.pl/pub/CTAN/info/symbols/comprehensive/symbols-a4.pdf} (338 pages) \\ \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf} (22 pages)}
 \end{frame}
 
-\begin{frame}[fragile]{More symbols}{Greek letters}\relax
+\begin{frame}[fragile]{More symbols\magicPage}{Greek letters}\relax
 \footnotesize
 
 \newlength{\myboxlen}%
@@ -192,7 +280,7 @@ also $\sphericalangle$ \verb|\genfrac|
 
 \end{frame}
 
-\begin{frame}[fragile]{More symbols}{Other common used symbols}\relax
+\begin{frame}[fragile]{More symbols\magicPage}{Other common used symbols}\relax
 \footnotesize
 
 \newlength{\myboxlen}%
@@ -220,11 +308,11 @@ also $\sphericalangle$ \verb|\genfrac|
 \makebox[\myboxlen]{}\hfill
 
 \normalsize
-\pause \showmsym{\imath}\hfill \showmsym{\jmath}\hfill are useful for accents.
+ \showmsym{\imath}\hfill \showmsym{\jmath}\hfill are useful for accents.
 
 \end{frame}
 
-\begin{frame}[fragile]{More symbols}{Accents}\relax
+\begin{frame}[fragile]{More symbols\magicPage}{Accents}\relax
 % \footnotesize
 
 \skfootnote{\knuthc{17}}
@@ -254,7 +342,7 @@ also $\sphericalangle$ \verb|\genfrac|
 \end{frame}
 
 
-\begin{frame}[fragile]{More symbols}{Math fonts}\relax
+\begin{frame}[fragile]{More symbols\magicPage}{Math fonts}\relax
     \begin{tabbing}
     ааaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= \kill
     \texttt{\textbackslash mathrm\{\textit{letters,etc}\}} \> $\mathrm{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
@@ -269,23 +357,23 @@ also $\sphericalangle$ \verb|\genfrac|
     \cprotect\skfootnote{\lstinline|\usepackage{dsfont}| for the last}
 \end{frame}
 
-\begin{frame}[fragile]{More symbols}{Limiters}\relax
+\begin{frame}[fragile]{More symbols\magicPage}{Limiters}\relax
 \skfootnote{\knuthc{17}}
-
 \newlength{\myboxlen}%
 \setlength{\myboxlen}{6em}
 % \small
 \newcommand{\showmsym}[1]{%
-\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\small\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
 }
 \newcommand{\showidenti}[1]{%
 \makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill$#1$}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
 }
+{\csk Brackets}
 
 \showidenti{(}\hfill
 \showidenti{)}\hfill
-\makebox[\myboxlen]{}\hfill
-\makebox[\myboxlen]{}\hfill
+\showmsym{\langle}\hfill
+\showmsym{\rangle}\hfill
 \showidenti{[}\hfill
 \showidenti{]}\hfill
 \showmsym{\lbrack}\hfill
@@ -298,15 +386,49 @@ also $\sphericalangle$ \verb|\genfrac|
 \showmsym{\rfloor}\hfill
 \showmsym{\lceil}\hfill
 \showmsym{\rceil}\hfill
-\makebox[\myboxlen]{}\hfill
-\makebox[\myboxlen]{}\hfill
-\showmsym{\langle}\hfill
-\showmsym{\rangle}\hfill
+
+{\csk Other}
+\renewcommand{\to}{}
+
+\showidenti{/}\hfill
+\showmsym{\backslash}\hfill
+\showidenti{|}\hfill
+\showmsym{\vert}\hfill
+\showmsym{\|}\hfill
+\showmsym{\Vert}\hfill
+\showmsym{\updownarrow}\hfill
+\showmsym{\Updownarrow}\hfill
+\showmsym{\uparrow}\hfill
+\showmsym{\Uparrow}\hfill
+\showmsym{\downarrow}\hfill
+\showmsym{\Downarrow}\hfill
 
 \end{frame}
 
-\begin{frame}[fragile]{More symbols}{Operators}\relax
-\skfootnote{\url{https://www.overleaf.com/learn/latex/Integrals,_sums_and_limits}}
+\begin{frame}[fragile]{More symbols\magicPage}{Limiters with {\csk \string\Big} prefix}\relax
+\skfootnote{\knuthc{17}[147]}
+\newlength{\myboxlen}%
+\setlength{\myboxlen}{6em}
+% \small
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\scriptsize\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$\Big#1$$\hfill}\hfill}%
+}
+
+
+\showmsym{\vert}\hfill
+\showmsym{\Vert}\hfill
+\showmsym{\arrowvert}\hfill
+\showmsym{\Arrowvert}\hfill
+\showmsym{\lgroup}\hfill
+\showmsym{\rgroup}\hfill
+\showmsym{\lmoustache}\hfill
+\showmsym{\rmoustache}\hfill
+\showmsym{\bracevert}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Operators}\relax
+\skfootnote{\overC{https://www.overleaf.com/learn/latex/Integrals,_sums_and_limits}}
 
 \newlength{\myboxlen}%
 \setlength{\myboxlen}{9em}
@@ -323,52 +445,89 @@ also $\sphericalangle$ \verb|\genfrac|
 
 \end{frame}
 
+\begin{frame}[fragile]{More symbols\magicPage}{Operators}\relax
+Mathematical tradition: write note $sin (x)$, but {\csk$\sin (x)$}.\incPause
 
-\begin{frame}[fragile]{More symbols}{Operators}\relax
-\vspace{-5ex}
-    \newcommand{\appendTline}[3]{ \vphantom{()}
-    \makebox[10em]{#1\hfill} \hfill\hfill \makebox[5em]{\hfill #2\hfill} \hfill \makebox[5em]{\hfill #3\hfill} \hfill\hfill \strut
-        \hrule
-        \vspace{1ex}
-    }
-    
-    \cprotect[mm]\appendTline{\csk source}{\csk operator}{\csk compare with}
-    \hrule height 0.05pt
-    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$\sin({x})$|}{$\sin({x})$}{$sin({x})$}
-    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$\log({x})$|}{$$\log({x})$$}{$$ log({x}) $$}
-    \cprotect[mm]\appendTline{\lstinline|$\lim({x})\limits_a^b$|}{$$\lim\limits_a^b({x})$$}{$$lim\limits_a^b({x})$$}
-    
-    \skfootnote{\url{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}}
+\begin{center}
+     \Large use \ccol{\sin}
+\end{center}
+\incPause
+sometimes more effect is displayed:
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\hfill\lstinline[basicstyle=\tt]|$$\min_{x\to 0} f$$|     
+\end{column}
+\begin{column}{0.5\textwidth}
+$$\min_{x\to 0} f$$
+\end{column}
+\end{columns}
+
+
+    \skfootnote{\overC{https://www.overleaf.com/learn/latex/Operators} \knuthc{18}[173] \url{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}}
+\end{frame}
+
+\begin{frame}[fragile]{Multiline equations\preMagicPage}\relax
+     \cprotect\twocolImg{
+        \lstinputlisting[linerange={9-14}]{arraySimple}
+    }{arraySimple}
+
+\incPause
+notice {\csk \{clcl\}}, {\csk \&}, \ccol{\\}
+\inclassFrag{Does it reminds you something?}[3]
+
+\ccol{array} is a \ccol{tabular} for math mode!
+
+\cprotect\skfootnote{{ } \lvoc{II.3}[75], \lvoc{II.4.2}[84] \lmanc{8.2}[55]}
+\end{frame}
+
+\begin{frame}[fragile]{Also array\magicPage}\relax
+     \cprotect\twocolImg{
+        \lstinputlisting[linerange={11-17}]{matrixesno}
+    }{matrixesno}
+    \cprotect\twocolImg{
+    \lstinputlisting[linerange={9-16}]{equcaseno}
+    }{equcaseno}
+
+\cprotect\skfootnote{advanced: \knuthc{18}[186] \tugC{https://www.tug.org/utilities/plain/cseq.html\#vcenter-rp}}
+\end{frame}
+
+\begin{frame}[fragile]{Multiline equations\preMagicPage}\relax
+ it is better to use 
+ \begin{center}
+ \Large \csk \verb|\usepackage{amsmath}|
+ \end{center}
+ 
+\cprotect\skfootnote{\normalfont \url{http://mirrors.mi.ras.ru/CTAN/macros/latex/required/amsmath/amsmath.pdf} \url{http://texdoc.net/texmf-dist/doc/latex/amsmath/amsldoc.pdf}}
 \end{frame}
 
 
-\begin{frame}[fragile]{Formula in multiple line}\relax
-\skfootnote{{ }\lvoc{II.4.2}\\ You can modify the line gaps, push string to left or right,..}
+\begin{frame}[fragile]{Formula in multiple line\magicPage}\relax
+\skfootnote{{ }\lvoc{II.4.2}[81]\\ You can modify the line gaps, push string to left or right,..}
 
     \cprotect\twocolImg{
 \lstinputlisting[linerange={13-14, 17-20}]{multilines.tex}
 }{multilines}
 
-\verb|AMS| --- American Math Society
 \end{frame}
 
 
-\begin{frame}[fragile]{Multiple formulas}\relax
+\begin{frame}[fragile]{Multiple formulas\magicPage}\relax
 
 % \vspace{-10ex}
     \cprotect\twocolImg{
 \lstinputlisting[linerange={13-14, 17-21}]{gathermy.tex}
 }{gathermy}
 
-\pause
+\incPause
 % \vspace{-10ex}
 notice \lstinline[basicstyle=\tt\normalsize]|\notag| !
 
-\cprotect\skfootnote{{} \lvoc{II.4.2}\\ \slshape  also see \verb'gather*' to ban numeration}
+\cprotect\skfootnote{{} \lvoc{II.4.2}[81]\\ \slshape  also see \verb'gather*' to ban numeration}
 
 \end{frame}
 
-\begin{frame}[fragile]{Multiple formulas and lines: alignment}\relax
+\begin{frame}[fragile]{Multiple formulas and lines: alignment\magicPage}\relax
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-20}]{alignmy.tex}
 }{alignmy}
@@ -376,35 +535,34 @@ notice \lstinline[basicstyle=\tt\normalsize]|\notag| !
     \lstinputlisting[linerange={13-14, 17-22}]{splitmy}
 }{splitmy}
 
-\inclassFrag{
-What do you think {\csk \&} stands for?}
+
 ampersand {\csk \&} is stands for indent (as in tables)
-\cprotect\skfootnote{{ }\lvoc{II.4.2}\\ \slshape also see \verb'align*' to ban numeration}
+\cprotect\skfootnote{{ }\lvoc{II.4.2}[82]\\  also see \verb'align*' to ban numeration}
 \end{frame}
 
-\begin{frame}[fragile, t]{Text inside equations}\relax
+\begin{frame}[fragile, t]{Text inside equations\magicPage}\relax
 
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong1.tex}
 }{alignеtextwrong1}
-\inclassFrag{What a problem can be there?}
-\pause
+
 Problem:
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{alignеtextwrong.tex}
 }{alignеtextwrong}
 
 \end{frame}
-\begin{frame}[fragile]{Text inside equations}{solution}\relax
+\begin{frame}[fragile]{Text inside equations\magicPage}{solution}\relax
 % \vspace{-1.3cm}
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{alignеtext.tex}
 }{alignеtext}
-\verb|\text| and \verb|\intertext|
-\skfootnote{{} \lvoc{II.4.2}}
+\ccol{\text} and \ccol{\intertext}
+% \inclassFrag{How will you type $g = 9.8 \frac{\text{m}}{\text{s}^2}$?}[-1]
+\skfootnote{{} \lvoc{II.4.2}[83]}
 \end{frame}
 
-\begin{frame}[fragile]{System of equations}\relax
+\begin{frame}[fragile]{System of equations\magicPage}\relax
 % \vspace{-1.3cm}
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-24}]{equsis.tex}
@@ -413,29 +571,16 @@ Problem:
 \cprotect\twocolImg{
     \lstinputlisting[linerange={13-14, 17-23}]{equcase}
 }{equcase}
-\skfootnote{{} \lvoc{II.4.2}}
+\skfootnote{{} \lvoc{II.4.2}[84]}
 \end{frame}
 
 
-\begin{frame}[fragile]{Matrix}\relax
+\begin{frame}[fragile]{Matrix\magicPage}\relax
     \cprotect\twocolImg{
     \lstinputlisting[linerange={7-7, 11-18}]{matrixes}
 }{matrixes}
-\cprotect\skfootnote{{ } \lvoc{II.3}\\ \slshape Also see \lstinline!matrix! without borders and \lstinline!vmpatrix! for |border|}
+\cprotect\skfootnote{{ } \lvoc{II.3}[74]\\ \slshape Also see \lstinline!matrix! without borders and \lstinline!vmpatrix! for |border|}
      
-\end{frame}
-
-\begin{frame}[fragile]{Without AMS}\relax
-     \cprotect\twocolImg{
-        \lstinputlisting[linerange={11-17}]{matrixesno}
-    }{matrixesno}
-    \cprotect\twocolImg{
-    \lstinputlisting[linerange={9-16}]{equcaseno}
-    }{equcaseno}
-\pause
-Please, notice this {\csk \{ccc\}, \{ccl\}}.  
-
-\cprotect\skfootnote{{ } \lvoc{II.3, II.4.2}}
 \end{frame}
 
 \cprotect\inclassFrame{
@@ -454,7 +599,7 @@ compare the index position and the operator size
 \end{frame}
 }
 
-\begin{frame}[fragile]{One over another}{operators}\relax
+\begin{frame}[fragile]{One over another\preMagicPage}{operators}\relax
 
 \newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
         \begin{column}{0.45\textwidth}
@@ -475,7 +620,7 @@ compare the index position and the operator size
 
 \end{frame}
 
-\begin{frame}[fragile]{One over another}\relax
+\begin{frame}[fragile]{One over another\magicPage}\relax
 
 \newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
         \begin{column}{0.45\textwidth}
@@ -489,10 +634,43 @@ compare the index position and the operator size
     \hrule
     }
 
-    \cprotect[mm]\appendTline{\csk source}{\csk operator}
+    \cprotect[mm]\appendTline{\csk source}{\csk result}
     \hrule height 0.05pt
     \cprotect[mm]\appendTline{\lstinline|$\stackrel {\Leftrightarrow}{A}$|}{$\stackrel {\Leftrightarrow}{A}$}
     \cprotect[mm]\appendTline{\lstinline|$A \stackrel{a'}{\rightarrow} D$|}{$A \stackrel{a'}{\rightarrow} D$}
+    \cprotect[mm]\appendTline{\lstinline|$$\sum_{\substack{i\in[0;n]\\j\in[0;m]}} a_{ij}$$|}{$$\sum_{\substack{i\in[0;n]\\j\in[0;m]}} a_{ij}$$}
+    
+\end{frame}
+
+\begin{frame}[fragile]{One over another\magicPage}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk result}
+    \hrule height 0.05pt
+    
     \cprotect[mm]\appendTline{\lstinline|$\underbrace{a+\overbrace{b+c}+d}_{m}$|}{$\underbrace{a+\overbrace{b+c}+d}_{m}$}
     
+    \cprotect[mm]\appendTline{\lstinline|$\lefteqn{\overbrace{ \phantom{1+2+3}}} 1+\underbrace{2+3+4}$|}{$\lefteqn{\overbrace{ \phantom{1+2+3}}} 1+\underbrace{2+3+4}$}
+    
+\end{frame}
+
+\begin{frame}{Domain-specific packages}{Lots of them!}\relax
+You can use 
+    \begin{description}
+        \item[Physics] \url{https://ctan.org/pkg/physics}
+        \item[Chemistry] \url{http://www.mychemistry.eu/known-packages/}, \url{https://ru.overleaf.com/learn/latex/Chemistry_formulae}, \url{https://ctan.org/pkg/mhchem}
+        \item[Biology] \url{https://www.tug.org/pracjourn/2007-4/senthil/senthil.pdf} 
+    \end{description}
+     
 \end{frame}
