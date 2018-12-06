@@ -67,8 +67,6 @@ We acknowledge
 \end{frame}
 
 \begin{frame}{Agreements}{I}\relax
-
-
 { \Large Footnotes }
 \smash{
 \raisebox{-5.4cm}{
@@ -149,6 +147,82 @@ We acknowledge
 \section{Mastering the base}
 
 \input{sec03/sec03}
+
+\begin{frame}[fragile]{Briefly: \LaTeX\ escaped simbols}\relax
+\newcommand{\mccol}[1]{{\csk \$\ccol{#1}\$}}
+
+\begin{center}
+\begin{tabular}{c|cc}
+    symbol & textmode & mathmode\\\hline
+    \% & \ccol{\%} & \mccol{\%}\\ 
+    $\sim$ & \ccol{\~} \ccol{\textasciitilde} & \mccol{\sim}\\ 
+    \& &  \ccol{\&} &\mccol{\&}\\ 
+    \textbackslash  & \ccol{\textbackslash} & \mccol{\backslash}\\ 
+    \{ & \ccol{\{} \ccol{\textbraceleft} \ccol{\lbrace} & \mccol{\{} \mccol{\lbrace}\\
+    \} & \ccol{\}} \ccol{\textbraceright} \ccol{\rbrace} & \mccol{\}} \mccol{\rbrace}\\
+    $\_$ & \ccol{\_} & \mccol{\_}\\ 
+    $\^$ & \ccol{\^} \ccol{\textasciicircum} & \mccol{\^}\\ 
+    \$ & \ccol{\$} & \mccol{\$}\\ 
+    \# & \ccol{\#} & \mccol{\#}
+    
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Briefly: \LaTeX\ escaped simbols}\relax
+\begin{columns}
+\begin{column}{0.1\textwidth}
+\begin{center}
+\vspace{-1ex}
+    \%
+
+    $\sim$ 
+    
+    \&
+    
+    \textbackslash 
+    
+    \{ 
+    
+    \} 
+    
+    $\_$ 
+    
+    $\^$
+    
+    \$ 
+    
+    \#
+\end{center}
+\end{column}
+\begin{column}{0.9\textwidth}
+\inclassFrag{let us name all assignments of sybols togeter!}
+
+\vspace{1ex} \incPause
+comments \incPause
+
+non-breaking space \incPause
+
+table indent \incPause
+
+command-start symbol \incPause
+
+start of group \incPause
+
+end of group \incPause
+
+subscript \incPause
+
+superscript \incPause
+
+math mode \incPause
+
+\hbox{for params in macros creation (will discuss at the last lecture)}
+
+\end{column}
+     
+\end{columns}
+\end{frame}
 
 \begin{frame}\frametitle{What we have learned today?}
 \tableofcontents

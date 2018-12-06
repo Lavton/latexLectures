@@ -21,6 +21,7 @@
         \item[$-$] when you want to do something ``against the rules''\vspace{-1ex}
         \item[$-$] when you want to work with visual-based things (tables,...)\vspace{-1ex}
         \item[$-$] when you want to do something really simple \vspace{-1ex}
+        \item[$-$] when you want to do something ``quick and dirty'' \vspace{-1ex}
     \end{itemize}
 }[t]
 
@@ -28,6 +29,33 @@
 \verb|\item[$+$]|
 }
 \end{frame}
+
+\begin{frame}{Science reseach about \LaTeX}\relax
+     \begin{center}
+     ``We show that LaTeX users were {\color{red}slower} than Word users <...> and produced {\color{red}more typesetting},<...>. LaTeX users, however, more often report {\color{green}enjoying using} their respective software.''          
+     \end{center}
+
+     
+\skfootnote{\url{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0115069} (or in russian \url{https://habr.com/post/375109/})}
+\end{frame}
+
+\begin{frame}{Illustration}\relax
+\begin{center}
+     
+     \begin{tikzpicture}[axes/.style=,important line/.style={very thick},]
+        \begin{scope}[axes]
+        \draw[->] (0,0) -- coordinate (x axis mid) (8,0);
+    	\draw[->] (0,0) -- coordinate (y axis mid) (0,5);
+    	\node[below] at (x axis mid) {document complexity and size};
+    	\node[rotate=90, above] at (y axis mid) {effort and time consumption};
+        \end{scope}
+        \draw (0, 1)  .. controls (3,1) and (6,2) .. (8, 4) node[below=0.5cm]{\LaTeX};
+        \draw[dashed] (0, 0.1) .. controls (3, 0.5) and (4,2) .. (5, 5) node[left]{MS Word};
+     \end{tikzpicture}
+\end{center}
+     \skfootnote{based on \url{http://www.pinteric.com/miktex.html} picture\\ tikZ for plotting \url{http://www.texample.net/tikz/examples/line-plot-example/}}
+\end{frame}
+
 
 \begin{frame}{Common belief}\relax
     \begin{center}
@@ -57,6 +85,17 @@
      
      \skfootnote{here are some more links \stExC{https://tex.stackexchange.com/questions/1362/latex-template-gallery}
      }
+\end{frame}
+
+\begin{frame}{Conclusion}\relax 
+
+Now, in \the\year , using \LaTeX\ to write scientific articles with no math inside is more metter of joy, not productivity: MS Office took over lots of \LaTeX 's ideas.\\[2ex]
+
+But \LaTeX\ becoming better too! because of packages, online tools and developing \LaTeX 3.
+
+And for something as complex as this presentation you'll spend way too more time, trying to reproduce it with MS Office.
+     
+     \skfootnote{If you compile this presentation from source, you'll find that the year in the slide -- is the year of compilation :)}
 \end{frame}
 
 
