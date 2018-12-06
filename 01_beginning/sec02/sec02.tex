@@ -12,35 +12,54 @@ Microsoft Word
 }
 \end{frame}
 
-
-\begin{frame}[fragile]{not-WYSiWYG}
-
-
+\begin{frame}[fragile]{not-WYSiWYG}\relax
 \skfootnote{about \TeX\ and CSS \normalfont \url{https://www.wiumlie.no/2006/phd/}}
-
-
 \inclassFrag{Examples?}[1]
-\cprotect[mm]\cwpa{
-{\small HTML (and CSS)}
-
+HTML and CSS 
+\cprotect\twocolImg{
 \begin{lstlisting}[language=html]
 <html>
   <head>
     <meta charset="utf-8">
   </head>
+  <style>h1{color:red;}</style>
   <body>
     <h1>Header</h1>
     <i>Hello</i>,<br/> world!  <!-- comment -->
   </body>
 </html>
 \end{lstlisting}
-}{
-{\small \LaTeX}
+}{HTML1}
+\incPause
+
+\cprotect\twocolImg{
+\begin{lstlisting}[language=html]
+...
+  <style>h1{color:green;}</style>
+...
+\end{lstlisting}
+}{HTML2}
+
+\incPause
+{\csk CSS} was most probable created influenced by \TeX
+\end{frame}
+
+\begin{frame}[fragile]{not-WYSiWYG}\relax
+
+\LaTeX
+\cprotect\twocolImg{
 \lstinputlisting{helloworld.tex}
+}{LaTeX1}
+\incPause
 
-}[t]
+\cprotect\twocolImg{
+\begin{lstlisting}
+...
+  \titleformat*{\section}{\LARGE\bfseries\color{green}}
+...
+\end{lstlisting}
+}{LaTeX2}
 
-\pause {\csk CSS} was most probable created influenced by \TeX
 \end{frame}
 
 \begin{frame}[fragile]{Commands}
@@ -70,7 +89,7 @@ Microsoft Word
 
 \begin{frame}[fragile]{Document structure}{class files}
 
-Class of the document is responsable for the large-scale settings
+Class of the document is responsible for the large-scale settings
     \cprotect\skfootnote{\lvoc{IV.1}, \lamc{2.2.2} \url{https://texblog.org/2013/02/13/latex-documentclass-options-illustrated/}\\ envirament \lstinline|tabbing|} 
 {
 \scriptsize
@@ -94,7 +113,7 @@ but there is no ``fixed set'' of classes. Can build our own
 
 %%TSK: предложить создать документ и поиграться с параметрами
 \begin{frame}[fragile]{Document structure}{style files}
-     Style files are responsable for settings and providing new commands 
+     Style files are responsible for settings and providing new commands 
      
      \vfill
      \hspace{-1ex}

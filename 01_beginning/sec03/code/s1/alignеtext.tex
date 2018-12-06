@@ -2,7 +2,7 @@
 \usepackage{fontspec}
 \pagestyle{empty}
 \usepackage{geometry}
-\geometry{paperwidth=35mm, paperheight=20mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\geometry{paperwidth=65mm, paperheight=50mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
 \newcommand{\aroundbox}[1]{
 \noindent\fbox{%
     \parbox{\textwidth}{
@@ -14,13 +14,12 @@
 
 \begin{document}
 \vspace*{\fill} \vspace*{-5ex}
-$$
-\left\{
-\begin{aligned}
-x^2+y^2&=7\\
-x+y & = 3.\\
-\end{aligned}
-\right.
-$$
+\begin{align*}
+3\cdot 5+7\cdot 5&=(3+7)
+\cdot5 &&\text{(yes clear)}\\
+&=50&&\text{(obviously),}\\
+\intertext{then}
+15+35 &=50
+\end{align*}
 \vspace*{\fill}
 \end{document}

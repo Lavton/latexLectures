@@ -1,5 +1,4 @@
-%% It is just an empty TeX file.
-%% Write your code here.
+% lecture style main file
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{lecturessk}[2018/11/03 The style file for additional commands for lecture creating]
 \RequirePackage{beamerskoltech}
@@ -78,6 +77,32 @@
         \end{column}
     \end{columns}
 }
+
+\newcommandx{\samePosPicture}[3][3={}]{
+    \begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \lstinputlisting[linerange={#2}#3]{#1.tex}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+        
+            \includegraphics[width=0.95\linewidth]{#1.pdf}
+            
+        \end{column}
+    \end{columns}
+}
+
+\newcommand{\logshow}[3]{
+    \begin{columns}
+    \begin{column}{0.45\textwidth}
+         \lstinputlisting[linerange={#2}]{#1.tex}
+    \end{column}
+    
+    \begin{column}{0.45\textwidth}
+         \lstinputlisting[language={},linerange={#3}, keywordstyle=\color{black}, identifierstyle=\color{black},]{#1.logp}
+    \end{column}
+    \end{columns}
+}
+
 \RequirePackage{pdfpages}
 
 \RequirePackage{tikzpagenodes}
@@ -89,6 +114,18 @@
 };
 \end{tikzpicture}%
 }
+
+\def\toFrameTop#1{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.1cm]{\normalfont\tiny #1};
+\end{tikzpicture}}
+
+\def\tW{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.1cm]{\normalfont\tiny \TeX -way};
+\end{tikzpicture}}
+
+\def\lW{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.1cm]{\normalfont\tiny \LaTeX -way};
+\end{tikzpicture}}
 
 % this appear before magic slide 
 \def\preMagicPage{\inClass{%
@@ -157,6 +194,22 @@ http://mirrors.mi.ras.ru/CTAN/info/latex2e-help-texinfo/latex2e.pdf%
 }{man:~#1}%
 }%
 }
+
+% TikZ manual 
+\definecolor{tikZcolor}{RGB}{243, 98, 35}
+\newcommandx{\tikzc}[2][2=0]{%
+{\normalfont\color{tikZcolor}%
+\href{%
+http://mirrors.ctan.org/graphics/pgf/base/doc/pgfmanual.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{TikZ:~#1}%
+}%
+}
+
 % lamport latex 
 
 \definecolor{lamcolor}{RGB}{184, 143, 255}
@@ -189,7 +242,7 @@ http://mirrors.mi.ras.ru/CTAN/info/latex2e-help-texinfo/latex2e.pdf%
 \setlength{\skfootnotelen}{12cm}
 
 % = command's color 
-\newcommand{\ccol}[1]{{\csk \string#1}}
+\newcommand{\ccol}[1]{{\tt\csk \string#1}}
 
 %%%%% inclass tasks commands
 
@@ -235,7 +288,45 @@ http://mirrors.mi.ras.ru/CTAN/info/latex2e-help-texinfo/latex2e.pdf%
 \fi}}%
 }
 
+
+\def\sepOneLabel#1#2#3#4#5\relax{
+    \innerPicturesOverlay{#2}{#4}{#5}{#1}{#3}
+}
+
+\def\sepBreaker#1#2#3#4, #5\relax{
+    \sepOneLabel{\the#1}{#2}{#3}#4\relax
+    \ifx\relax#5\relax
+    \else
+        \advance#1 by 1
+        \sepBreaker{#1}{#2}{#3}#5\relax
+    \fi
+}
+
+\def\innerPicturesOverlay#1#2#3#4#5{
+    \only<#4>{\begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \lstinputlisting[linerange={#2}#5]{#1.tex}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+        
+            \includegraphics[width=0.95\linewidth, height=0.6\textheight, keepaspectratio]{#1#4.pdf}
+            
+        \end{column}
+    \end{columns}
+    
+    #3}
+}
+
+\newcommandx{\posesPicturesOverlay}[3][3={}]{
+    \newcount\slideNum
+    \slideNum=1
+    \sepBreaker{\slideNum}{#1}{#3}#2, \relax
+}
+
+
 \newcommand{\incPause}{\inClass{\pause}}
 
 %%% uncomment to stop in-class action
-% \renewcommand{\inClass}[1]{}
+\renewcommand{\inClass}[1]{}
+
+
