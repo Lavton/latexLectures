@@ -1,0 +1,79 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+\begin{frame}[label=style,fragile]{Built--in themes}
+    \visible<1>{\hyperlink{simple}{\beamerbutton{SIMPLE}} \\}
+    \lstinline[basicstyle=\tt]|\usetheme{CambridgeUS}|\\
+    \lstinline[basicstyle=\tt]|\usecolortheme{crane}|\\
+    \url{https://hartwork.org/beamer-theme-matrix/}\\ \pause
+    \lstinline[basicstyle=\tt]|\usefonttheme{structureitalicserif}|\\
+    \url{http://deic.uab.es/~iblanes/beamer_gallery/index_by_font.html}\\ 
+    \vspace{1cm}
+    \inclassFrag{Google \alert{Beamer Theme Matrix} and \alert{Beamer font theme gallery}.}[-1]
+\end{frame}
+
+\cprotect\inclassFrame{
+\begin{frame}[fragile]{Compile your beamer presentation}\relax
+    \only<1>{ \lstinputlisting[basicstyle=\tt\footnotesize, numbers=none]{task1.tex} }
+    \only<2>{ \lstinputlisting[basicstyle=\tt\footnotesize, numbers=none]{task2.tex} }
+    \only<3>{ \lstinputlisting[basicstyle=\tt\footnotesize, numbers=none]{task3.tex} }
+\end{frame}
+}
+
+\begin{frame}[fragile]{Colors}
+    \skfootnote{\url{en.wikibooks.org/wiki/LaTeX/Colors}}
+    \LaTeX provides several standart colors: 
+    \textcolor{red}{red}, \textcolor{blue}{blue}, \textcolor{green}{green},\dots\\
+    \lstinline[basicstyle=\tt]|\textcolor{red}{text}| \\
+    \pause
+    There many ways to define new colors, e.~g.
+    \lstinline[basicstyle=\tt]|\definecolor{orange}{rgb}{1,.5,0}|\\
+    \lstinline[basicstyle=\tt]|\definecolor{orange}{RGB}{255,127,0}|
+\end{frame}
+
+\begin{frame}{Colors}
+    Beamer automatically loads \alert{xcolor} package\\
+    Somehow popular way to define new colors is buy the following rule
+    \begin{table}
+    \begin{tabular}{0.7\textwidth}\hline
+        color           &   rgb formula             &     output  \\\hline
+        red!30!blue     &   .3(1,0,0)+.7(0,0,1)     &   \textcolor{red!30!blue}{example} \\
+        red!30          &   .3(1,0,0)+.7(1,1,1)     &   \textcolor{red!30!}{example}    \\ 
+        red!30!blue!50!green    &   .5(red!30!blue)+.5(0,1,0)   &   \textcolor{red!30!blue!50!green}{example}   
+    \end{tabular}          
+    \end{table}
+\end{frame}
+
+\begin{frame}[t,fragile]{Customazation}
+        \lstinline[basicstyle=\tt]|\begin{block}{Block title}|  \\
+        \lstinline[basicstyle=\tt]|     Block body|  \\
+        \lstinline[basicstyle=\tt]|\end{block}| \\
+\end{frame}
+
+\begin{frame}[t,fragile]{Customazation}
+        \begin{block}{Block title}
+            Block body
+        \end{block}
+    \pause\vspace{5mm}
+    \lstinline[basicstyle=\tt]|\setbeamercolor{block title}{bg=blue!90,fg=white}|
+    \lstinline[basicstyle=\tt]|\setbeamercolor{block body}{bg=blue!40!,fg=black}|
+    \lstinline[basicstyle=\tt]|\setbeamertemplate{blocks}[rounded][shadow=true]|
+    \setbeamercolor{block title}{bg=blue!90,fg=white}
+    \setbeamercolor{block body}{bg=blue!40!,fg=black}
+    \setbeamertemplate{blocks}[rounded][shadow=true]
+    \pause
+    \begin{block}{Block title}
+          Block body
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{beamerskoltech.sty}
+\skfootnote{github.com/lavton/SkoltechLaTeXtemplates}
+    This presentation uses package \\
+    \lstinline[basicstyle=\tt]|\usepackage[logo]{beamerskoltech}|\\
+    \pause
+    This package manages styling and allows to use commands like \
+    \lstinline[basicstyle=\tt]|\skfootnote{github.com/lavton/SkoltechLaTeXtemplates}|\\
+    \inclassFrag{Upload \texttt{beamerskolthech.sty} from Canvas and compile document with it }[-1]
+\end{frame}
+

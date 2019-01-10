@@ -1,0 +1,43 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+\begin{frame}[label=simple,fragile]{Simplest Beamer document}\relax
+    \cprotect\twocolImg{\lstinputlisting{simplest01.tex}}{simplest01}
+    \vspace{15mm}
+    \inclassFrag{Try it! \hyperlink{style}{\beamerbutton{STYLE}} }[-1]
+\end{frame}
+
+\begin{frame}[fragile]{Beamer document structure}\relax
+    \lstinputlisting[numbers=none]{structure.tex}
+\end{frame}
+
+\begin{frame}[fragile]{Title page (Preamble)}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={5-17}]{title.tex}}{title}
+\end{frame}
+
+\begin{frame}[fragile]{TOC}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={11-13}]{toc.tex}}{toc1}
+\end{frame}
+
+\begin{frame}[fragile]{TOC ({\tt AtBeginSection[]})}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={3-7}]{toc.tex}}{toc2}
+\end{frame}
+
+
+\begin{frame}[fragile]{Appendix}\relax
+    \cprotect\twocolImg{\visible<2>{\lstinputlisting[linerange={4-4}]{appendix.tex}} \\
+    \lstinputlisting[linerange={9-12}]{appendix.tex}}{appendix}
+\end{frame}
+
+\begin{frame}[fragile]{Bibliography (bibtex)}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={10-16}]{bibtex.tex}}{bibtex.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Bibliography (simple)}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={9-21}]{bibliography.tex}}{bibliography.pdf}
+\end{frame}
+
+\begin{frame}[fragile]{Frame: Columns}\relax
+    \cprotect\twocolImg{\lstinputlisting[linerange={8-17}]{columns.tex}}{columns.pdf}
+\end{frame}
+

@@ -243,6 +243,9 @@ http://mirrors.ctan.org/graphics/pgf/base/doc/pgfmanual.pdf%
 
 % = command's color 
 \newcommand{\ccol}[1]{{\tt\csk \string#1}}
+\def\ocol#1[#2]{{\tt\string#1[{\csk #2}]}}
+\def\ncol#1#2{{\tt \string#1\{{\csk #2}\}}}
+\def\Oncol#1[#2]#3{{\tt \string#1[{\csk#2}]\{#3\}}}
 
 %%%%% inclass tasks commands
 

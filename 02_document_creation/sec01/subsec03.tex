@@ -1,0 +1,74 @@
+% \knuthc  knuth the TeXBook
+% \lvoc   Lvovsky
+% \lamc  lamport latex 
+% \slshape different font for footnote
+\graphicspath{{sec01/images/s3/}{sec01/code/s3/}}
+\lstset{inputpath=sec01/code/s3/}
+
+\begin{frame}[fragile]{\ccol{\footnote}\magicPage}\relax
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={9-9}]{footnoteMy.tex}
+}{footnoteMy}  
+
+
+\skfootnote{\lmanc{8}[108] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Footnotes_and_Margin_Notes} \overC{https://www.overleaf.com/learn/latex/Footnotes} \knuthc{15}[120]}
+\end{frame}
+
+\begin{frame}[fragile]{Horizontal aligment\magicPage}\relax
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={9-25}]{flushing.tex}
+}{flushing}  
+
+
+\skfootnote{\lmanc{8.12}[63] \lmanc{8.13}[64] \knuthc{14}[112] and note \stExC{https://tex.stackexchange.com/questions/64644/centering-doesnt-seem-to-center-my-text}}
+\end{frame}
+
+\begin{frame}[fragile]{Page break\magicPage}\relax
+
+{\centering \Large \ccol{\newpage} \ccol{\pagebreak}\par}
+
+\skfootnote{\lmanc{10}[105] \stExC{https://tex.stackexchange.com/questions/736/pagebreak-vs-newpage}}
+     
+\end{frame}
+
+\begin{frame}[fragile]{Quotes\magicPage}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={10-14}]{quotemy.tex}
+}{quotemy}  
+
+
+\cprotect\skfootnote{\lvoc{III.7.1}[129] \lmanc{8.20}[83]. Also see \verb|quotation| env }
+     
+\end{frame}
+
+\begin{frame}[fragile]{Verses\magicPage}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={11-18}]{versemy.tex}
+}{versemy}  
+
+\skfootnote{\lvoc{III.7.3}[130] \lmanc{8.28}[98]}
+\end{frame}
+
+\begin{frame}[fragile]{Marginal notes\magicPage}\relax
+
+\cprotect\twocolImg{
+    \lstinputlisting[linerange={9-10}]{marginmy.tex}
+}{marginmy}  
+
+\skfootnote{\lvoc{IV.10}[194] \lmanc{15.4}[137]}
+\end{frame}
+
+ 
+\cprotect\inclassFrame{
+\begin{frame}[fragile]{Try to add a package}\relax
+\url{http://hanno-rein.de/downloads/coffee.sty}
+
+and use \verb|\newpage \coffee{2} hello world!|
+
+\incPause
+NOW you document is ready!
+
+\end{frame}
+}

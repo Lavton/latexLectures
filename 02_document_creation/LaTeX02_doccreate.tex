@@ -1,0 +1,164 @@
+%https://tex.stackexchange.com/questions/114219/add-notes-to-latex-beamer
+\documentclass[14pt, aspectratio=169]{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{dsfont}
+\usepackage{multicol}
+\usepackage{multirow}
+% \usepackage{pgfpages}
+% \setbeameroption{show notes}
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+% \setbeameroption{show notes on second screen=right} % Both
+%% USAGE: 
+% \usepackage[logo="sklogo.png"]{beamerskoltech} 
+%   if you have a stand-alone image file for Sk logo 
+% or
+% \usepackage[logo]{beamerskoltech} 
+%   if you has no logo-file, but want LaTeX to generate it. 
+%   In this case you probably will need to use `--enable-write18 -interaction=nonstopmode` arguments running the latex command.
+%   in papeeria and overleaf all works fine
+% or 
+% \usepackage{beamerskoltech}
+%   In case you don't want logo at all 
+%
+% provided commands:
+% color `skoltechgreen` -- the dark-green color for structure elements 
+% command `\logoname` -- the name of logo file if exist 
+% command `{\csk <text>}` -- the shortcut from `\color{skoltechgreen}`
+% command `skfootnote{text}` -- put some text for current slide
+% `\renewcommand{\skbeforetitle}{\vspace{-3ex}}` is useful in case you use `aspectratio=169`
+%%%%%%%%%%%%%%%%
+\usepackage[logo]{beamerskoltech} 
+\usepackage{lecturessk}
+\renewcommand{\skbeforetitle}{\vspace{-3ex}}
+
+\usepackage{xecyr}
+\usepackage{hyperref}
+
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\usepackage{listings}
+
+
+
+\begin{document}
+
+
+\title{\LaTeX:\\ \Large from dummy to \TeX nician}
+\subtitle{Create articles, presentations, posters}
+\author{David Saykin \& Anton Lioznov}
+\institute{Skoltech}
+\date{ISP 2019,\\ \textit{lesson 2}}
+\frame{\titlepage}
+\begin{frame}\frametitle{What we will know?}
+\tableofcontents[hideallsubsections]
+\end{frame}
+\begin{frame}{Acknowledgments}\relax
+We acknowledge 
+\begin{description}
+    \item[Vlad Yurchenko] for beeing co-author of the first version of this presentation in 2015 
+    \item[Dmitry Barashev] for useful comments, that was included in the presentation
+    \item[Alexander Kulikov] for useful comments, that was included in the presentation
+\end{description}
+\end{frame}
+
+\begin{frame}{Agreements}{I}\relax
+{ \Large Footnotes }
+\smash{
+\raisebox{-5.4cm}{
+\begin{tikzpicture}
+\draw[white] (0,0) -- (0, 0.0);
+\draw[->,ultra thick] (0,0) to[out=0,in=45] (8, -1.5) -- (4,-5.5);
+\end{tikzpicture}}
+}
+
+\skfootnote{Like this}
+\begin{itemize}
+    \item Only in the ``out-class'' version
+     \item For second reading
+     \item Containe advanced usage of the command 
+     \item Containe references to read more 
+     \begin{itemize}
+         \item to the exact chapter 
+         \item (often) with the href to exact page  
+     \end{itemize}
+     \item Containe some comments 
+\end{itemize}
+\end{frame}
+
+%\renewcommand{\skfootnote}[1]{}
+
+\begin{frame}{Agreements}{II}\relax
+{ \Large Addition information -- ``magic'' } 
+\smash{\begin{tikzpicture}
+\draw[white] (0,0) -- (0, 0.6);
+\draw[->,ultra thick] (0,0.3) --(3,1.8);
+\end{tikzpicture}}
+\magicPage
+
+\begin{itemize}
+     \item To have the full picture 
+     \item Not to analyze or to puzzle out in class 
+\end{itemize}
+\end{frame}
+
+\inclassFrame{
+\begin{frame}{Agreements}{III}\relax
+\centering
+     {\LARGE This slide means it is ``in-class task time''\par
+     \inclassFrag{This box means it is ``in-class task time''}}
+     These slides and boxes will be removed in the ``out-class'' version. However, they still be in the source code. 
+\end{frame}
+}
+
+\AtBeginSection[] 
+{
+  \begin{frame}{What we will know?}
+  \tableofcontents[currentsection,hideallsubsections]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}{What we will know?}
+  \tableofcontents[currentsubsection, hideothersubsections, sectionstyle=show/hide, subsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+\section{Document Creation}
+
+\input{sec01/sec01}
+
+\section{Presentation Creation}
+
+\input{sec02/sec02}
+
+\begin{frame}\frametitle{What we have learned today?}
+\tableofcontents
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]{references}
+color from the footnotes corresponds to references' color.
+    \begin{itemize}
+        \item \knuthc{Knuth ``The \TeX Book''}
+        \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
+        \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+        \item \lmanc{``\LaTeX 2e: An unofficial reference manual''} also at website \url{https://latexref.xyz/}
+        \item \stExC{https://tex.stackexchange.com/questions} : \url{https://tex.stackexchange.com/questions}
+        \item \wikiC{https://en.wikibooks.org/wiki/LaTeX} : \url{https://en.wikibooks.org/wiki/LaTeX}
+        \item \overC{https://www.overleaf.com/learn/latex} : \url{https://www.overleaf.com/learn/latex}
+        \item \tugC{https://www.tug.org/utilities/plain/cseq.html} : \url{https://www.tug.org/utilities/plain/cseq.html}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Distribution}\relax
+\begin{itemize}
+     \item the pdf-version of the presentation and all printed materials can be distributed under license Creative Commons Attribution-ShareAlike 4.0 \url{https://creativecommons.org/licenses/by-sa/4.0/}
+     \item The source code of the presentation is available on {\csk\url{https://github.com/Lavton/latexLectures}} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License\#License_terms}
+\end{itemize}
+     
+\end{frame}
+\end{document}
