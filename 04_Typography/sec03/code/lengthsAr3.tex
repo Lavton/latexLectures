@@ -1,0 +1,30 @@
+
+
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=32mm, left=0mm, top=0mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{printlen}
+
+
+% lengthsAr 18-20, 21-21, 22-22, 23-24
+\begin{document}
+% \vspace*{\fill} \vspace*{-5ex}
+
+\indent\printlength{\parindent}\par
+\parindent=1pt\indent\printlength{\parindent}\par
+\parindent=4em\indent\printlength{\parindent}\par
+\parindent=0.5\parindent\indent\printlength{\parindent}\par
+\parindent=2em+1cm\indent\printlength{\parindent}\par
+\parindent=\dimexpr2em+1cm\indent\printlength{\parindent}\par
+\parindent=\dimexpr(2em+1cm)/2\indent\printlength{\parindent}\par
+
+
+
+
+\vspace*{\fill}
+\end{document}

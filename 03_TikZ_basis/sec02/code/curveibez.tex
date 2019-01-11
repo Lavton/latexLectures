@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=40mm, left=2mm, top=0mm, right=2mm, bottom=0mm}
+\parindent=0pt
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+\centering
+\vspace*{\fill} \vspace*{-5ex}
+
+\begin{tikzpicture}
+\draw (1,0) .. controls +(30:1cm) and +(60:1cm) .. (3,-1);
+\draw[gray,->] (1,0) -- +(30:1cm);
+\draw[gray,<-] (3,-1) -- +(60:1cm);
+\end{tikzpicture}
+
+\vspace*{\fill} 
+\end{document}

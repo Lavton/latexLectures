@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=20mm, left=2mm, top=0mm, right=2mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+\parindent=0pt
+
+\usepackage{color}
+\newcommand{\boxing}[1]{{%
+\ifcsname boxtodimen\endcsname%
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+    \color{blue}
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}%
+}%
+}
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+\boxing{$\int\limits^a_b x d\!x$} 
+\boxing{\phantom{$\int\limits^a_b x d\!x$}}
+\boxing{\hphantom{$\int\limits^a_b x d\!x$}}
+\boxing{\vphantom{$\int\limits^a_b x d\!x$}}
+\boxing{\strut}
+\hfill
+\boxing{\smash{$\int\limits^a_b x d\!x$}} 
+
+
+\vspace*{\fill}
+\end{document}

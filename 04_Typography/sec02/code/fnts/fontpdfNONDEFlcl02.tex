@@ -1,0 +1,45 @@
+% 05
+% pdfLaTeX, localglobal font 
+\documentclass[10pt]{article}
+
+%fontpdfNONDEFlcl02, 8-10, 15-16, 22-23
+
+
+\usepackage{berenis}
+\usepackage[LY1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=60mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\setlength{\parindent}{0pt}
+\renewcommand{\encodingdefault}{OT1}
+\renewcommand{\rmdefault}{cmr}
+
+\begin{document}
+
+
+\vbox to 1.3cm{ % vbox to put text in the same place always, independent of fonts
+{\LARGE fi} (default)\\
+\fontfamily{ybd2j}\fontencoding{LY1}\selectfont {\LARGE fi} % ligature
+}
+
+\vbox to 1.2cm{
+the quick brown fox jumps over\\
+\fontfamily{ybd2j}\fontencoding{LY1}\selectfont the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+\bfseries the quick brown fox jumps\\
+\fontfamily{ybd2j}\fontencoding{LY1}\selectfont \bfseries the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+THE QUICK BROWN FOX JUMPS\\
+\fontfamily{ybd2j}\fontencoding{LY1}\selectfont THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+}
+
+\vbox{
+0123456789 \fontfamily{ybd2j}\fontencoding{LY1}\selectfont 0123456789
+}
+
+\end{document}

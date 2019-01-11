@@ -1,0 +1,36 @@
+% 03
+% pdfLaTeX, local font 
+\documentclass[10pt]{article}
+
+%fontpdflcl03, 7-10,24-25,29-29
+
+\input EileenBl.fd
+\newcommand*\initfamily{\usefont{U}{EileenBl}{xl}{n}}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=60mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\setlength{\parindent}{0pt}
+\begin{document}
+
+
+
+
+
+
+
+\vbox to 1.3cm{ % vbox to put text in the same place always, independent of fonts
+{\LARGE fi} (default)\\
+\initfamily{\LARGE fi} % ligature
+}
+
+\vbox to 1.2cm{
+\initfamily the quick brown fox jumps over the lazy dog
+}
+
+
+
+
+
+\end{document}

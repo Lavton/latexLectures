@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\RequirePackage{xargs}
+\geometry{paperwidth=120mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+% https://tex.stackexchange.com/questions/12810/how-do-i-split-a-string/12811
+
+\def\sepOneLabel#1#2#3#4#5\relax{
+\innerPicturesOverlay{#2}{#4}{#5}{#1}{#3}
+}
+
+\newcommandx{\posesPicturesOverlay}[3][3={}]{
+\newcount\slideNum
+\slideNum=1
+\sepBreaker{\slideNum}{#1}{#3}#2, \relax
+}
+
+\def\sepBreaker#1#2#3#4, #5\relax{
+\sepOneLabel{\the#1}{#2}{#3}#4\relax
+\ifx\relax#5\relax
+\else
+    \advance#1 by 1
+    \sepBreaker{#1}{#2}{#3}#5\relax
+\fi
+}
+
+
+
+\def\innerPicturesOverlay#1#2#3#4#5{
+\noindent tex doc: #1\\
+tex range: #2\\
+down string: #3\\
+counter: #4\\
+add tex: #5\\
+}
+
+% \innerPicturesOverlay{hboxmy}{38-38}{{AA create box around the text. The...}}{1}
+\tracingmacros=1
+    % hboxmy1 38-38, 38-40
+    \posesPicturesOverlay{hboxmy}{
+            {38-38}{F create box around the text. The...}, 
+            {38-40}{You can specify the length of the box with keyword S},
+            {38-42}{AAaaaa sdad }
+    } %
+
+\tracingmacros=0
+
+\def\testwords#1{%
+    % \begingroup
+    % \edef\@tempa{#1}%
+    % \expandafter\endgroup
+    \readwords#1, \relax
+}
+\def\readwords#1, #2\relax{%
+      \doword{#1}%  #1 = substr, #2 = rest of string
+    %   \begingroup
+      \ifx\relax#2\relax  % is #2 empty?
+         \def\next{}% your own end-macro if required
+      \else
+         \def\next{\readwords#2\relax}%
+      \fi
+      \next
+}
+\def\doword#1{(#1)}
+\def\endtestwords{}
+\hrule
+
+\testwords{Now, good, enough}% Gives `(Now)(good)(enough)`
+
+\testwords{Now, good}% Gives `(Now)(good)`
+% \def\double#1{#1#1}
+% \def\a{\double{xy}} \a 
+
+% \edef\a{\double\a} \a 
+
+
+\vspace*{\fill} 
+\end{document}

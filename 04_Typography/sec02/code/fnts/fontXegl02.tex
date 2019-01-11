@@ -1,0 +1,46 @@
+% 01
+% XeLaTeX, default
+\documentclass[10pt]{article}
+
+% fontXe 9-9,24-24,29-29,37-37,41-41 % YOU CAN'T COMPILE THE DOC IN PAPEERIA: PAPEERIA HAS NO GLOBAL Georgia FONT!
+
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Georgia}
+
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=60mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\setlength{\parindent}{0pt}
+\begin{document}
+
+
+
+
+
+
+
+
+\vbox to 1.3cm{ % vbox to put text in the same place always, independent of fonts
+{\LARGE ``fi''} % ligature
+
+}
+
+\vbox to 1.2cm{
+the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+\bfseries the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+}
+
+\vbox{
+0123456789
+}
+
+
+
+\end{document}

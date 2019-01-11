@@ -1,0 +1,49 @@
+\begin{frame}{Modes}\relax
+
+\TeX\ has 3(6) modes:
+\begin{enumerate}
+    \item {\bfseries {\csk Vertical} mode.} [Building the main vertical list, from which the pages of
+output are derived.]
+\item {\bfseries Internal {\csk vertical} mode.} [Building a vertical list for a vbox.]
+\item {\bfseries {\csk Horizontal} mode.} [Building a horizontal list for a paragraph.]
+\item {\bfseries Restricted {\csk horizontal} mode.} [Building a horizontal list for an hbox.]
+\item {\bfseries {\csk Math} mode.} [Building a mathematical formula to be placed in a horizontal list.]
+\item {\bfseries Display {\csk math} mode.} [Building a mathematical formula to be placed on
+a line by itself, temporarily interrupting the current paragraph.]
+     
+\end{enumerate}
+     
+     \skfootnote{\knuthc{13}[95]}
+\end{frame}
+
+\begin{frame}{Difference between modes}
+
+    The modes have lots of differences. For example:
+    \begin{itemize}
+        \item in horizontal mode only first space is taking into account
+        \item in math mode generic font is italic, all spaces are ignored
+        \item in Display math mode operators are drawing bigger, than in the regular one 
+        \item in vertical mode all spaces and <return>s are ignored 
+         
+    \end{itemize}
+     \skfootnote{use \ccol\leavevmode to leave vertical mode}
+\end{frame}
+
+\begin{frame}{More about math mode\magicPage}
+     Math actually has 4 different styles. When you see that superscript $x^y$ is smaller then the text --- it is a different style. The styles are:
+     
+     \centering 
+     \begin{tabular}{l|l|l|p{7em}}
+     \hline
+     Display style & \ccol\displaystyle & $\displaystyle A$ & main style for displayed formula\\
+     Text style & \ccol\textstyle & $\textstyle A$ & main style for in-text formula\\
+     Script style & \ccol\scriptstyle & $\scriptstyle A$ & main style for scripts\\
+     Script-script style & \ccol\scriptscriptstyle & $\scriptscriptstyle A$ & main style for scripts in scripts\\
+     \end{tabular}
+     
+ \skfootnote{\knuthc{17}[151]}
+\end{frame}
+
+
+
+

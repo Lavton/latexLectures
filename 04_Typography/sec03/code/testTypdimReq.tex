@@ -1,0 +1,55 @@
+
+
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=30mm, paperheight=30mm, left=0mm, top=0mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{color}
+\usepackage{xcolor}
+
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+
+
+\newcommand{\boxingDim}[1]{{%
+\ifcsname boxtodimen\endcsname%
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        % \leavevmode 
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\rule{\wb}{0.4pt}}}%width2
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{1.7pt}{\hb}}}%height
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{1.7pt}{\db}}}%depth
+    }}}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}%
+}%
+}
+
+\centering
+\boxingDim{\boxingDim{\Huge g}\boxingDim{\hbox{\Huge b}}}
+
+
+\vspace*{\fill}
+\end{document}

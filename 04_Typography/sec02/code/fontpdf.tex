@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+% \usepackage[OT1]{fontenc}
+% \usepackage[T1]{fontenc}
+\let\oldfamilydefault\rmdefault
+% \usepackage[extralight, normdefault]{sourceserifpro}
+% \usepackage[T1]{fontenc}
+\usepackage{venturisold}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage{lmodern}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=50mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+
+% https://tex.stackexchange.com/questions/62363/change-the-font-of-a-sentence-in-latex-to-calligra
+% https://tex.stackexchange.com/questions/458621/please-help-me-change-a-font
+
+\begin{document}
+\renewcommand*{\familydefault}{cmr}
+\fontfamily{\familydefault}\selectfont
+\vspace*{\fill} \vspace*{-5ex}
+
+{fi \bfseries oooo}
+
+% {\oldfamilydefault\fontfamily{\oldfamilydefault}\selectfont fi \bfseries oooo
+% }
+
+{\fontfamily{yvo}\selectfont
+the quick brown fox jumps }over the lazy dog\\[2ex]
+% \fontenc{librebaskerville}
+THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+
+\show\rmdefault
+% \tracingmacros=1
+% \normalfont fi
+% \tracingmacros=0
+
+\vspace*{\fill}
+\end{document}

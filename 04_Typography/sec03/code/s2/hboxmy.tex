@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=50mm, left=2mm, top=0mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{color}
+\newcommand{\boxing}[1]{{%
+\ifcsname boxtodimen\endcsname%
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+{\color{red}\lower1pt\hbox{---}}%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+    \color{blue}
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}{\color{red}\raise1pt\hbox{---}}%
+}%
+}
+% hboxmy1 38-38, 38-40, 38-41, {38-41,44-45} - 47
+\begin{document}
+% \vspace*{\fill} \vspace*{-5ex}
+\noindent
+\boxing{\hbox        {aa| |sss}}\\
+\boxing{\hbox to 20pt{aa| |sss}}\\
+\boxing{\hbox to 70pt{aa| |sss}}\\
+\boxing{\hbox to -4pt{aa| |sss}}\\
+
+\noindent
+\boxing{\hbox             {aa| |sss}}\\
+\boxing{\hbox spread 0pt  {aa| |sss}}\\
+\boxing{\hbox spread 10pt {aa| |sss}}\\
+\boxing{\hbox spread -10pt {aa| |sss}}\\
+
+\vspace*{\fill}
+\end{document}

@@ -1,0 +1,48 @@
+% 03
+% pdfLaTeX, local font 
+\documentclass[10pt]{article}
+
+% YOU CAN'T COMPILE THE DOC IN PAPEERIA: PAPEERIA HAS NO GLOBAL ARIAL FONT!
+
+
+\usepackage{fontspec}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=60mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+\setlength{\parindent}{0pt}
+\begin{document}
+
+
+
+
+
+
+\vbox to 1.3cm{ % vbox to put text in the same place always, independent of fonts
+{\LARGE ``fi''} (default)\\
+\fontspec[Ligatures=TeX]{Arial}\selectfont {\LARGE ``fi''} % ligature
+}
+
+\vbox to 1.2cm{
+the quick brown fox jumps over\\
+\fontspec[Ligatures=TeX]{Arial}\selectfont the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+\bfseries the quick brown fox jumps\\
+\fontspec[Ligatures=TeX]{Arial}\selectfont \bfseries the quick brown fox jumps over the lazy dog
+}
+
+\vbox to 1.2cm{
+THE QUICK BROWN FOX JUMPS\\
+\fontspec[Ligatures=TeX]{Arial}\selectfont THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG
+}
+
+\vbox{
+0123456789 \fontspec[Ligatures=TeX]{Arial}\selectfont 0123456789
+}
+
+
+
+\end{document}

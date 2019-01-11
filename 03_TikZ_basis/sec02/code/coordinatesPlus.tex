@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=40mm, left=2mm, top=0mm, right=2mm, bottom=0mm}
+\parindent=0pt
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+\centering
+\vspace*{\fill} \vspace*{-5ex}
+++:
+\begin{tikzpicture}
+\draw (2,0) -- ++(1,0) -- ++(0,1) -- ++(-1,0) -- cycle;
+\end{tikzpicture}
++:
+\begin{tikzpicture}
+\draw (2,0) -- +(1,0) -- +(1,1) -- +(0,1) -- cycle;
+\end{tikzpicture}
+
+\vspace*{\fill} 
+\end{document}

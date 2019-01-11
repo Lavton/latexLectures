@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=50mm, left=2mm, top=0mm, right=2mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+\TeX-way:
+use \hskip2em plus 1em\relax to add horizontal glue
+
+or in vertical mode
+\vskip2em plus 1em\relax
+\LaTeX-way:
+use \hspace{2em plus 1em} to add horizontal glue
+
+or in vertical mode
+\vspace{2em plus 1em}
+
+like this
+\vspace*{\fill}
+\end{document}
