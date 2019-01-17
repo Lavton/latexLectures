@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+\usepackage{listings}
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newwrite\filereg
+\openout\filereg=outfile.txt\relax
+     \write\filereg{{\noexpand\bf Hello}\ World}
+      \write\filereg{{\noexpand\bf byebye}\ World}
+\closeout\filereg
+
+\lstinputlisting{outfile.txt}
+
+\vspace*{\fill}
+\end{document}

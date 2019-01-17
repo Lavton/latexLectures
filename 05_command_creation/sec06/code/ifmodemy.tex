@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\def\testm{\ifmmode yes \else no \fi}
+\testm $\testm$
+
+\def\testv{\ifvmode yes \else no \fi}
+\testv \leavevmode \testv
+
+\def\testh{\ifhmode yes \else no \fi}
+\testh \leavevmode \testh
+
+\def\testi{\ifinner yes \else no \fi}
+$\testi$ $$\testi$$
+
+\vspace*{\fill}
+\end{document} 

@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+\usepackage{printlen}
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newlength{\mylen}
+\setlength{\mylen}{40mm}
+\addtolength{\mylen}{2cm}
+\the\mylen
+
+\uselengthunit{mm}\printlength{\mylen}
+
+
+\vspace*{\fill}
+\end{document}

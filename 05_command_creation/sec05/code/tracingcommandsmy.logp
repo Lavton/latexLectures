@@ -1,0 +1,10 @@
+{horizontal mode: the letter B}
+{\hbox}
+{restricted horizontal mode: the letter o}
+{end-group character }}
+{horizontal mode: \vbox}
+{internal vertical mode: the letter z}
+{horizontal mode: the letter z}
+{end-group character }}
+{blank space  }
+{\tracingcommands}

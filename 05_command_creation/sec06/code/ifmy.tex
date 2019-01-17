@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\def\ttest#1#2{
+\def\a{#1}
+\def\b{#2}
+\ifx\a\b 
+    yes 
+\else 
+    no 
+\fi}
+
+\ttest{ab}{ab} \ttest{ba}{ab}
+
+\vspace*{\fill}
+\end{document} 

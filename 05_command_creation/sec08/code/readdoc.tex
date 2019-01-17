@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+\usepackage{listings}
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newwrite\wfilereg
+\openout\wfilereg=infile.txt\relax
+     \write\wfilereg{{\noexpand\bf Hello}\ World}
+      \write\wfilereg{{\noexpand\bf byebye}\ World}
+\closeout\wfilereg
+
+
+\newread\filereg
+\openin\filereg=infile.txt\relax
+
+\ifeof\filereg file ended \else file continue \fi
+\read\filereg to\myline
+\myline\par
+\ifeof\filereg file ended \else file continue \fi
+\read\filereg to\myline
+\myline\par
+\ifeof\filereg file ended \else file continue \fi
+\read\filereg to\myline
+\myline\par
+\ifeof\filereg file ended \else file continue \fi
+\closein\filereg
+
+\vspace*{\fill}
+\end{document}

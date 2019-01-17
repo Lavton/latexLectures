@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\def\parseLine#1, #2\par{arg1: #1\\ arg2: #2 }
+
+\parseLine Hello, World
+
+\vspace*{\fill}
+\end{document}

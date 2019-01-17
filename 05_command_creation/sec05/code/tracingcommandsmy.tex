@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=65mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\def\testT#1{my tex macro #1}
+\newcommand{\testL}[1]{my latex macro #1}
+\let\testLe\testL
+\def\testMult#1: #2{hh#2pp\testT{#1}}
+\def\testC#1{#1\hbox{oo}\vbox{z}}
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+
+\tracingcommands=1
+\testC{B}
+\tracingcommands=0
+
+\vspace*{\fill}
+\end{document}

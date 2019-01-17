@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\def\testwords#1{%
+    \begingroup
+    \edef\tempa{#1\space}%
+    \expandafter\endgroup
+    \expandafter\readwords\tempa\relax
+}
+\def\readwords#1 #2\relax{%
+      \doword{#1}%  #1 = substr, #2 = rest of string
+      \begingroup
+      \ifx\relax#2\relax  % is #2 empty?
+         \def\next{\endgroup\endtestwords}% your own end-macro if required
+      \else
+         \def\next{\endgroup\readwords#2\relax}%
+      \fi
+      \next
+}
+\def\doword#1{(#1)}
+\def\endtestwords{}
+
+\testwords{Now good enough}\\ 
+\testwords{Now good}
+\vspace*{\fill}
+\end{document} 

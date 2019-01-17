@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\newwrite\filetowrite
+\openout\filetowrite=\jobname.xxxx\relax
+\def\setInfoFromEnd#1{\write\filetowrite{{#1 \the\count0}}}
+
+\newread\filefromread
+\openin\filefromread=\jobname.xxxx\relax
+\def\readWhileNotEof{
+\ifeof\filefromread
+    \closein\filefromread
+\else
+    \read\filefromread to\newline
+    \newline~\\ 
+    \readWhileNotEof
+\fi
+}
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\readWhileNotEof{}
+
+\setInfoFromEnd{A\textit{A}A \textbf{bb}} \vspace*{\fill}\newpage
+\setInfoFromEnd{another reference}
+
+\vspace*{\fill}
+\closeout\filetowrite
+\end{document} 

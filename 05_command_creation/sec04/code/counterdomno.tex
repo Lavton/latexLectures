@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newcounter{task}
+\newcommand{\tsk}{\par\addtocounter{task}{1}%
+\textbf{Task \#\arabic{task}.} }
+
+\section{Action}
+\tsk Prepare the template
+\tsk Write the code \label{write}
+\tsk Look at it 
+\section{Viewing}
+\tsk Compile the code \ref{write}
+
+\vspace*{\fill}
+\end{document} 

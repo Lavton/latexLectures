@@ -1,0 +1,26 @@
+> \testL=\long macro:
+#1->my latex macro #1.
+l.38 \show\testL
+                
+
+> \testT=macro:
+#1->my tex macro #1.
+l.39 \show\testT
+                
+
+> \testLe=\long macro:
+#1->my latex macro #1.
+l.40 \show\testLe
+                 
+
+> \testMult=macro:
+#1: #2->#2\testT {#1}.
+l.41 \show\testMult
+                   
+
+> \mylengthL=\skip49.
+l.43 \show\mylengthL
+                    
+
+> \mylengthT=\dimen147.
+l.44 \show\mylengthT

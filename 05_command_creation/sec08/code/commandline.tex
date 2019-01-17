@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\usepackage{graphicx} 
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\immediate\write18{wget https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png -O image.png}
+
+\includegraphics[scale=0.1]{image.png}
+
+\vspace*{\fill}
+\end{document} 
+

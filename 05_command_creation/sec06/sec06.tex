@@ -1,0 +1,198 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\graphicspath{{sec06/images/}{sec06/code/}}
+\lstset{inputpath=sec06/code/}
+
+\subsection{Define macros}
+
+
+\begin{frame}\relax
+
+{\centering\Huge \TeX\ is Turing-complete language
+
+}
+\inclassFrag{Who understand, what does it means?}
+In basic words, it means, that you can write in \TeX\ and \LaTeX\ any algoritms, that you can write in C++, Java, Python... Moreover, some \TeX syntax is really familiar to functional languages
+\skfootnote{\vspace{-3ex}\stExC{https://stackoverflow.com/questions/2968411/ive-heard-that-latex-is-turing-complete-are-there-any-programs-written-in-late} \overC{https://www.overleaf.com/learn/latex/Articles/LaTeX_is_More_Powerful_than_you_Think_-_Computing_the_Fibonacci_Numbers_and_Turing_Completeness} \url{http://sdh33b.blogspot.com/2008/07/icfp-contest-2008.html}}
+     
+\end{frame}
+
+
+\begin{frame}{Define macros \tW\magicPage}
+     In \TeX\ you can define new macros via \ccol\def.
+
+\twocolImg{
+\lstinputlisting[linerange={8-9, 14-16}]{commandwith.tex}
+}{commandwith}
+     
+    Use \ccol\global\ prefix to define macros not just inside ``group''. 
+    
+    Use \ccol\long\ prefix to define macros that can have multiple paragraphs as an argument.
+    
+    \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#def-rp} \knuthc{20}[209]}
+\end{frame}
+
+\begin{frame}{Define with pattern matching\tw\magicPage}\relax
+
+The syntax with writing each argument seems to be an over-use. But it is needed because of \textit{pattern matching}
+  
+\twocolImg{
+\lstinputlisting[linerange={11-13}]{commandpattern.tex}
+}{commandpattern}   
+
+\end{frame}
+
+\subsection{Conditions}
+
+\begin{frame}[fragile]{Compare strings (macros)\tW\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={12-21}]{ifmy.tex}
+}{ifmy}   
+
+    {\csk \verb|\ifx\<first>\<second>  <code1>  [\else  <code2>]  \fi|}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Compare numbers\tW\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={12-20}]{ifnummy.tex}
+}{ifnummy}   
+
+    {\csk \verb|\ifnum<first><operator><second>  <code1>  [\else  <code2>]  \fi|}. Only ``='', ``>'' or ``<'' are allowed.
+    
+    Use {\csk \verb|\ifcase|} to check different stuff.
+    
+    Also use {\csk \verb|\ifodd|} to check if num is odd or even
+    
+\end{frame}
+
+\begin{frame}[fragile]{Check modes\tW\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={12-22}]{ifmodemy.tex}
+}{ifmodemy}   
+\begin{itemize}
+    \item {\csk\verb|\ifmmode|} to check if in mathematical mode
+    \item {\csk\verb|\ifvmode|} to check if in vertical mode
+    \item {\csk\verb|\ifhmode|} to check if in horizontal mode
+    \item {\csk\verb|\ifinner|} to check if \TeX\ is in internal vertical mode, or restricted horizontal mode, or (nondisplay) mathmode
+     
+\end{itemize}
+
+\skfootnote{other ``if'''s can be found in \knuthc{20}[221]}
+\end{frame}
+
+
+\begin{frame}{Compare in \LaTeX\lW\magicPage}\relax
+\twocolImg{
+\lstinputlisting[linerange={7-7, 12-16}]{ifstring.tex}
+}{ifstring}  
+      \ncol\usepackage{xstring}
+      
+      also see \ncol\usepackage{ifthen}
+      
+      \hrule 
+      
+      you can check if you are in \XeLaTeX by \ncol\usepackage{ifxetex}
+      
+      \skfootnote{read about the xstring package! It has lots of things: strings, substrings,.. what to do with them,.. replace strings etc\\ \stExC{https://tex.stackexchange.com/questions/47576/combining-ifxetex-and-ifluatex-with-the-logical-or-operation}}
+\end{frame}
+
+\subsection{Loops and recursion}
+
+\begin{frame}[fragile]{Loop \tW\magicPage}\relax
+\twocolImg{
+\lstinputlisting[linerange={12-17}]{loopmy.tex}
+}{loopmy}
+
+\ccol\loop\ for start loop, <code> inside, then {\csk\verb|\if<..>|}-family, another bunch of <code>, ended with \ccol\repeat.
+
+     \skfootnote{\knuthc{20}[228]}
+\end{frame}
+
+\begin{frame}[fragile]{Reqursion \tW\magicPage}\relax
+\twocolImg{
+\lstinputlisting[linerange={12-13}]{reqmy.tex}
+}{reqmy}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{For loop\lW\magicPage}\relax
+\twocolImg{
+\lstinputlisting[linerange={8-8, 13-16}]{forloopmy.tex}
+}{forloopmy}
+\ncol \usepackage{forloop}
+
+\twocolImg{
+\lstinputlisting[linerange={8-8, 13-15}]{foreachmy.tex}
+}{foreachmy}
+
+\ncol \usepackage{pgffor}, part of pgf, part of TikZ
+
+\skfootnote{\stExC{https://stackoverflow.com/questions/2561791/iteration-in-latex}}
+\end{frame}
+
+\subsection{Related things to macros creation}
+
+\begin{frame}[fragile]{``let'' command\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={11-21}]{letmy.tex}
+}{letmy}
+
+
+The statement ``\ccol\let\verb|\a=\b|'' gives \string\a\ the current meaning of \string\b. If \string\b\ changes after the assignment is made, \string\a\ does not change.
+
+\skfootnote{\knuthc{20}[217] \tugc{https://www.tug.org/utilities/plain/cseq.html\#let-rp}}
+     
+\end{frame}
+
+\begin{frame}[fragile]{Usecase with \ccol\let: ``decorator''\magicPage}\relax
+
+Imagine: you have some \string\command used inside the document multiple times. You want to \textit{add some addition behaviour} to the command -- decorate (or ``wrap'', or ``redefine with the use of itself''). You can do it with \ccol\let:
+
+\begin{lstlisting}
+\let\oldCommand=\command
+\def\command#1{<some code>\oldCommand}
+\end{lstlisting}
+
+And the same for enviruments using \ncol\usepackage{etoolbox} or \ccol{\g@addto@macro}
+
+
+
+\skfootnote{\stExC{https://tex.stackexchange.com/questions/47351/can-i-redefine-a-command-to-contain-itself} \stExC{https://tex.stackexchange.com/questions/467435/environment-decorators}}
+     
+\end{frame}
+
+
+\subsection{Programming examples}
+
+\begin{frame}{99 Bottles of Beer\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={9-26}]{bottles.tex}
+}{bottles}
+
+\skfootnote{\url{https://rosettacode.org/wiki/99_Bottles_of_Beer#LaTeX}}
+     
+\end{frame}
+
+\begin{frame}{not-AND logical gate\magicPage}\relax
+
+\twocolImg{
+\lstinputlisting[linerange={11-29}]{nand.tex}
+}{nand}
+
+\skfootnote{\url{https://rosettacode.org/wiki/99_Bottles_of_Beer#LaTeX}}
+\end{frame}
+
+\begin{frame}{Split words\magicPage}\relax
+\twocolImg{
+\lstinputlisting[linerange={11-31}, basicstyle=\tiny]{splitmy.tex}
+}{splitmy}
+
+     \skfootnote{\stExC{https://tex.stackexchange.com/questions/12810/how-do-i-split-a-string/12811}}
+\end{frame}

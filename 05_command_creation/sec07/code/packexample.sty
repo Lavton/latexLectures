@@ -1,0 +1,12 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{packexample}[2018/01/16 the simple keyval package]
+\RequirePackage{kvoptions}
+% process the arguments for the package
+\SetupKeyvalOptions{
+    family=KVAR,
+    prefix=KVAR@
+}
+\DeclareStringOption[noarg]{myarg}[defaultarg]
+\ProcessKeyvalOptions*
+
+\newcommand{\showarg}{\KVAR@myarg}

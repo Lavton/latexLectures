@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\makeatletter % not needed in a .sty file
+\usepackage{pgfkeys}
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\pgfkeys{my key/.code=The value is '#1'., otherkey/.code=~ the \textbf{scnd} value is '#1'}
+\pgfkeys{my key=hi!, otherkey=AA}
+
+\vspace*{\fill}
+\end{document}

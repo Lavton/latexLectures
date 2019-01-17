@@ -1,0 +1,18 @@
+> \box42=
+\hbox(6.83+0.10999)x53.88
+.\EU1/lmr/m/n/10 TeX
+.\glue 3.33 plus 1.66331 minus 1.1111
+.\EU1/lmr/m/n/10 content
+
+! OK.
+l.38 \showbox\mybox
+                   
+
+> \box41=
+\hbox(6.83+0.10999)x65.13
+.\EU1/lmr/m/n/10 LaTeX
+.\glue 3.33 plus 1.66331 minus 1.1111
+.\EU1/lmr/m/n/10 content
+
+! OK.
+l.39 \showbox\boxname

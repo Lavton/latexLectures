@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+\obeylines
+
+\newsavebox{\mybox}
+\savebox{\mybox}{\hbox{LaTeX content}}
+
+\newlength{\boxwidth}
+\settowidth{\boxwidth}{\usebox{\mybox}}
+\newlength{\boxheight}
+\settoheight{\boxheight}{\usebox{\mybox}}
+\newlength{\boxdepth}
+\settodepth{\boxdepth}{\usebox{\mybox}}
+
+the box width \the\boxwidth
+the box height \the\boxheight 
+the box depth \the\boxdepth
+
+provide the content: \usebox{\mybox} 
+
+
+
+\vspace*{\fill}
+\end{document} 

@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+% \parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+Run one:\\
+\def\a{I'm first macro}
+\def\b{\a}
+\def\a{I'm the second macro}
+\a, \b
+
+Run two:\\
+\def\a{I'm first macro}
+\let\b=\a 
+\def\a{I'm the second macro}
+\a, \b
+
+
+\vspace*{\fill}
+\end{document}

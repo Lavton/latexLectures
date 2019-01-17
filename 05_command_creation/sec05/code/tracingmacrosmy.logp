@@ -1,0 +1,15 @@
+\testL #1->my latex macro #1
+#1<-A
+
+\testT #1->my tex macro #1
+#1<-B
+
+\testLe #1->my latex macro #1
+#1<-V
+
+\testMult #1: #2->#2\testT {#1}
+#1<-d
+#2<-Ki
+
+\testT #1->my tex macro #1
+#1<-d

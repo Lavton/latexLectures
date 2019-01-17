@@ -1,0 +1,14 @@
+> 8.62pt.
+l.39 \showthe\mylengthL
+                       
+
+> 3.99994pt.
+l.40 \showthe\mylengthT
+                       
+
+> 50.
+l.42 \showthe\mycountT
+                      
+
+> 67.
+l.44 \showthe\c@mycountL

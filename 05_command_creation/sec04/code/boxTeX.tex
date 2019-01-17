@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+\obeylines
+
+\newbox\mybox
+\setbox\mybox=\hbox{TeX content}
+
+the box width \the\wd\mybox 
+the box height \the\ht\mybox  
+the box depth \the\dp\mybox 
+
+provide the content: \copy\mybox 
+provide the content and free the box: \box\mybox
+
+
+
+\vspace*{\fill}
+\end{document} 

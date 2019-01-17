@@ -1,0 +1,145 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+\begin{frame}{Create new command\lW}{without arguments}\relax
+\twocolImg{
+\lstinputlisting[linerange={8-12, 14-17, 19-19}]{commandwithout.tex}
+}{commandwithout}
+\ccol\newcommand\{<\ccol\commandname>\}\{<code>\} to create new macros
+
+\inclassFrag{Try it out!}[-1]
+
+\skfootnote{\lmanc{12.1}[113] \lvoc{VII.1.1}[234] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Macros} \overC{https://www.overleaf.com/learn/latex/Commands\#Defining_a_new_command}}
+\end{frame}
+
+\begin{frame}{Recreate new command\lW}\relax
+\inclassFrag{Try to add new command to previous example:
+
+\lstinputlisting[linerange={8-11}]{recommandwithoutTASK.tex}
+}[1]
+\twocolImg{
+\lstinputlisting[linerange={8-12, 15-17, 20-20}]{recommandwithout.tex}
+}{recommandwithout}
+
+\ccol\renewcommand\ to recreate already created command
+
+\end{frame}
+
+\begin{frame}{Create new command\lW}{with arguments}\relax
+     \twocolImg{
+\lstinputlisting[linerange={8-12, 14-17, 19-19}]{commandwith.tex}
+}{commandwith}
+
+\ocol\newcommand\{<commandname>\}[<number of args]\{<code>\}. Refer to arg as \#1, \#2, ...
+
+\inclassFrag{Try it!}[-1]
+\skfootnote{to define command with star use \ccol{\@ifstar} \lmanc{12.4}[116]}
+\end{frame}
+
+\inclassFrame{
+\begin{frame}{Try it out!}
+
+Try to type the following, using the macros creation:
+\newcommand{\mypart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\lName}{Mantius de Virr, the Future Lord of the Universe and conqueror of the Galaxy}
+    $$\Delta f = \mypart{f}{r} = \mypart{f}{x}+\mypart{f}{y}+\mypart{f}{z}$$
+    {
+    -- Hello. I'm \lName.\\
+    -- What do you wish, \lName?\\
+    -- \lName\ wishes a big Cola and French fries\\
+    -- Here are they, \lName! \\
+}     
+
+\end{frame}
+}
+
+\inclassFrame{
+\begin{frame}{Try it out(2)!}
+
+Try to type the following, using the macros creation:
+\newcommand{\mypart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\lName}{Lusy}
+    $$\Delta g = \mypart{g}{r} = \mypart{g}{x}+\mypart{g}{y}+\mypart{g}{z}$$
+    {
+    -- Hello. I'm \lName.\\
+    -- What do you wish, \lName?\\
+    -- \lName\ wishes a big Cola and French fries\\
+    -- Here are they, \lName! \\
+}     
+
+\end{frame}
+}
+
+
+\begin{frame}[fragile]{Command creation inside command creation}\relax
+As simple as \verb|\newcommand{\name}{\newcommand{\othername}{smth}}|
+
+\begin{enumerate}
+    \item In the inner command, you can refer to the argument of outer command as \#1
+    \item In the inner command, you can refer to the argument of inner command as \#\#1
+\end{enumerate}
+\incPause
+Sometimes you can see something like
+\lstinline[basicstyle=\tt\small]|\newcommand{\photo}[1]{\renewcommand{\photo}[#1]}|
+
+\inclassFrag{What it is for?}[3] It provides the following usage: You can store something at first usage as \verb|\photo{myface.png}| and then refer to it as just \verb|\photo|
+\end{frame}
+
+\begin{frame}[fragile]{The scope}\relax
+     \cprotect\inclassFrag{
+     Try the following:
+     
+     \lstinline[basicstyle=\tt]|\newcommand{\htext}[1]{\Huge text}|
+     
+     \lstinline[basicstyle=\tt]|text \htext{text} text|
+     }[1]
+     The braces at command definition and at command usage ommited. If you want your code to have local effect -- provide an extra braces:
+     
+     not \\  \lstinline[basicstyle=\tt]|\newcommand{\htext}[1]{\Huge text}|
+     
+     but \\  \lstinline[basicstyle=\tt]|\newcommand{\htext}[1]{{\Huge text}}|
+\end{frame}
+
+\cprotect\inclassFrame{
+\begin{frame}[fragile]{Modify the previous code:}
+
+use \verb|\usepackage{color}| and \verb|\color{green}|
+
+Try to type the following, using the macros creation:
+\newcommand{\mypart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\lName}{{\color{green}Lusy}}
+    $$\Delta g = \mypart{g}{r} = \mypart{g}{x}+\mypart{g}{y}+\mypart{g}{z}$$
+    {
+    -- Hello. I'm \lName.\\
+    -- What do you wish, \lName?\\
+    -- \lName\ wishes a big Cola and French fries\\
+    -- Here are they, \lName! \\
+}     
+
+\end{frame}
+}
+
+\begin{frame}{New environment\magicPage}\relax
+
+use \ccol\newenvironment\{<name>\}\{<code at begin>\}\{<code at end>\}
+
+or \ccol\renewenvironment     
+
+\skfootnote{\lmanc{12.8}[118]}
+     
+\end{frame}
+
+\begin{frame}{Where to put command creation}\relax
+
+\begin{enumerate}
+    \item You can put it into document preamble
+    \item You can put it inside document whenever you want. Then:
+    \begin{itemize}
+        \item The command can be used only after it's definition
+        \item The command definition is LOCAL: the scope of the visibility is the GROUP
+    \end{itemize}
+    \item You can put it into style or class files
+     
+\end{enumerate}
+     
+\end{frame}
