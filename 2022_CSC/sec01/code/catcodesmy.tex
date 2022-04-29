@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=10mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\usepackage{graphicx} 
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+{
+\catcode`\[=1 \catcode`\]=2 
+\catcode`\{=12 \catcode`\}=12
+\catcode`\#=12
+\catcode`\%=12 \catcode`?=14
+a#b  % a comment?? yes
+
+[{aasd}]
+]
+
+\vspace*{\fill}
+\end{document}

@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=20mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newcount\icount
+\icount=10
+\loop A?
+\ifnum\icount>0
+B! \advance \icount by -1
+\repeat
+
+\vspace*{\fill}
+\end{document} 

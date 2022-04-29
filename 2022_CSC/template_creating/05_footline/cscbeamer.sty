@@ -1,0 +1,48 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{cscbeamer}[2022/05/17 The style file for beamer class to Computer Science Center]
+
+\providecommand{\CSC}{Computer Science Center} 
+
+
+\RequirePackage{xcolor}
+% define colors (green -- for structure and gray -- for titles)
+\definecolor{cscgreen}{RGB}{7, 195, 159}
+\definecolor{titlegray}{RGB}{89, 89, 89}
+\setbeamercolor{title}{fg=titlegray}
+\setbeamercolor{frametitle}{fg=titlegray}
+\setbeamercolor{structure}{fg=cscgreen}
+
+
+\providecommand{\ccsc}{\color{cscgreen}}
+\newcommand{\logoname}{logo-short-green.png}%  <---- отдельно имя логотипа
+
+%%%%%%%%%%%%%%%%% сделаем сверху небольшую линию
+\setbeamertemplate{headline}{%
+    {\color{cscgreen}%
+    \rule{\dimexpr\paperwidth-1cm}{0.1cm}}%
+}
+
+%%%%%%% добавим футнот
+% global renewcommand. From https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}  % <-- @ifstar говорит, что у команды может быть вариант со *. https://latexref.xyz/_005c_0040ifstar.html
+  
+\newcommand{\csc@footnote}{}
+\newcommand{\cscfootnote}[1]{%
+    \grenewcommand{\csc@footnote}{%  <-- "g" = global
+        {\fontsize{10}{12}\selectfont#1}%  <-- кладём текст где хотели с нужным шрифтом
+    }%
+}
+
+% footline
+\setbeamertemplate{navigation symbols}{}  % <-- никогда не пользовался символами навигации
+\setbeamertemplate{footline}{%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \includegraphics[width=1.0cm]{\logoname}%  <-- добавил логотип
+    \csc@footnote% <-- пишем заметку, если она есть
+    \insertframenumber\,/\,\inserttotalframenumber%  <-- добавим номер страницы
+    \cscfootnote{}% <-- "освобождаем" поле заметки
+}%

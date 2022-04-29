@@ -1,0 +1,430 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{cscbeamer}[2022/05/17 The style file for beamer class to Computer Science Center]
+\RequirePackage{kvoptions} %  <-- передаём параметры в пакет
+
+% process the arguments for the package
+\SetupKeyvalOptions{
+    family=KVCSC,
+    prefix=KVCSC@
+}
+% \DeclareStringOption[nologo]{logo}[logo-short-green.png]
+\DeclareBoolOption{darktherm}
+\DeclareBoolOption{nologo}
+\DeclareBoolOption{useprogressbar}
+\DeclareStringOption[all]{classmode}[inclass]
+\ProcessKeyvalOptions*
+
+\providecommand{\CSC}{Computer Science Center} 
+
+
+\RequirePackage{xcolor}
+% define colors (green -- for structure and gray -- for titles)
+\definecolor{cscgreen}{RGB}{7, 195, 159} % основной цвет выделения
+\definecolor{cscorange}{RGB}{245, 157, 32} % доп цвет выделения
+\definecolor{cscblue}{RGB}{5,122,186} % доп цвет выделения 
+% тёмная тема
+\definecolor{cscdarkback}{RGB}{29,29,29} % бекграунд
+\definecolor{csclightcolor}{RGB}{206,216,221} % подзаголовок и тп
+% светлая тема
+\definecolor{csclightback}{RGB}{236,240,242} % бекграунд
+\definecolor{cscdarkcolor}{RGB}{136,153,164} % подзаголовок и тп
+\setbeamertemplate{section in toc shaded}[default][100]
+\setbeamertemplate{subsection in toc shaded}[default][100]
+\ifKVCSC@darktherm\relax % в зависимости от темы (светлая или тёмная) выставляем основные цвета)
+    \setbeamercolor{background canvas}{bg=cscdarkback}
+    \setbeamercolor{title}{fg=white}
+    \setbeamercolor{frametitle}{fg=white}
+    \setbeamercolor{framesubtitle}{fg=csclightcolor}
+    \setbeamercolor{normal text}{fg=white}
+    \setbeamercolor{page number}{fg=csclightcolor}
+    \setbeamercolor{section in toc shaded}{fg=cscdarkback!70!cscgreen}
+    \setbeamercolor{subsection in toc shaded}{fg=cscdarkback!70!white}
+\else
+    \setbeamercolor{background canvas}{bg=csclightback}
+    \setbeamercolor{title}{fg=black}
+    \setbeamercolor{frametitle}{fg=black}
+    \setbeamercolor{framesubtitle}{fg=cscdarkcolor}
+    \setbeamercolor{normal text}{fg=black}
+    \setbeamercolor{page number}{fg=cscdarkcolor}
+    \setbeamercolor{section in toc shaded}{fg=csclightback!70!cscgreen}
+    \setbeamercolor{subsection in toc shaded}{fg=csclightback!70!black}
+\fi
+\setbeamercolor{structure}{fg=cscgreen}
+\setbeamerfont{footnote}{size=\tiny}
+\newcount\forcewidefootnote% <-- широкие ли заметки будут. 1=да, -1=нет, 0=зависит от того, насколько она большая
+\forcewidefootnote=0
+\newcommand{\logoname}{templateresources/images/logo-short-green.png}%
+
+
+\def\ifnot#1{#1\else\expandafter\expandafter\fi\iffalse\iftrue\fi} % <-- нам понадобится инверсия условия if. См https://tex.stackexchange.com/questions/108911/negating-ifeof
+\def\ifnottitle#1{\ifnot{\ifnum\insertframenumber=1}\relax#1\fi} % на первом слайде (где заголовок) не используем многие элементы
+
+%%% титульный слайд %%%%%%
+\def\csc@titlefontmodificator{\fontsize{32}{40}\selectfont}
+\setbeamerfont{title}{size=\csc@titlefontmodificator}
+\newif\ifsupressfootnote % <-- не показывать футнот
+\newif\ifsupressprogressbar % <-- не показывать прогресс-бар
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  самый верх слайда %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newdimen\rule@length
+\rule@length=\paperwidth%
+\ifKVCSC@useprogressbar % используем ли прогресс-бар по верху страницы
+    \setbeamertemplate{headline}{%
+    \immediate\update@section@counters% <-- обновляем номера, где начинаются секции (если надо)
+    \immediate\set@sectionprogress@length% <-- обновляем длину прогрессбара
+        \ifnottitle{%
+        \smash{%
+            \ifnot{\ifsupressprogressbar}%
+                \lower0.1cm\hbox{%
+                    {%
+                        \color{cscgreen}%
+                        \rule{\rule@length}{0.1cm}% пускаем линейку
+                    }%
+                }%
+            \fi%
+        }}%
+    }
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% заголовки и подзаголовки %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/415621/how-to-customize-the-frame-title-subtitle-main-text-in-terms-of-position-and?rq=1
+\def\csc@insertframetitle{\insertframetitle}
+\def\csc@insert@frametitle{% < --- как будем заголовок печатать
+    \usebeamerfont{frametitle}\strut\csc@insertframetitle%
+    % \space|\the\section@start@slide$\to$\the\section@end@slide|% <-- (debug) для наглядности смотрим, где начало и конец секции
+    \strut\par%
+}
+\def\csc@insert@framesubtitle{%  < -- как будем подзаголовок печатать
+    \ifnot{\ifx\insertframesubtitle\@empty}\relax%
+        \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle%
+        \strut\par\vspace{5pt}%
+    \fi%
+}
+\setbeamertemplate{frametitle}{%  <-- компонуем заголовок и подзаголовок
+    \vspace{0.5\beamer@leftmargin}%  <-- отходим от края
+    \csc@insert@frametitle%
+    \csc@insert@framesubtitle%
+    \vspace{-10pt}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% самый низ слайда %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\iffootnotefullwidth% <-- определим, "широкая" ли заметка будет или нет. Если широкая -- она занимает весь низ, лого и номер страницы исчезают
+\newcommand{\check@footwidth}[1]{%
+    \setbox\footnote@box=#1\relax%
+    \ifnum \forcewidefootnote=1\relax%
+        \footnotefullwidthtrue% 
+    \else%
+        \ifnum\forcewidefootnote=-1\relax% 
+            \footnotefullwidthfalse%
+        \else%
+            \ifdim\ht\footnote@box>36pt\relax% 
+                \footnotefullwidthtrue% 
+            \else%
+                \footnotefullwidthfalse% 
+            \fi%
+        \fi%
+    \fi%
+}
+
+\newdimen\fromBorderLogo%  <-- насколько отходим от краёв
+\fromBorderLogo=0.25\beamer@leftmargin
+\newdimen\fromBottonLogo% < -- насколько отходим от низа
+\fromBottonLogo=5pt
+
+\def\csc@widefootnote@box{%  <-- на случай широкой заметки
+    \raisebox{0em}[0pt][0pt]{
+        \hbox{
+            \parbox[b]{\dimexpr\paperwidth-30pt}{%
+                \usebeamerfont{footnote}\centering% 
+                \ifnot{\ifsupressfootnote}%
+                    \csc@footnote%
+                \fi%
+            }%
+        }% 
+    }%
+}
+\def\csc@logo@box{% <-- бокс для логотипа
+    \ifnot{\ifKVCSC@nologo}%
+        \raisebox{0pt}[0pt][0pt]{%
+            \makebox[0pt]{%
+                \hspace{1.0cm}\hspace{2\fromBorderLogo}%
+                \includegraphics[width=1.0cm]{\logoname}%
+                
+            }%
+        }%
+    \fi%
+}
+\def\csc@pagenumbers@box{% <-- бокс для числа страниц
+    \makebox[0pt]{%
+        \makebox[20pt][r]{%
+            \ifnottitle{%
+                \insertframenumber\,/\,\inserttotalframenumber%
+            }%
+        }%
+        \hspace{20pt}\hspace{2\fromBorderLogo}%
+    }% 
+}
+
+\setbeamertemplate{navigation symbols}{}% <-- без символов навигации
+\setbeamertemplate{footline}{% <-- отображаем футер
+    \usebeamercolor[fg]{page number}%
+    \check@footwidth{%
+        \hbox{\parbox[b]{\cscfootnotelen}{%
+            \usebeamerfont{footnote}\centering% 
+            \ifnot{\ifsupressfootnote}%
+                \csc@footnote%
+            \fi%
+        }}%
+    }%
+    \iffootnotefullwidth\relax% <-- если заметка должна быть широкая, кроме неё ничего не будет внизу
+        \hfill%
+        \csc@widefootnote@box
+        \hfill%
+    \else%   
+        % пишем лого - заметку на полях - номер слайда
+        \csc@logo@box%
+        \hfill% 
+        \raisebox{0em}[0pt][0pt]{\box\footnote@box}%
+        \hfill% 
+        \usebeamerfont{page number}\csc@pagenumbers@box
+        
+    \fi%
+    \vspace{\fromBottonLogo}%
+    \cscfootnote{}% <-- обнуляем текст в заметке
+}%
+
+%%%%%% код для обработки заметок %%%%%%%%%%
+% global renewcommand. From https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
+  
+\newcommand{\csc@footnote}{}
+\newcommand{\cscfootnote}[1]{%
+    \grenewcommand{\csc@footnote}{% 
+        {#1}% 
+    }%
+}
+\newcount\is@wide@slide
+\ifdim\paperwidth>370pt % <-- 16:9
+    \is@wide@slide=1
+\else                   % <--  4:3
+    \is@wide@slide=0
+\fi
+\newlength{\cscfootnotelen}%
+\ifnum\is@wide@slide=1%
+    \setlength{\cscfootnotelen}{12cm}
+\else
+    \setlength{\cscfootnotelen}{9cm}
+\fi
+\newbox\footnote@box % 
+
+
+%%%% пробуем определить, где идут секции и где они заканчиваются, а так же графически изобразить прогресс
+% проблема: TeX не имеет информации о будущих страницах. Надо эту информацию сохранять в отдельном запуске (как с библиографией, например)
+% алгоритм:
+% 1. поймём, как "подвязаться" к команде создания секции
+% 2. при вызове секции сохраним инфу о нормере слайда в файл 
+% 3. прочитаем файл в отдельную переменную при новом запуске
+% 4. когда надо будем обновлять информацию: какой номер начинает текущую секцию, где она заканчивается
+% 5. на основе этого и текущего слайда определим длину "прогрессбара"
+
+%% 1. 
+\ifKVCSC@useprogressbar
+    \let\old@section=\beamer@section        % <--- вместо "секции" задаём новую команду, которая выводит секцию но в дополнении дописывает файл
+    
+    %% 2. записываем в файл 
+    \newwrite\sectionfile@writer
+    \openout\sectionfile@writer=\jobname.secw\relax
+    
+    \long\def\beamer@section[#1]#2{% <-- нотацию узнаём благодаря \expandmacros
+        \old@section[#1]{#2}\relax% <-- сначала выполняем основную команду
+        \immediate\write\sectionfile@writer{\insertframenumber}% <-- но потом ещё пишем в файл номер слайда
+    }
+    
+    %% 3. теперь научимся из файла читать и сохраним всё в регистр
+    \newtoks\sections@list% <---- регистр, в котором будут храниться информация о существующих секциях
+    \newread\sectionfile@reader
+    \openin\sectionfile@reader=\jobname.secw\relax
+    
+    \def\readallsections{%
+        \def\stopread{\par }% <-- в файле последняя строка пустая, мы хотим её игнорировать
+        \loop\relax% <-- начинаем цикл
+        \ifnot{\ifeof\sectionfile@reader}\relax%  <-- если ещё не достигли конца файла, можно работать
+        \read\sectionfile@reader to\newline% <-- записываем значение на этой строке в переменную
+            \ifx\newline\stopread\relax%  <-- если получили '\par ', значит дальше ничего нет
+                \def\newline{-1\space}%  <-- впишем вместо '\par ' '-1 '. Чтобы не обрабатывать нечисла
+            \fi\relax%
+            \edef\tempa{\the\sections@list\newline}% <-- edef значит, что мы значала раскрываем полностью содержимое внутри, а потом уже создаём макрос. Тут мы добавляем к существующему набору списка секций новую https://tex.stackexchange.com/questions/38067/how-does-one-append-material-to-a-token-list
+            \sections@list=\expandafter{\tempa}%  <-- пишем получившееся в регистр. Без \expandafter мы бы не раскрывали \tempa и в итоге бы получили содержимое просто '\tempa'
+        \repeat\relax%
+    }
+    \readallsections% <-- сразу прочитаем все секции.
+    
+    %% 4. создадим возможность парсить прочитанное
+    \newcount\section@start@slide% <-- где текущая секция начинается
+    \newcount\section@end@slide% <-- где текущая секция заканчивается
+    \section@start@slide=1
+    \section@end@slide=-1
+    
+    \def\spit@head@section#1 #2\relax{% <-- в нашем регистре хранится строка вида '3 8 11 -1 '. Этой функцией мы хотим отделить '3' и положить её в счётчик, а оставшиеся '8 11 -1 ' записать обратно в регистр
+        \def\a{#1}%
+        \ifnot{\ifx\a\@empty}%
+            \global\section@end@slide=#1% <-- кладём первое число в счётчик
+            \ifx\relax#2\relax% <-- если #2=\relax, то строка кончилась. 
+                \global\sections@list=\expandafter{-1 \space}% <-- тогда запишем для общности в регистр '-1 '
+            \else\relax% <-- ещё не кончилось
+                \global\sections@list=\expandafter{#2}% <-- записываем хвост в регистр 
+            \fi\relax%
+            \ifnum\section@end@slide=-1\relax% <-- сразу переформируем. Если конец секции в -1, на самом деле оно идёт до конца слайдов
+                \global\section@end@slide=\numexpr \inserttotalframenumber + 1\relax%
+            \fi\relax%
+        \fi%
+    }
+    
+    \def\getnext@section@slidenumber{% <-- головная функциея, которая будет отделять первое число в списке секций от оставшихся
+        \edef\tempa{\the\sections@list}% <-- обозначаем список
+        \ifnot{\ifx\tempa\empty}\relax% <-- если что-то там есть
+            \expandafter\spit@head@section\tempa\relax%<-- то запускаем функцию выше
+        \fi\relax%
+    }
+    
+
+    \def\update@section@counters{% <-- обновляем информацию о секции при каждом слайде
+        \ifnum\section@end@slide=-1\relax% <-- граничное условия
+            \ifnum\inserttotalframenumber=1\relax% <-- возникает при самом первом запуске команды, например
+                \global\section@end@slide=1\relax%
+            \else%
+                \global\section@end@slide=\numexpr \inserttotalframenumber + 1\relax%
+            \fi%
+        \fi\relax%
+        \ifnot{\ifnum\insertframenumber<\section@end@slide}\relax% <-- если текущий слайд больше или равен слайду, где заканчивается текущая секция, значит пора обновит информацию!
+            \getnext@section@slidenumber% <-- получаем где заканчивается новая секция 
+            \global\section@start@slide=\insertframenumber% <-- ну а начинается она прям тут
+        \fi\relax
+    }
+    \update@section@counters% <-- сразу же узнаём, где стартует первая секция 
+    
+    
+    %% 5.  вычислим длину прогрессбара
+    \def\set@sectionprogress@length{% <-- арифметика такая. Если секция начинается в a, а следующая за ней начинается в b, при этом текущий слайд d...
+    % длина прогрессбара будет <basic>/(b-a) * (d-1-a)
+        \ifnum\section@start@slide>1\relax%
+            \rule@length=\paperwidth%
+            \newcount\thisposprogressbar%
+            \thisposprogressbar=\numexpr\insertframenumber +1 - \the\section@start@slide\relax%
+            \newcount\thatposprogressbar%
+            \thatposprogressbar=\numexpr\the\section@end@slide - \the\section@start@slide\relax%
+            \ifnot{\ifnum\thatposprogressbar>0}% <-- когда запускаем первый раз и ещё некорректно считаем "количество всех слайдов"
+                \global\thatposprogressbar=1%
+            \fi
+            \divide\rule@length by \thatposprogressbar%
+            \multiply\rule@length by \thisposprogressbar%
+        \else%
+            \rule@length=0pt
+        \fi%
+    }
+\else
+    \newwrite\sectionfile@writer
+    \openout\sectionfile@writer=\jobname.secw\relax
+    \closeout\sectionfile@writer
+\fi
+
+
+%%%% шрифт
+\RequirePackage{fontspec}
+\setsansfont[
+    Ligatures=TeX, 
+    Path = templateresources/fonts/, 
+    BoldFont=FiraSans-Bold.ttf,
+    ItalicFont=FiraSans-Italic.ttf,
+    BoldItalicFont=FiraSans-BoldItalic.ttf
+    ]{FiraSans-Regular.ttf}
+\setmonofont[Ligatures=TeX, 
+    Path = templateresources/fonts/
+    ]{FiraMono-Regular.ttf}
+    
+\parskip=4pt plus 2pt minus 4pt\relax
+% \let\OLDitemize\itemize
+% \renewcommand\itemize{\OLDitemize\addtolength{\itemsep}{0.5pt}}
+    
+    
+%%%%% выделения %%%%%%
+\providecommand{\highgreen}[1]{{\color{cscgreen}#1}}
+\providecommand{\highorange}[1]{{\color{cscorange}#1}}
+\providecommand{\highblue}[1]{{\color{cscblue}#1}}
+\providecommand{\highbackgreen}[1]{\colorbox{cscgreen}{{\color{white}#1}}}
+\providecommand{\ccsc}{\color{cscgreen}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% внутри и вне класса %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifinclassmode
+\newif\ifoutclassmode
+\inclassmodetrue
+\outclassmodetrue
+\def\csc@inclass@check{inclass}
+\def\csc@outclass@check{outclass}
+\def\csc@in@check{in}
+\def\csc@out@check{out}
+
+\ifx\KVCSC@classmode\csc@inclass@check
+    \outclassmodefalse
+    \supressfootnotetrue
+\fi
+\ifx\KVCSC@classmode\csc@outclass@check
+    \inclassmodefalse
+    \supressprogressbartrue
+\fi
+\ifx\KVCSC@classmode\csc@in@check
+    \outclassmodefalse
+\fi
+\ifx\KVCSC@classmode\csc@out@check
+    \inclassmodefalse
+\fi
+
+
+\ifinclassmode
+    \providecommand{\inclass}[1]{#1}
+\else
+    \providecommand{\inclass}[1]{}
+\fi 
+\ifoutclassmode
+    \providecommand{\outclass}[1]{#1}
+\else
+    \providecommand{\outclass}[1]{}
+\fi
+
+\def\strut@depth{\dp\strutbox}%
+\def\csc@marginalsymbol#1{%
+    \strut\vadjust{%
+        \kern-\strut@depth%
+        \vtop to \strut@depth{%
+            \baselineskip\strut@depth%
+            \vss\llap{%
+                #1\hspace{15pt}%
+            }\null%
+        }%
+    }%
+}
+
+\long\def\csc@high#1#2#3{%
+    #1{% <-- inclass/outclass 
+        \csc@marginalsymbol{#2{---\llap{>}}\hspace{-4pt}}% <-- #2 = highlight
+        #3% <-- content
+        \csc@marginalsymbol{#2{\rlap{<}---}}%
+    }%
+}
+\long\def\csc@classframe#1#2#3{%
+    #1{{%
+    \def\csc@insertframetitle{\csc@marginalsymbol{#2{|\hspace{-3pt}|}}\insertframetitle}%
+    #3%
+    }}%
+}
+\providecommand\inclasshigh[1]{\csc@high{\inclass}{\highorange}{#1}}
+\providecommand\outclasshigh[1]{\csc@high{\outclass}{\highblue}{#1}}
+\providecommand\inclassframe[1]{\csc@classframe{\inclass}{\highorange}{#1}}
+\providecommand\outclassframe[1]{\csc@classframe{\outclass}{\highblue}{#1}}
+\providecommand\inpause{\inclass{\pause}}
+
+%%% TODO: сделать classmode, функцию бана заметок и прогрессбара и умолчание-нет

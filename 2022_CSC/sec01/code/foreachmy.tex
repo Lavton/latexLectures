@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\usepackage{pgffor}
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\foreach \n in {0,...,4}{\n\space} 
+
+\foreach \n in {apples,burgers,cake}{Let's eat \n.\par}
+
+\vspace*{\fill}
+\end{document} 

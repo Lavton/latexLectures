@@ -1,0 +1,99 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{cscbeamer}[2022/05/17 The style file for beamer class to Computer Science Center]
+\RequirePackage{kvoptions} %  <-- передаём параметры в пакет
+
+% process the arguments for the package
+\SetupKeyvalOptions{
+    family=KVCSC,
+    prefix=KVCSC@
+}
+\DeclareStringOption[nologo]{logo}[logo-short-green.png]
+\ProcessKeyvalOptions*
+
+\providecommand{\CSC}{Computer Science Center} 
+
+
+\RequirePackage{xcolor}
+\RequirePackage{ifthen} 
+% define colors (green -- for structure and gray -- for titles)
+\definecolor{cscgreen}{RGB}{7, 195, 159}
+\definecolor{titlegray}{RGB}{89, 89, 89}
+\setbeamercolor{title}{fg=titlegray}
+\setbeamercolor{frametitle}{fg=titlegray}
+\setbeamercolor{structure}{fg=cscgreen}
+
+\providecommand{\ccsc}{\color{cscgreen}}
+\newcommand{\logoname}{\KVCSC@logo}%
+
+%%%%%%%%%%%%%%%%% сделаем сверху небольшую линию
+\setbeamertemplate{headline}{%
+    {\color{cscgreen}%
+    \rule{\dimexpr\paperwidth-1cm}{0.1cm}}%
+}
+
+% global renewcommand. From https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
+  
+\newcommand{\csc@footnote}{}
+\newcommand{\cscfootnote}[1]{%
+    \grenewcommand{\csc@footnote}{% 
+        {\fontsize{10}{12}\selectfont#1}% 
+    }%
+}
+
+% footline
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline}{%
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    % пишем лого - заметку на полях - номер слайда
+    \makebox[0pt]{\hspace{1.5cm}\includegraphics[width=1.0cm]{\logoname}}% 
+    \hfill% 
+    \raisebox{0em}[0pt][0pt]{\parbox[b]{10cm}{%
+        \centering% 
+        \csc@footnote}% 
+    }% 
+    \hfill% 
+    \cscfootnote{}%
+    \raisebox{0pt}[0pt][0pt]{\makebox[0pt]{\makebox[20pt][r]{% 
+        \ifthenelse{\equal{\insertframenumber}{1}}{}{\insertframenumber\,/\,\inserttotalframenumber}% 
+        \hspace{20pt}%
+    }}}% 
+    \vspace{2pt}%
+}%
+
+
+% заголовок
+% https://tex.stackexchange.com/questions/415621/how-to-customize-the-frame-title-subtitle-main-text-in-terms-of-position-and?rq=1
+\setbeamertemplate{frametitle}{%
+    \usebeamerfont{frametitle}\strut\insertframetitle\strut\par%
+    \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi%
+    \vspace{-10pt}%
+    {\color{cscgreen}%
+      \par\noindent\rule{\textwidth}{0.4pt}}%
+}
+
+%%%%%% сокращаем ссылки на github
+\RequirePackage{url}
+\def\git@hub https://github.com#1 {#1}%
+\newcommand{\github}[1]{% 
+{%
+    \normalfont \href{#1}{% 
+        \raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{GitHub-Mark-64px.png}}\!\url{\git@hub #1 }}%
+    }
+}
+
+%%% определим концепт "сложного" слайда и посчитаем их число
+
+\newcount\hard@slide@c % <-- счётчик сложных слайдов
+\hard@slide@c=0  % <-- сначала их нет 
+\newcommand{\hardslide}{% <-- простая команда-маркер что слайд сложен. Можно потом добавить небольшое отличие в дизайне
+\advance\hard@slide@c by 1% <-- увеличиваем число сложных слайдов!
+}
+\newcommand{\thehardslidecount}{\the\hard@slide@c} % <-- отдельная команда для вывода числа сложных слайдов

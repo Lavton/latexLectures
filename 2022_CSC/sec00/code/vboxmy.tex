@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=60mm, paperheight=80mm, left=5mm, top=2mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{color}
+\usepackage{xcolor}
+\parindent=0pt
+\newcommand{\boxing}[1]{{%
+\ifcsname boxtodimen\endcsname%
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\begin{minipage}[t]{8mm}%
+\leavevmode%
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \leavevmode 
+        % \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!60!black}\rule{\wb}{0.4pt}}}%width2
+        % \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{0.4pt}{\hb}}}%height
+        % \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{0.4pt}{\db}}}%depth
+    }}}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        % \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        % \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}\end{minipage}%
+}%
+}
+
+\begin{document}
+\large\fontsize{30}{35}\selectfont
+
+\boxing{\vbox{a}}
+\boxing{\vbox{yf}}
+\boxing{\vbox to 15pt{yf}}
+\boxing{\vbox to 5pt{yf}}
+
+\vspace{2ex}
+\boxing{\vbox{yf}}
+\boxing{\vbox to -10pt{yf}}
+\boxing{\vbox spread 0pt{yf}}
+\boxing{\vbox spread 30pt{yf}}
+
+\vspace{4ex}
+\boxing{\vbox{yf}}
+\boxing{\vtop{yf}}
+\boxing{\vtop spread -40pt{yf}}
+\boxing{\vtop to 30pt{yf}}
+
+
+
+
+\vspace*{\fill}
+\end{document}

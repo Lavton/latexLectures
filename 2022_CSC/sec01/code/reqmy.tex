@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=10mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\def\requr#1{\ifnum#1>0 A? \requr{\numexpr#1 - 1 }\fi}
+\requr{8}
+
+\vspace*{\fill}
+\end{document} 

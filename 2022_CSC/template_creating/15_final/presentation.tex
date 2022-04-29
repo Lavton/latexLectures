@@ -1,0 +1,173 @@
+%https://tex.stackexchange.com/questions/114219/add-notes-to-latex-beamer
+\documentclass[12pt, aspectratio=43]{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{dsfont}
+\usepackage{multicol}
+\usepackage{array}
+
+% \setsansfont[Mapping=tex-text]{Liberation Sans}
+% \setromanfont[Mapping=tex-text]{Liberation Sans}
+% \setmonofont[Mapping=tex-text]{Liberation Mono}
+
+
+\usepackage{xecyr}
+\usepackage{hyperref}
+
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usepackage[darktherm, useprogressbar, classmode=all]{cscbeamer}
+
+\begin{document}
+    \AtBeginSection[] 
+    {
+      \begin{frame}{Содержание}
+      \tableofcontents[currentsection,hideallsubsections]
+      \end{frame}
+    }
+    % \title{Презентации CS центра}
+    \title{Шаблон \LaTeX}
+    \subtitle{для \CSC}
+    \author{Антон Лиознов}
+    \institute{\CSC}
+    \date{\the\year}
+    \frame{\titlepage}
+    \begin{frame}\relax
+    Перед вами -- шаблон для презентаций \LaTeX\ в CSC. 
+    
+    Надеюсь, он подойдёт и для выступлений-презентаций-проектов, и для чтения лекций.
+    
+    
+    Если есть вопросы -- пишите \texttt{vk.com/lavton}
+    \end{frame}
+    
+    \section{Общий внешний вид}
+    \begin{frame}{Шрифт}\relax
+        Используем Fira Sans:
+        \begin{itemize}
+            \item обычный
+            \item \textbf{жирный}
+            \item \textit{италик}
+            \item \textit{\textbf{жирный италик}}
+            \item \texttt{моношринный}
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}{Низ слайда}\relax
+        Внизу можно найти:
+        \begin{itemize}
+            \item Логотип CSC. Можно заменить, переопределив команду \texttt{\string\logoname}
+            \item Заметки на полях. Задаются командой \texttt{\string\cscfootnote}
+            \item Счётчик слайдов
+             
+        \end{itemize}
+        \cscfootnote{Пример заметки: CSC -- крутой!}
+    \end{frame}
+    
+    \begin{frame}{Возможные настройки внешнего вида}\relax
+        При подключении пакета можно указать следующие опции:
+        \begin{itemize}
+            \item darktherm -- для тёмной темы. По умолчанию светлая
+            \item nologo -- убрать логотип 
+            \item useprogressbar -- использовать прогрессбар сверху
+            \item classmod -- отображение слайдов в классе и вне его (подробнее в разделе)
+             
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Прогрессбар}\relax
+        Прогрессбар идёт по верхней кромке слайда. 
+        
+        Он показывает количество слайдов, прошедших между секциями.
+        Например, этот слайд -- последний в текущей секции и прогрессбар полон. На следующем слайде он обновится.
+    \end{frame}
+    \AtBeginSubsection[]
+    {
+      \begin{frame}{подсекции}
+      \tableofcontents[currentsubsection, hideothersubsections, sectionstyle=show/hide, subsectionstyle=show/shaded/hide]
+      
+      \end{frame}
+    }
+    \section{Как выглядят подсекции}
+    \subsection{прямо}
+    \subsection{загляденье,}
+    \subsection{залюбуешься}
+    
+    \section{Команды}
+
+    \forcewidefootnote=1
+    \begin{frame}{Заметки на полях}{ширина}\relax
+        Заметки, как описано выше, задаются командой \texttt{\string\cscfootnote}. Они распалагаются между лого и номером слайда.
+        
+        Но если заметка длинная, она автоматически займёт всё простраство футера. Это поведение можно регулировать:
+        \begin{itemize}
+            \item \texttt{\string\forcewidefootnote=-1} -- всегда показывать лого и номер страницы
+            \item \texttt{\string\forcewidefootnote=-1} -- иметь зависимость от длины заметки
+            \item \texttt{\string\forcewidefootnote=1} -- всегда убирать лого и номер старницы
+             
+        \end{itemize}
+     \cscfootnote{Пример короткой заметки, форсирование уборки лого и номера слайда}    
+    \end{frame}
+    \forcewidefootnote=0
+    
+    \begin{frame}{Выделение мыслей}\relax
+         \begin{itemize}
+            \item \highgreen{\texttt{\string\highgreen\{text\}}}
+            \item \highorange{\texttt{\string\highorange\{text\}}}
+            \item \highblue{\texttt{\string\highblue\{text\}}}
+            \item \highbackgreen{\texttt{\string\highbackgreen\{text\}}}
+         \end{itemize}
+    \end{frame}
+    
+    \section{Слайды ``в классе'' / ``дома''}
+    
+    \begin{frame}{Идея}\relax
+        \begin{itemize}
+            \item \highgreen{В классе} презентация -- лишь поддержка лектора. Нам нужна анимация, нужен фокус слушателей на главном, нужно задавать вопросы по ходу лекции, но при этом не нужно много текста: все пояснения ведь даются голосом
+            \item \highgreen{Дома} презентация -- документ в себе. Люди читают её без прояснений лектора, им не нужна анимация, но может понадобится бОльше пояснений. Например, ссылки на источники конкретного слайда важны для изучения, но лишь отвлекают на лекции.
+             
+        \end{itemize}
+    \end{frame}
+        
+    \inclassframe{
+    \begin{frame}{Пример ``в классе''}\relax
+        \begin{itemize}
+            \item Если слайд целиком показывается только в классе, он выделяется слева от заголовка. Оберните создание слайда командой \texttt{\string\inclassframe}
+            \item \inclasshigh{На слайде можно произвольный кусок текста показать только в классе с помощью \texttt{\string\inclasshigh\{<text>\}}.}
+            \inclass{\item Можно без выделения, используя просто \texttt{\string\inclass\{text\}}}
+            \inpause\item И \texttt{\string\inpause} -- аналог \string\pause, которая исчезает вне класса
+             
+        \end{itemize}
+         
+    \end{frame}}
+    \outclassframe{
+    \begin{frame}{Пример ``вне класса''}\relax
+        \begin{itemize}
+            \item Если слайд целиком показывается только вне класса, он выделяется слева от заголовка. Оберните создание слайда командой \texttt{\string\outclassframe}
+            \item \outclasshigh{На слайде можно произвольный кусок текста показать только вне класса с помощью \texttt{\string\outclasshigh\{<text>\}}.}
+            \inclass{\item Можно без выделения, используя просто \texttt{\string\outclass\{text\}}}
+        \end{itemize}
+         
+    \end{frame}}
+    
+    \begin{frame}{classmode как параметр пакета}\relax
+        \begin{itemize}
+            \item без параметра -- то же, что \texttt{classmode=all}
+            \item classmode -- то же, что classmode=inclass 
+            \item classmode=all -- отображение всей информации
+            \item classmode=in -- скрываем слайды вне класса 
+            \item classmode=out -- скрываем слайды в классе
+            \item classmode=inclass -- скрываем слайды ``вне класса'' + скрываем заметки внизу 
+            \item classmode=outclass -- скрываем слайды ``в классе'' + скрываем прогрессбар 
+             
+        \end{itemize}
+         
+    \end{frame}
+    
+    
+    
+
+\end{document}

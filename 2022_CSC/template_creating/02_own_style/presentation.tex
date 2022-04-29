@@ -1,0 +1,41 @@
+%https://tex.stackexchange.com/questions/114219/add-notes-to-latex-beamer
+\documentclass[14pt, aspectratio=43]{beamer}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{dsfont}
+\usepackage{multicol}
+\usepackage{array}
+
+\setsansfont[Mapping=tex-text]{Liberation Sans}
+\setromanfont[Mapping=tex-text]{Liberation Sans}
+\setmonofont[Mapping=tex-text]{Liberation Mono}
+
+
+\usepackage{xecyr}
+\usepackage{hyperref}
+
+\usepackage{polyglossia}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usepackage{cscbeamer}  % <-- создали стилевой файл
+
+
+
+\begin{document}
+
+
+    \title{Шаблон \LaTeX}
+    \subtitle{для \CSC}  % <-- ввели для примера команду \CSC='Computer Science Center' и применили её
+    \author{Антон Лиознов}
+    \institute{\CSC}  % <-- ввели для примера команду \CSC='Computer Science Center' и применили её
+    \date{\the\year}
+    \frame{\titlepage}
+    
+    \begin{frame}{Будет клёвый шаблон}\relax
+    
+        С кучей всего))
+         
+    \end{frame}
+\end{document}

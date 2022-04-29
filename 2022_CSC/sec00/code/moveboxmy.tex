@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=40mm, paperheight=50mm, left=2mm, top=0mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{color}
+\parindent=0pt
+\newcommand{\boxing}[1]{{%
+\ifcsname boxtodimen\endcsname%
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+{\color{red}\lower1pt\hbox{---}}%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+    \color{blue}
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}{\color{red}\raise1pt\hbox{---}}%
+}%
+}
+
+\begin{document}
+% \vspace*{\fill} \vspace*{-5ex}
+
+Write as L\raise0.5ex\hbox{A}T\lower0.5ex\hbox{E}X
+
+\vspace{3ex}
+\vbox{L}
+\moveleft0.5em\vbox{A}
+\vbox{T}
+\moveright0.5em\vbox{E}
+\vbox{X}
+
+\vspace*{\fill}
+\end{document}
