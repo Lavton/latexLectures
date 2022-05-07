@@ -36,10 +36,10 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
   
-\newcommand{\csc@footnote}{}
+\newcommand{\i@cscfootnote}{}
 \newcommand{\cscfootnote}[1]{%
-    \grenewcommand{\csc@footnote}{% 
-        {\fontsize{10}{12}\selectfont#1}% 
+    \grenewcommand{\i@cscfootnote}{% 
+        #1% 
     }%
 }
 
@@ -53,13 +53,13 @@
     \hfill% 
     \raisebox{0em}[0pt][0pt]{\parbox[b]{10cm}{%
         \centering% 
-        \csc@footnote}% 
+        \i@cscfootnote}% 
     }% 
     \hfill% 
     \cscfootnote{}%
-    \raisebox{0pt}[0pt][0pt]{\makebox[0pt]{\makebox[20pt][r]{% 
+    \makebox[0pt]{\makebox[20pt][r]{% 
         \insertframenumber\,/\,\inserttotalframenumber\hspace{20pt}%
-    }}}% 
+    }}% 
     \vspace{2pt}%
 }%
 
@@ -76,11 +76,10 @@
 
 %%%%%% сокращаем ссылки на github
 \RequirePackage{url}
-\def\git@hub https://github.com#1 {#1}  % <-- превратит https://github.com/Lavton/latexLectures в /Lavton/latexLectures
+\def\i@github https://github.com#1 {#1}  % <-- превратит https://github.com/Lavton/latexLectures в /Lavton/latexLectures
 \newcommand{\github}[1]{% <--- берёт параметром полный url
 {%
-    \normalfont \href{#1}{% <-- href принимает 2 параметра. 1 это ссылка, 2 это отображаемый текст
-        \raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{GitHub-Mark-64px.png}}\!\url{\git@hub #1 }}% <-- отображается иконка и потом лишь окончание
+        \includegraphics[width=3ex,height=3ex,keepaspectratio]{GitHub-Mark-64px.png}% отобразим иконку
+        \url{\i@github #1 }% <-- отобразим окончание
     }
 }
-

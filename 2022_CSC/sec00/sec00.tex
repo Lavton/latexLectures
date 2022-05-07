@@ -27,6 +27,31 @@
 \end{frame}
 }
 
+\begin{frame}{\LaTeX\ vs Power Point}\relax
+    \begin{itemize}
+        \item Для большинства задач -- дело вкуса
+        \item Написание в \LaTeX\ обычно медленнее
+        \item В \LaTeX\ гораздо проще делать ``по правилам'', единообразно
+        \item В \LaTeX\ есть больше свободы в создании необычных фич. Хотя это свобода редко нужна.
+        \begin{itemize}
+            \item Но по ходу лекции вы, надеюсь, будете замечать вещи, которые было бы проблематично сделать в Power Point
+        \end{itemize}
+         
+    \end{itemize}
+     
+\end{frame}
+
+\begin{frame}{\LaTeX\ vs \TeX}\relax
+    \begin{enumerate}
+        \item {\ccsc\TeX - подход}. Использование тех команд и макросов, которые вшиты в \TeX, созданный Доннальдом Кнутом начиная с 1978 г
+        \item {\ccsc\LaTeX - подход}. Использование расширения \TeX 'а, созданное Лесли Лэмпортом. (версия $2\epsilon$ появилась в 1994 г)
+        \item {\ccsc package\LaTeX - подход}. Использование команд из расширений \LaTeX'а разной степени стандартности
+    \end{enumerate}
+     
+     Особое внимание будем уделять первому подходу как базовому.
+     
+\end{frame}
+
 \begin{frame}{Что сегодня узнаем?}\relax
     \begin{enumerate}
         \item Примитивы в \LaTeX
@@ -123,11 +148,10 @@
 \begin{frame}{Задача -- сделать шаблон выступлений}\relax
     Наша практическая задача сегодня-- реализовать шаблон, с которым я рассказываю =)
     \begin{itemize}
-        \item плашка слева
         \item номера страниц и логотип
         \item возможность писать сноски 
         \item работа с заголовком
-        \item и всё это автоматизировать!
+        \item прогрессбар
     \end{itemize}
     
     \outclasshigh{\textit{примечание:} моя задача -- проиллюстрировать основные идеи. Не везде предлагаемое решение будет State~of~the~Art, где-то будет немного костылей. Но будет работать}
@@ -136,12 +160,13 @@
 %% 7-8 минут по сюда
 
 %% start point
-\outclassframe{
-\begin{frame}{Начнём с пустого шаблона}\relax
-     \centering
-    \fbox{\includegraphics[width=0.9\linewidth]{01_init}}
-    \outclass{\cscfootnote{см папку ``01\_init''}}
-\end{frame}}
+% \outclassframe{
+% \begin{frame}{Начнём с пустого шаблона}\relax
+%      \centering
+%     \fbox{\includegraphics[width=0.9\linewidth]{01_init}}
+%     \outclass{\cscfootnote{см папку ``01\_init''}}
+% \end{frame}
+% }
 
 \lookCode{Сделаем простой файл презентации}
 
@@ -183,9 +208,16 @@
     \cprotect\outclasshigh{\lstinline|\renewcommand| чтобы пересоздать}
 \end{frame}
 
-\lookCode{Создадим команду для быстрого набора ``Computer Science Center''}
+\lookCode{Создадим команду для быстрого набора ``Computer Science Center''.\par Пишем \ccol\CSC, получаем ``Computer Science Center''
+\begin{enumerate}
+    \item Запишем команду в .tex файл 
+    \item Создадим пакет -- файл стилей  .sty 
+    \item Перенесём команду в пакет 
+     
+\end{enumerate}
+}
 
-\cprotect\outclassframe{
+% \cprotect\outclassframe{
 \begin{frame}[fragile]{Начало .cls и .sty файлов}\relax
      Класс:
      \begin{lstlisting}
@@ -203,9 +235,9 @@
      \cscfootnote{\lmanc{3.3.1}[19] \normalfont\url{https://www.latex-project.org/help/documentation/clsguide.pdf}}
     
 \end{frame}
-}
+% }
 
-\begin{frame}{Специальный синтаксис}\relax
+\begin{frame}{Специальный синтаксис внутри пакетов}\relax
     Внутри пакетов синтаксис меняется:
 
     {\centering
@@ -224,9 +256,16 @@
 
 \end{frame}
 
-\lookCode{Переименуем создание команды \ccol\CSC,\\ Создадим новую команду, выделяющую по цвету\pause 
+\lookCode{Изменим создание команду создания команды \ccol\CSC\ на \ccol\providecommand,\\ Создадим новую команду, выделяющую текстовый фрагмент по цвету {\ccsc Вот так вот}\pause
+\begin{enumerate}
+    \item Подключим пакет для работы с цветами
+    \item Определим нужные цвета 
+    \item Создадим команду работы с цветом
+     
+\end{enumerate}
+\pause
 
-Вопрос: как сделать линейку сверху слайда?
+Вопрос: как сделать линейку сверху слайда? (Как прогрессбар)
 }
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Длины %%%%%%%%%%%%%%%%%%%%%%
@@ -304,7 +343,7 @@
 \end{frame}
 }
 
-\cprotect\outclassframe{
+% \cprotect\outclassframe{
 \begin{frame}[fragile]{Арифметика с длинами}\relax
     \lstset
     {
@@ -320,10 +359,29 @@
 
     \cscfootnote{\stExC{https://tex.stackexchange.com/questions/245635/formal-syntax-rules-of-dimexpr-numexpr-glueexpr}}
 \end{frame}
-}
+% }
 
-\lookCode{Пустим по верху линейку}
-\lookCode{...И по низу пустим лого, заметки и отображение страниц \pause 
+\lookCode{Пустим по верху линейку как в прогрессбаре 
+\begin{enumerate}
+    \item Модифицируем \texttt{headline}
+    \item Сделаем ведущий цвет зелёным
+    \item Используем линейку нужной длины командой \ccol\rule
+     
+\end{enumerate}
+}
+\lookCode{...И по низу пустим лого, заметки и отображение страниц 
+
+{\centering\includegraphics[width=0.7\textwidth]{05_footnote.png}\par}
+\pause
+\begin{enumerate}
+     \item Модифицируем \texttt{footnline}
+     \item Перенесём файл логотипа в рабочую папку
+     \item добавим логотип с помощью \ccol\includegraphics
+     \item добавим номер слайда с \ccol\insertframenumber
+     \item Создадим команду для добавления заметки
+\end{enumerate}
+
+\pause 
 
 Вопрос: Как сделать, чтобы длинные заметки не уводили номер страницы за экран?}
 
@@ -337,7 +395,7 @@
     \begin{tabular}{r>{\ccsc}l}
          Символ -- это & бокс\\
          он -- часть слова, которое & бокс\\ 
-         слова соеденины & клеем\\ 
+         слова соединены & клеем\\ 
          в предложения и параграфы.&\\ 
          Параграф, кстати, это & бокс\\
          он соединён с другими & клеем\\
@@ -642,7 +700,23 @@
     \cscfootnote{\lmanc{20.3}[181] \lmanc{8.18}[73] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Boxes\#parbox,_minipage,_and_pbox}\\ \lmanc{20.4}[182] \lmanc{22.3.2}[198] \lmanc{22.3.3}[199] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Boxes\#box_modifiers}}
 \end{frame}
 }
-\lookCode{Теперь можем ограничить размер текста! \pause
+\lookCode{Теперь можем ограничить размер текста! 
+
+{\centering\includegraphics[width=0.7\textwidth]{06_box.png}\par}
+\pause
+\begin{itemize}
+    \item \TeX-путь: 
+    \begin{enumerate}
+        \item Обернём все элементы в боксы 
+        \item Ограничим ширину заметки с помощью \ccol\hspace=...
+        \item Поднимем заметку выше
+    \end{enumerate}
+    \item \LaTeX-путь:
+    \begin{enumerate}
+        \item Обернём все элементы в нужные боксы 
+    \end{enumerate}
+\end{itemize}
+\pause
 
 Вопрос: как сделать, чтобы между элементами было пустое пространство?
 }
@@ -729,8 +803,29 @@
      \ccol\hss, \ccol\vss\ -- бесконечный клей как в \textit{plus} так и в \textit{minus}.
 \end{frame}
 
-\lookCode{Добавим бесконечный клей между элементами}
-\lookCode{И давайте изменим отображение заголовка\pause
+\lookCode{Добавим бесконечный клей между элементами
+
+{\centering\includegraphics[width=0.7\textwidth]{07_glue.png}\par}\pause
+
+\begin{enumerate}
+    \item Добавим \ccol\hfill между лого и заметкой, между заметкой и номером слайда
+    \item Добавим немного вертикального клея, чтобы отодвинуть текст от нижнего края 
+    \item Добавим немного горизонтального клея перед лого, чтобы отодвинуть его от левого края 
+     
+\end{enumerate}
+}
+\lookCode{И давайте изменим отображение заголовка
+
+{\centering\includegraphics[width=0.7\textwidth]{07_glue2.png}\par}
+
+\pause
+\begin{enumerate}
+    \item Модифицируем \texttt{frametitle}
+    \item Добавим заголовок \ccol\insertframetitle, подзаголовок \ccol\insertframesubtitle
+    \item Проведём черту под подзаголовком, чтобы отделить его зрительно \ccol\rule
+     
+\end{enumerate}
+\pause
 
 
 Проблема: плохо, что чёрточка под заголовком не прижимается к нему, когда нет подзаголовка}
@@ -942,7 +1037,7 @@
 \begin{frame}[fragile]{Передача параметров в пакет}\relax
     \footnotesize
     \lstinline|\RequirePackage{kvoptions}| -- используем пакет \\ 
-    \lstinline|\SetupKeyvalOptions{family=KVCSC, prefix=KVCSC@}| -- задаём namespace
+    \lstinline|\SetupKeyvalOptions{family=KVCSC, prefix=KVCSC@}| -- задаём namespace. Теперь параметр {\ccsc foobar} будет доступен как \ccol{\KVCSC@foobar}
     \vspace{-1ex}
     {\scriptsize
     \lstset{basicstyle=\tt\tiny}
@@ -962,9 +1057,16 @@
     \vspace{-2ex}
     \lstinline|\ProcessKeyvalOptions*| -- непосредственно подставляем полученные значения
     
-    \lstinline|\KVCSC@argname| -- под таким именем аргумент будет доступен в командах
+    % \lstinline|\KVCSC@argname| -- под таким именем аргумент будет доступен в командах
 \end{frame}
-\lookCode{Давайте передадим в пакет возможность менять логотип}
+\lookCode{Реализуем возможность менять логотип через параметр пакета\pause
+
+\begin{enumerate}
+    \item Перенесём новый файл логотипа в рабочую папку
+    \item Подключим пакет
+    \item Создадим опцию {\ccsc logo}
+    \item Передадим эту опцию \ccol{\KVCSC@logo} в создание команды \ccol\logoname
+\end{enumerate}}
 
 \inclassframe{
 \begin{frame}{За эту часть мы узнали}\relax

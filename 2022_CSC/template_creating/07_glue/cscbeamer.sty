@@ -28,10 +28,10 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
   
-\newcommand{\csc@footnote}{}
+\newcommand{\i@cscfootnote}{}
 \newcommand{\cscfootnote}[1]{%
-    \grenewcommand{\csc@footnote}{% 
-        {\fontsize{10}{12}\selectfont#1}% 
+    \grenewcommand{\i@cscfootnote}{% 
+        #1% 
     }%
 }
 
@@ -40,11 +40,11 @@
 \setbeamertemplate{footline}{%
     \usebeamercolor[fg]{page number in head/foot}%
     \usebeamerfont{page number in head/foot}%
-    \raisebox{0pt}[0pt][0pt]{\hspace{10pt}\includegraphics[width=1.0cm]{\logoname}}%  <-- добавили hspace, чтобы немного от края отойти
+    {\hspace{10pt}\includegraphics[width=1.0cm]{\logoname}}%  <-- добавили hspace, чтобы немного от края отойти
     \hfill%              <-------------- просто добавим клей тут
     \raisebox{0em}[0pt][0pt]{\parbox[b]{10cm}{%
         \centering%
-        \csc@footnote}%
+        \i@cscfootnote}%
     }%  
     \hfill%              <-------------- просто добавим клей тут
     \makebox[20pt][r]{%

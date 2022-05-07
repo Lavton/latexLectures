@@ -37,10 +37,10 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
   
-\newcommand{\csc@footnote}{}
+\newcommand{\i@cscfootnote}{}
 \newcommand{\cscfootnote}[1]{%
-    \grenewcommand{\csc@footnote}{% 
-        {\fontsize{10}{12}\selectfont#1}% 
+    \grenewcommand{\i@cscfootnote}{% 
+        #1% 
     }%
 }
 
@@ -55,7 +55,7 @@
     \hfill% 
     \raisebox{0em}[0pt][0pt]{\parbox[b]{10cm}{%
         \centering% 
-        \csc@footnote}% 
+        \i@cscfootnote}% 
     }% 
     \hfill% 
     \cscfootnote{}%

@@ -4,21 +4,6 @@
 
 \section{Очень продвинутый \LaTeX: программирование и работа с примитивами}
 
-\begin{frame}{Три взгляда на область}\relax
-    
-    \outclasshigh{Нас ждёт манипулирование примитивами: длинами, боксами, клеем, счётчиками,.. Условные операторы, циклы и рекурсия, работа с файловой системой.
-    
-    В работе с этими вещами есть три подхода (Мы выделяли их и раньше, но теперь пора обратить внимание):}
-    \begin{enumerate}
-        \item {\ccsc\TeX - подход}. Использование тех команд и макросов, которые вшиты в \TeX, созданный Доннальдом Кнутом
-        \item {\ccsc\LaTeX - подход}. Использование расширения \TeX 'а, созданное Лесли Лэмпортом
-        \item {\ccsc package\LaTeX - подход}. Использование команд из расширений \LaTeX'а разной степени стандартности
-    \end{enumerate}
-     
-     Особое внимание будем уделять первому подходу как базовому.
-\end{frame}
-
-
 \begin{frame}[fragile]{Соглашение о наименовании}\relax
     \begin{itemize}
              \item Если команда сделана для пользователей, используется короткое имя и lowcase: \ccol\section, \ccol\emph\ and \ccol\times
@@ -42,20 +27,38 @@
 
 \subsection{Создание команд}
 
-\begin{frame}{Создание команд \tW}\relax
+\begin{frame}[fragile]{Создание команд \tW}\relax
     В \TeX\ для создания команд используется \ccol\def.
 
     \twocolImg{
     \lstinputlisting[linerange={8-9, 14-16}]{commandwith.tex}
     }{commandwith}
     
-    \outclasshigh{\small Используйте префикс \ccol\global, чтобы макрос был доступен вне стандартной области видимости. 
-    
-    И \ccol\long\ чтобы его частями могли стать несколько параграфов.}
-    
+        {\footnotesize
+     \begin{tabbing}
+     
+        \rulecommand{1}\lstinline|\def|\= \rulecommand{2}\lstinline|\dfdx| \= \rulecommand{3}\lstinline|#1| \= \rulecommand{4}\lstinline|#2| \= \rulecommand{5}\lstinline|{\frac{\partial #1}{\partial #2}|\\
+        \footnotesize  команда задания макроса  \> \>  \>  \> \\
+        \>  имя макроса \> \>  \> \\
+         \> \>\footnotesize первый аргумент  \>  \> \\
+         \> \>  \> \footnotesize  второй аргумент  \> \\
+         \> \>  \>  \>\footnotesize  что делать с аргументами \\
+        
+    \end{tabbing}}
     \cscfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#def-rp} \knuthc{20}[209]}
 \end{frame}
 
+\outclassframe{
+\begin{frame}{Создание команд \tW}\relax
+    \small Используйте префикс \ccol\global, чтобы макрос был доступен вне стандартной области видимости. 
+    
+    И \ccol\long\ чтобы его частями могли стать несколько параграфов.
+    
+    
+\end{frame}
+}
+
+{\def\parseLine#1, #2\par{arg1: '\texttt{#1}' arg2: '\texttt{#2}'}
 \begin{frame}[fragile]{Pattern matching\tW}\relax
     Зачем нужно писать \lstinline|\def\name#1#2#3|... вместо чего-то наподобие \LaTeX, \lstinline|\def\name[5]|\inpause
     
@@ -68,7 +71,7 @@
      \begin{tabbing}
      
         \lstinline|\def\parseLine |\= \lstinline|#1| \= \lstinline|, | \= \lstinline|#2| \= \lstinline|\par| \= \lstinline|{arg1: #1, arg2: #2}|\kill
-        \lstinline|\def\parseLine |\> \rulecommand{1}\lstinline|#1| \> \rulecommand{2}\lstinline|, | \> \rulecommand{3}\lstinline|#2| \> \rulecommand{4}\lstinline|\par| \> \rulecommand{5}\lstinline|{arg1: #1, arg2: #2}|\\
+        \lstinline|\def\parseLine |\> \rulecommand{1}\lstinline|#1| \> \rulecommand{2}\lstinline|, | \> \rulecommand{3}\lstinline|#2| \> \rulecommand{4}\lstinline|\par| \> \rulecommand{5}\lstinline|{arg1: '#1' arg2: '#2'}|\\
         \>\footnotesize  начинает собирать первый аргумент \> \>  \>  \> \\
         \> \>\tiny  первый аргумент -- всё до ближайшей запятой с пробелом \> \>  \> \\
         \> \> \>\footnotesize  начинает собирать второй аргумент  \>  \> \\
@@ -76,9 +79,21 @@
         \> \> \>  \>  \>\footnotesize  что делать с аргументами \\
         
     \end{tabbing}\vspace*{-2ex}
-    \lstinline|\parseLine Hello , World| в первом аргументе будет ``Hello'', во втором -- ``World''
+    \lstinline|\parseLine Hello ,,, World| выдаст \parseLine Hello ,,, World
+    
 \end{frame}
-\lookCode{Мы часто можем ссылаться на ГитХаб. Давайте напишем команду, что сокращала бы такую ссылку}
+
+}
+\lookCode{Мы часто можем ссылаться на ГитХаб. Давайте напишем команду, что сокращала бы такую ссылку
+
+{\centering\includegraphics[width=0.7\textwidth]{09_pattern.png}\par}\pause
+\begin{enumerate}
+    \item Перенесём иконку ГитХаба в рабочую папку
+    \item Создадим команду, которая преобразует \url{https://github.com/Lavton/latexLectures} в \url{/latexLectures}
+    \item Создадим обёртку над командой, которая бы добавляла иконку гитхаба 
+     
+\end{enumerate}
+}
 
 \inclassframe{
     \begin{frame}{Пора добавить динамики в отображение!}\relax Условные операторы\end{frame}
@@ -257,8 +272,11 @@
 \begin{frame}[fragile]{Счётчики в \TeX}\relax
     \begin{itemize}
         \item \textbf{Определить свой} \ccol\newcount\ccol{\<countname>} как \verb|\newcount\mycounter|
-        \item \textbf{Задать значение} \ccol{\<countname>=<number>}  Или используйте \ccol\countdef. Как \verb|\countdef\mynumber=43|
-        \item \textbf{Добавить число}  \ccol{\advance\string\<countname>\ by <number>}. Так же можно использовать \ccol\multiply\ и \ccol\divide. А ещё \ccol\numexp.
+        \item \textbf{Задать значение} \ccol{\<countname>=<number>}  Или используйте \ccol\countdef. Как \footnotesize\verb|\countdef\mynumber=43|
+        \item \textbf{Добавить число}  \ccol{\advance\string\<countname>\ by <number>}. Так же можно использовать \ccol\multiply\ и \ccol\divide. \begin{itemize}
+            \item\footnotesize Эти команды меняют значение счётчика, к которому приложены
+            \item\footnotesize Просто арифметическую операцию можно сделать с помощью \ccol\numexpr: \verb|\numexpr 4*3-\the\count0=| \the\numexpr 4*3-\the\count0\relax
+        \end{itemize}
         \item \textbf{Показать значение} \ccol{\the\string\<countname>} или \ccol\number\ или \ccol\romannumeral
          
     \end{itemize}
@@ -293,19 +311,24 @@
     \cscfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Lengths} }
 \end{frame}
 
-\begin{frame}{Манипулирование длиной в \TeX\tW}\relax
+\begin{frame}[fragile]{Манипулирование длиной в \TeX\tW}\relax
     \begin{itemize}
         \item \textbf{Определить длину} \ccol{\newdimen\textbackslash<lenname>}
         \item \textbf{Задать длину} {\ccsc\textbackslash<lenname>=<len>}
-        \item \textbf{Добавить к длине}  \ccol{\advance\textbackslash<lenname>\ by <len>}. Ещё есть \ccol\multiply\ и \ccol\divide. И \ccol\dimexp.
+        \item \textbf{Добавить к длине}  \ccol{\advance\textbackslash<lenname>\ by <len>}. Ещё есть \ccol\multiply\ и \ccol\divide. \\И \ccol\dimexp, работающая по аналогии с \verb|\numexpr|.
         \item \textbf{Показать длину} \ccol{\the\textbackslash<lenname>}
     \end{itemize}
     
-    \cscfootnote{\knuthc{15}[132] }
+    \cscfootnote{\knuthc{15}[132]. Для клея есть отдельный \ccol\glueexpr }
 \end{frame}
 \lookCode{Вынесем ширину footnote в отдельную переменную. И заодно длину линии по верху. \pause
 
     А теперь определим ширину в зависимости от ширины слайда.\pause
+    \begin{enumerate}
+        \item Введём переменную со значениями 0, 1. Она отвечает за то, ``широк'' ли слайд 
+        \item В зависимости от значения переменной присвоим длине заметки 9 или 12 cm
+         
+    \end{enumerate} \pause
 
     Проблема: у нас бывают очень большие заметки внизу. Было бы здорово, если заметка очень уж большая, расположить её по всему низу, убрав номер слайда и лого.
 }
@@ -353,6 +376,7 @@
     \cscfootnote{\knuthc{15}[131]. Ещё существуют \ccol\unhbox, \ccol\unvbox, \ccol\unhcopy, \ccol\unvcopy. Их задача -- прикрепить содержимое бокса с текущему списку без изменений }
 \end{frame}
 
+\outclassframe{
 \begin{frame}{Остальные примитивы \TeX\magicPage}\relax
     В дополнение к длинам, боксам и счётчикам в \TeX\ есть:
     \begin{itemize}
@@ -362,8 +386,19 @@
     \end{itemize}
      
 \end{frame}
+}
 
-\lookCode{Сделаем, чтобы широкая заметка могла занять весь ``подвал''. И тогда она займёт не так много места по вертикали}
+\lookCode{Сделаем, чтобы широкая заметка могла занять весь ``подвал''. И тогда она займёт не так много места по вертикали
+
+{\centering\includegraphics[width=0.7\textwidth]{13_box.png}\par}\pause
+\begin{enumerate}
+    \item Зададим новый бокс, в котором будет храниться заметка
+    \item Создадим функцию, которая бы проверила -- выше ли заметка некого порога 
+    \item Создадим именованный if, значение которого бы показывало -- нужно нам заметку расширять на весь слайд или нет 
+    \item В footline проверим значение if-а и или расширим заметку или нет 
+     
+\end{enumerate}
+}
 \inclassframe{
     \begin{frame}{Мы почти у финиша!}
         Итак, мы умеем делать уже почти всё. Одно лишь загадка: как сделать прогрессбар?\inpause
@@ -504,22 +539,41 @@
     }
      
 \end{frame}
-
+{\def\myfontchange#1{\csname text#1\endcsname}
 \begin{frame}[fragile]{Манипулирование именами команд\magicPage}\relax
      \lstset
     {
         basicstyle=\tt\normalsize,
     }
     \begin{itemize}
-        \item \lstinline|\csname textit\endcsname| прям создаст команду наклонного шрифта: \lstinline|\csname textit\endcsname{my text}| даст \csname textit\endcsname{my text}
+        \item Написать \lstinline|\csname textit\endcsname| всё равно, что написать команду \string\textit: \lstinline|\csname textit\endcsname{my text}| даст \csname textit\endcsname{my text}
         \item \lstinline|\string\textit| вернёт просто \string\textit
+    \end{itemize}\pause
+    
+    Пример использования:
+    \begin{itemize}
+    \item Зададим команду \lstinline|\def\myfontchange#1{\csname text#1\endcsname}|
+    \item \lstinline|\myfontchange{it}{hello}| даст \myfontchange{it}{hello}
+    \item \lstinline|\myfontchange{bf}{world}| даст \myfontchange{bf}{world}
     \end{itemize}
 \end{frame}
 
+}
 \begin{frame}[fragile]{Catcodes\magicPage}{что отвечает за комментарий, а что -- символ команды?}\relax
+\catcode`?=14
+    \footnotesize
+    \begin{tabbing}
+     
+        \rulecommand{1}\lstinline|\catcode`|\= \rulecommand{2}\lstinline|\%|\= = \= \rulecommand{3}12\\ 
+        Меняем категорию символа\> \> \> \\
+        \> Символ -- \%. Раньше отвечал за комментарий \> \> \\
+        \> \> \> новый код символа -- 12. Обычный текст\\
+        \> \> \> \tiny 14 -- код комментария, 1 -- начало группы (\{), и т.д...
+    
+    \end{tabbing}  \vspace{-0.5cm}
+    
     \samePosPicture{catcodesmy}{12-20}
     
-    catcodes отвечают, какой символ будет комментарием, с какого -- начинается команда, какими обозначаются группы \{\},..
     \cscfootnote{\wikiCC{https://en.wikibooks.org/wiki/TeX/catcode}}
 \end{frame}
 

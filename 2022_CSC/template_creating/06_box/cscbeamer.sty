@@ -28,10 +28,10 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
   
-\newcommand{\csc@footnote}{}
+\newcommand{\i@cscfootnote}{}
 \newcommand{\cscfootnote}[1]{%
-    \grenewcommand{\csc@footnote}{% 
-        {\fontsize{10}{12}\selectfont#1}% 
+    \grenewcommand{\i@cscfootnote}{% 
+        #1% 
     }%
 }
 
@@ -45,17 +45,18 @@
     % \leavevmode\hbox to 30pt{\includegraphics[width=1.0cm]{\logoname}}% <-- лого печатаем, leavevmode нужен для перехода из вертикальной моды
     % \raise10ex\vbox to 0pt{%<-- берём бокс и поднимаем его (в идеале ровно на высоту текста, но пока мы не умеем так)
     %     \hsize=10cm\centering%<-- говорим, что размер текста -- 10 cm и текст центрирован
-    %     \csc@footnote%<-- пишем заметку
+    %     \i@cscfootnote%<-- пишем заметку
     % }% 
     % \hbox to 30pt{%  <-- оставляем место для чисел 
     %     \insertframenumber\,/\,\inserttotalframenumber%
     % }%
     % /TeX-путь
     % LaTeX-путь
-    \raisebox{0pt}[0pt][0pt]{\includegraphics[width=1.0cm]{\logoname}}% <-- raisebox тут для независимости отображений
-    \raisebox{0em}[0pt][0pt]{\parbox[b]{10cm}{% <-- parbox создаёт ограничение в длину и привязку к нижнему краю
+    \includegraphics[width=1.0cm]{\logoname}
+    \raisebox{0em}[0pt][0pt]{%<-- бокс считается нулевой высоты и глубины, а значит идёт по нижнему краю
+    \parbox[b]{10cm}{% <-- parbox создаёт ограничение в длину и привязку к нижнему краю
         \centering% <-- центрирование
-        \csc@footnote}%  <-- пишем заметку
+        \i@cscfootnote}%  <-- пишем заметку
     }%  
     \makebox[20pt][r]{%  <-- немного отступим от края и при этом сделаем привязку к правому краю бокса. Чтобы надписи 9/22 и 10/22 смотрелись в одном месте
         \insertframenumber\,/\,\inserttotalframenumber%

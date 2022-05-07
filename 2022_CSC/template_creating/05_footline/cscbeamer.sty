@@ -29,20 +29,26 @@
 \def\g@star@or@long#1{% 
   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}  % <-- @ifstar говорит, что у команды может быть вариант со *. https://latexref.xyz/_005c_0040ifstar.html
   
-\newcommand{\csc@footnote}{}
+\newcommand{\i@cscfootnote}{}
 \newcommand{\cscfootnote}[1]{%
-    \grenewcommand{\csc@footnote}{%  <-- "g" = global
-        {\fontsize{10}{12}\selectfont#1}%  <-- кладём текст где хотели с нужным шрифтом
+    \grenewcommand{\i@cscfootnote}{%  <-- "g" = global
+        #1%  <-- кладём текст где хотели с нужным шрифтом
     }%
 }
 
 % footline
 \setbeamertemplate{navigation symbols}{}  % <-- никогда не пользовался символами навигации
+% \setbeamertemplate{footline}{%
+%     \usebeamercolor[fg]{page number in head/foot}%
+%     \usebeamerfont{page number in head/foot}%
+%     \includegraphics[width=1.0cm]{\logoname}%  <-- добавил логотип
+%     \insertframenumber\,/\,\inserttotalframenumber%  <-- добавим номер страницы
+% }%
 \setbeamertemplate{footline}{%
     \usebeamercolor[fg]{page number in head/foot}%
     \usebeamerfont{page number in head/foot}%
     \includegraphics[width=1.0cm]{\logoname}%  <-- добавил логотип
-    \csc@footnote% <-- пишем заметку, если она есть
+    \i@cscfootnote% <-- пишем заметку, если она есть
     \insertframenumber\,/\,\inserttotalframenumber%  <-- добавим номер страницы
     \cscfootnote{}% <-- "освобождаем" поле заметки
 }%

@@ -40,7 +40,7 @@
 \newcommand{\csc@footnote}{}
 \newcommand{\cscfootnote}[1]{%
     \grenewcommand{\csc@footnote}{% 
-        {\fontsize{10}{12}\selectfont#1}% 
+        #1% 
     }%
 }
 
@@ -97,10 +97,10 @@
         }% 
         \hfill% 
         \cscfootnote{}%
-        \raisebox{0pt}[0pt][0pt]{\makebox[0pt]{\makebox[20pt][r]{% 
+        \makebox[0pt]{\makebox[20pt][r]{% 
             \ifthenelse{\equal{\insertframenumber}{1}}{}{\insertframenumber\,/\,\inserttotalframenumber}% 
             \hspace{20pt}%
-        }}}% 
+        }}% 
     \fi
     \vspace{2pt}%
     \cscfootnote{}%
