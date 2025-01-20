@@ -1,0 +1,125 @@
+\graphicspath{{sec08/images/}{sec08/code/}}
+\lstset{inputpath=sec08/code/}
+
+
+\begin{frame}{Filesystem writing}
+    \twocolImg{
+    % \lstinputlisting[linerange={11-17}]{writedoc.tex}
+    \inputminted[firstline=11, lastline=17]{latex}{sec08/code/writedoc.tex}
+    }{writedoc}
+    
+    \footnotesize
+    The output in pdf is the result of listing the {\csk outfile.txt}
+    \begin{itemize}
+        \item \ccol\newrite\ to get a free register
+        \item \ccol\openout\ to open filename for output
+        \item \ccol\write<register>\ to actually write 
+        \item \ccol\noexpand\ to stop expanding (also see \ccol\expandafter)
+        \item \ccol\closeout\ to close the file 
+    \end{itemize}
+    
+    You also can use numbers. Like \ccol\write4
+
+\end{frame}
+
+\begin{frame}[fragile]{Filesystem reading}
+    \twocolImg{
+    \inputminted[firstline=18, lastline=31, fontsize=\tiny]{latex}{sec08/code/readdoc.tex}
+    }{readdoc}
+    
+    \footnotesize
+    \begin{itemize}
+        \item \ccol\newread\ to get a free register
+        \item \ccol\openin\ to open filename for input
+        \item \ccol\read<register>\ \ccol{to}\string\<newvariable> to actually read
+        \item \verb"\ifeof" to check if file is still have lines
+        \item \ccol\closein\ to close the file 
+    \end{itemize}
+    
+    You also can use numbers. Like \ccol\read4
+
+\end{frame}
+
+
+\begin{frame}[fragile]{How BiBLaTeX works? Proof-of-concept\magicPage}\relax
+    \twocolImg{
+    % basicstyle=\tt\tiny
+        \inputminted[firstline=8, lastline=22, fontsize=\tiny]{latex}{sec08/code/PoCIO.tex}
+        \inputminted[firstline=28, lastline=31, fontsize=\tiny]{latex}{sec08/code/PoCIO.tex}
+    }{PoCIO}
+    
+    \footnotesize
+    \begin{enumerate}
+        \item write info into a file 
+        \item use an external command to do something with the file 
+        \item read content from a file in a different place
+         
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Use command line\magicPage}\relax
+        \twocolImg{
+    % \lstinputlisting[linerange={12-14}]{commandline.tex}
+    \inputminted[firstline=12, lastline=16]{latex}{sec08/code/commandline.tex}
+    }{commandline}
+    \small
+    
+    Use 
+    \begin{itemize}
+        \item \ccol\write18\ to call the command line 
+        \item \ccol\immidiate\ to run it as it reached (otherwise only when \TeX\ will ``print'' the page)
+        \item use \verb|--enable-write18 -interaction=nonstopmode| keys for run offline
+        \item the commands with internet connection will not work at Papeeria
+         
+    \end{itemize}
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/20444/what-are-immediate-write18-and-how-does-one-use-them}. Also look at \ccol{filecontents} env.}
+\end{frame}
+
+\begin{frame}[fragile]{Command names manipulation\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={12-13}]{csnamemy.tex}
+    \inputminted[firstline=12, lastline=13]{latex}{sec08/code/csnamemy.tex}
+    }{csnamemy}
+    
+    \begin{itemize}
+        \item \ccol\csname\ --- \ccol\endcsname\ to ``compile'' command from name 
+        \item \ccol\string\ to show the name 
+         
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Catcodes\magicPage}\relax
+
+    \twocolImg{
+    % \lstinputlisting[linerange={12-18}]{catcodesmy.tex}
+    \inputminted[firstline=12, lastline=18]{latex}{sec08/code/catcodesmy.tex}
+    }{catcodesmy}
+
+    \ccol\catcode\ shows what symbol will be responsible for the group, what for comment etc.
+
+    \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#catcode-rp} \knuthc{app. B}[354]}
+\end{frame}
+
+\begin{frame}{Expanding mechanism\magicPage}\relax
+
+    \begin{itemize}
+        \item \TeX\ support overriding practically everything
+        \item You need a detail mechanism sometimes: so you want to run a command, print it or just put it deeper in macros 
+        \item \ccol\expandafter\ expands the token after the next one before the next token itself.
+        \item \ccol\noexpand\ Prevents the next token from being expanded.
+    \end{itemize}
+
+    \skfootnote{\overC{https://www.overleaf.com/learn/latex/Articles/How_does_\%5Cexpandafter_work\%3A_The_meaning_of_expansion} \overC{https://www.overleaf.com/learn/latex/Articles/How_does_\%5Cexpandafter_work\%3A_A_detailed_macro_case_study}}     
+\end{frame}
+
+\begin{frame}[fragile]{Lua\TeX\ Proof-of-concept\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 10-13}]{luamy.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec08/code/luamy.tex}
+    \inputminted[firstline= 10, lastline=13]{latex}{sec08/code/luamy.tex}
+    }{luamy}
+         
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/70/what-is-a-simple-example-of-something-you-can-do-with-luatex}}
+\end{frame}

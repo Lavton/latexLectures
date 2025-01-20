@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\newcommand{\deflName}{Username}
+\newcommand{\lName}[1]{\renewcommand{\deflName}{#1}}
+\newcommand{\generate}{
+        -- Hello. I'm \deflName.\\
+        -- What do you wish, \deflName?\\
+        -- \deflName\ wishes a big Cola and French fries\\
+        -- Here are they, \deflName! \\
+        }
+\begin{document}
+    \vspace*{\fill}\vspace{-5ex}
+    \generate 
+
+    \lName{Lusy}
+    \generate
+
+    
+    \vspace*{\fill}
+\end{document}

@@ -1,0 +1,21 @@
+\documentclass{beamer}
+\usepackage{lipsum}  
+\usetheme{CambridgeUS}
+\usecolortheme{default}
+\begin{document}
+
+\begin{frame}[t]{Two column frame}
+    \begin{columns}[t]
+        \begin{column}{0.4\textwidth}
+            \lipsum[1]
+        \end{column}
+        \begin{column}{0.1\texwidth}
+             \textit{Hello middle!}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+           \lipsum[2]
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\end{document}

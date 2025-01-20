@@ -1,0 +1,35 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+
+\setbeamertemplate{navigation symbols}{}% <-- no navigation symbols
+\newcommand{\FootLineText}[1]{} % technical stuff. Don't look at it for now
+\newcommand{\footline}[1]{\renewcommand{\FootLineText}{#1}} % technical stuff.
+
+\newlength{\footnotelen}
+\setlength{\footnotelen}{\textwidth}
+\setlength{\footnotelen}{\dimexpr\textwidth * 2 / 3}
+\newcounter{nextyear}
+\setcounter{nextyear}{\year}
+\addtocounter{nextyear}{+1}
+
+\setbeamertemplate{footline}{%
+    \insertframenumber/\inserttotalframenumber
+    \newsavebox{\mybox}
+    \savebox{\mybox}{% <--     new: save the box
+    \parbox[b]{\footnotelen}{\FootLineText}
+    }
+    \newlength{\boxheight}
+    \settoheight{\boxheight}{\usebox{\mybox}}
+    \ifdim\boxheight>30pt% <--- new: if... else
+        \parbox[b]{1.5\footnotelen}{\FootLineText}
+    \else
+        \usebox{\mybox}
+    \fi
+    \arabic{nextyear}
+ } 
+
+\footline{fdsf sdf sdjfksdlfj sdkflj sdlkfj sdklf jdsklf jsdklf jdsakl;f jdas;klf jdklas;f jdsklaf hdjksag hdfjakg hadsjkl;f hdsalkfj hdsajklf hdsalkj fhadsjkf hdsakjlf hdsalkf hdasjklfh adsjklf hasldkjf hdfjakg hadsjkl;f hdsalkfj hdsajklf hdsalkj fhadsjkf hdsakjlf hdsalkf hdasjklfh adsjklf hasldkjf}
+
+\begin{document}
+    \frame{\frametitle{Frame}}
+\end{document} 

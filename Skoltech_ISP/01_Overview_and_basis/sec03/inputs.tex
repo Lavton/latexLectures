@@ -1,0 +1,200 @@
+% \knuthc  knuth the TeXBook
+% \lvoc   Lvovsky
+% \lamc  lamport latex 
+% \slshape different font for footnote
+\graphicspath{{sec03/images/s3/}{sec03/code/s3/}}
+\lstset{inputpath=sec03/code/s3/}
+
+% \inputminted[fontsize=\normalsize]{latex}{sec03/code/s3/first.tex}
+
+\begin{frame}[fragile]{Input some elements}\relax
+\begin{itemize}
+    \item \TeX\ files
+     \item Figures (pictures)
+     \item Tabels
+     \item Code 
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%% TEX files %%%%%%%%%%%%%%%%%
+\begin{frame}{Including a \LaTeX\ file}
+
+\centering\Huge\ccol{\input}\{filename\}
+     
+     \skfootnote{\lmanc{24}[208] \overC{https://www.overleaf.com/learn/latex/Multi-file_LaTeX_projects} \stExC{https://tex.stackexchange.com/questions/123226/how-to-include-tex-files} \stExC{https://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include}}
+\end{frame}
+
+
+%%%%%%%%% Figures (basic) %%%%%%%%%%%%
+
+\begin{frame}[fragile]{Include graphics}\relax
+     \cprotect\twocolImg{
+     \inputminted[firstline=6, lastline=7]{latex}{sec03/code/s3/incgraph.tex}
+     \inputminted[firstline=11, lastline=11]{latex}{sec03/code/s3/incgraph.tex}
+    % \lstinputlisting[linerange={6-7, 11-11}]{incgraph}
+    }{incgraph}
+    
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Include graphics}{params}\relax
+     {
+\scriptsize
+
+\begin{tabbing}
+\lstinline|\includegraphics[|\=\lstinline|width=|\=\lstinline|\textwidth,|\=\lstinline|height=|\=\lstinline|0.5\textheight,|\=\lstinline|keepaspectratio]{|\=\lstinline|papeeria}|\+\\
+the width of the picture\+\\ 
+means ``for whole width of the text''\+\\ 
+the height of the picture\+\\ 
+half of the whole page height\+\\ 
+the ratio will remain the same\+\\ 
+file name. You can ommit \\ ~~~the extension
+\end{tabbing}
+}
+     \cprotect\skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics} \lmanc{22.3.1}[193] \url{https://www.tug.org/TUGboat/tb17-1/tb50reck.pdf}\\ 
+     you also can rotate, take only part of pic,.. \verb|\graphicspath{{path1/}{path2/}}| --- how I provide path to images}
+     
+\end{frame}
+
+\begin{frame}[fragile]{Floating}\relax
+\cprotect\twocolImg{
+    \inputminted[firstline=11, lastline=19]{latex}{sec03/code/s3/floatgraph.tex}
+    % \lstinputlisting[linerange={11-19}]{floatgraph}
+}{floatgraph}
+~\\~\\
+Figure appeared not where it was declaired! 
+\end{frame}
+
+\begin{frame}[fragile]{Tips}\relax
+\begin{itemize}
+    \item {\csk \texttt \textbackslash{}caption} generates caption to the figure 
+    \item \LaTeX{} doesn't care of what is inside the {\csk \texttt figure}. You are responsible of the content.
+    \item You can kindly ask \LaTeX\ to put the illustration where you want: 
+    \begin{itemize}
+        \item[t] top
+        \item[b] bottom
+        \item[p] separate page
+        \item[h] in place
+    \end{itemize}
+\end{itemize}
+
+    \skfootnote{\lmanc{8.10.62}[62] \lvoc{IV.8}[185] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions} \overC{https://www.overleaf.com/learn/latex/Positioning_images_and_tables} (advanced: \lvoc{IX.7.2}[329] \lmanc{5}[38] -- max fraction, gaps between text and illustration,.., \knuthc{15}[115])}
+\end{frame}
+
+\outclassframe{
+\input{sec03/inputs/add_imgs}
+}
+
+
+%%%%%%%%%%%%%%%% TABLES (basic) %%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Tables: Floating and wrapping}\relax
+
+\verb|\begin{table}table\end{table}|
+
+\verb|\begin{wraptable}table\end{wraptable}|
+
+\skfootnote{\lvoc{IV.8.1}[187] \lmanc{8.22}[86] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions\#Tables} \overC{https://www.overleaf.com/learn/latex/Tables} \normalfont \url{http://texdoc.net/texmf-dist/doc/latex/wrapfig/wrapfig-doc.pdf}}     
+\end{frame}
+
+
+\begin{frame}[fragile]{Tables}{tabular}\relax
+    \cprotect\twocolImg{
+    \inputminted[firstline=10, lastline=15]{latex}{sec03/code/s3/tabularmy.tex}
+    % \lstinputlisting[linerange={10-15}]{tabularmy}
+}{tabularmy}
+
+\inclassFrag{Guess, what {\csk \&} and \ccol{\\} are here for?}[-1]
+\end{frame}
+
+\begin{frame}[fragile]{Tables}{tabular}\relax
+     \begin{itemize}
+         \item Line: \verb!o & x & o\\\hline!
+         \begin{itemize}
+             $\left.
+             \begin{tabular}{p{.4\textwidth}} \vspace{-2ex}
+             \item {\csk \&} --- moves to the next cell
+             \item {\csk \verb!\\!} --- moves to the next line
+             \end{tabular}
+             \right\}\text{{\csk it is common, remember!}}$
+             \item {\csk \verb!\hline!} --- provides a horizontal line between cells. You can ommit it.
+         \end{itemize}
+         \item preambula {\csk \verb!{||c|c|c|}!} 
+         \begin{itemize}
+             \item number of letters --- number of columns
+             \item {\csk \verb!|!} stands for vertical line 
+             \item available letters:
+             \begin{itemize}
+                 \item[l] pressed to the left
+                 \item[r] pressed to the right
+                 \item[c] centered
+                 \item[p\{<size>\}] place for a paragraph with some <size> width 
+             \end{itemize}
+         \end{itemize}
+     \end{itemize}
+     \skfootnote{\lvoc{VI.2}[212] \lmanc{8.23}[87] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Tables} \overC{https://www.overleaf.com/learn/latex/Tables} (advanced: \knuthc{22}[232])\\ 
+     for this bracket (\}) I also used tabular!}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?}{WYSiWYG}\relax
+It is hard to make a table without WYSIWYG. Use this {\csk\url{https://www.tablesgenerator.com/}}
+\end{frame}
+
+
+\outclassframe{
+\input{sec03/inputs/add_tables}
+}
+%%%%%%%%%% CODE (basic) %%%%%%%%%%
+
+
+\begin{frame}[fragile]{Code}\relax
+\begin{center}
+\begin{tabular}{c|c|c}
+\hline
+\multicolumn{3}{c}{{\ccol{\usepackage}} }\\\hline
+ verbatim  &  listings  &  minted  \\\hline
+\multicolumn{3}{c}{{\csk inline} }\\\hline
+\textbackslash{}verb!code! & \textbackslash{}lstinline|code| & \textbackslash{}mintinline\{LaTeX\}\{Code\}\\\hline
+
+\multicolumn{3}{c}{{\csk environment (\textbackslash{}begin\{env\} code \textbackslash{}end\{env\})} }\\\hline
+\{verbatim\} & \{lstlisting\} &\{minted\}\\\hline
+\multicolumn{3}{c}{{\csk file} }\\\hline
+\textbackslash{}verbatiminput & \textbackslash{}lstinputlisting& \textbackslash{}inputminted\\\hline
+\end{tabular}
+\end{center}
+
+\cprotect\skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings}\\ note: \verb"||, !!" are any characters that cannot be found in \verb|code|}
+\end{frame}
+
+\outclassframe{
+\input{sec03/inputs/add_code}
+}
+
+%%%%%%%%%%%%% additional %%%%%%%%%%%
+\begin{frame}\relax
+\centering\Huge Some addition materials \preMagicPage
+    
+\end{frame}
+
+%%%% figures 
+\inclassframe{
+\input{sec03/inputs/add_imgs}
+\input{sec03/inputs/add_tables}
+\input{sec03/inputs/add_code}
+}
+
+%%%%%%%%%%%%% exersices
+
+\inclassframe{
+\begin{frame}{\exFrame{Try to reproduce the following}}{lvl 1}\relax
+    \begin{center}
+         \includegraphics[height=0.8\textheight]{exeLvl1}
+    \end{center}
+\end{frame}
+
+\begin{frame}{\exFrame{Try to reproduce the following}}{lvl 2}\relax
+    \begin{center}
+         \includegraphics[height=0.8\textheight]{exeLvl2}
+    \end{center}
+\end{frame}
+}

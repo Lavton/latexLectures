@@ -1,0 +1,116 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ifxetex}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xecyr}
+\usepackage{polyglossia}
+\usepackage{multicol}
+\usepackage{pdfpages} 
+
+
+\usepackage{beamerskoltech} 
+% \renewcommand{\logoname}{sklogo.png} % <- default value for logo 
+% \renewcommand{\logoname}{} % <- if you want no logo
+
+\usepackage{progressbar}
+\colorlet{progressbarcolor}{skoltechgreen}
+\usepackage[mode=in]{inoutclass}
+\definecolor{inclasscolor}{RGB}{46, 228, 182}
+\definecolor{outclasscolor}{RGB}{41, 0, 204}
+\usepackage{xargs}
+\usepackage{latexLectures}
+\usepackage{minted}
+
+
+\title{\LaTeX:\\ \Large from dummy to \TeX nician}
+\subtitle{Document creation}
+\author{Anton Lioznov} 
+\institute{Skoltech, \\Project Center of Omics Technologies and Advanced Mass Spectrometry}
+\date{ISP 2025,\\ \textit{lesson 2}}
+
+\begin{document}
+
+
+\input{technical}
+\begin{frame}{Special thanks to}\relax
+     \begin{itemize}
+         \item David Saykin for creating the presentation part about beamer in 2019
+     \end{itemize}
+         Our TAs:
+     \begin{itemize}
+         \item Peter Borisovets
+         \item Pavel Kuzmin
+         \item Anna Litvin
+     \end{itemize}
+\end{frame}
+
+\inclassframe{
+\begin{frame}{Save the task results!}\relax
+
+\begin{itemize}
+    \item Use \ccol\newpage\ when the task is not to create everything from the start. \textit{Tip}: you can put the previous task results to the bottom of the document and continue at the beginning
+    \item Create a new .tex file otherwise
+\end{itemize}
+     
+\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Document Creation}
+
+\input{sec01/main}
+
+\section{Presentation Creation}
+\input{sec02/main}
+
+
+\progressend
+
+\inclassframe{
+\begin{frame}{\exFrame{Final user task}}\relax
+     Use any template you want:
+     \begin{itemize}
+         \item for specific journal article
+         \item for CV
+         \item for book 
+         \item for poster
+         \item ...
+     \end{itemize}
+     and implement it!
+     
+     You can find templates in, for example,
+     \begin{itemize}
+         \item \url{https://www.overleaf.com/latex/templates}
+         \item \url{https://www.papeeria.com/templates}
+          
+     \end{itemize}
+\end{frame}
+}
+\begin{frame}\frametitle{What we have learned today?}\relax
+    \tableofcontents
+\end{frame}
+
+\begin{frame}[allowframebreaks]{references}
+color from the footnotes corresponds to references' color.
+    \begin{itemize}
+        \item \knuthc{Knuth ``The \TeX Book''}
+        \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
+        \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+        \item \lmanc{``\LaTeX 2e: An unofficial reference manual''} also at website \url{https://latexref.xyz/}
+        \item \stExC{https://tex.stackexchange.com/questions} : \url{https://tex.stackexchange.com/questions}
+        \item \wikiC{https://en.wikibooks.org/wiki/LaTeX} : \url{https://en.wikibooks.org/wiki/LaTeX}
+        \item \overC{https://www.overleaf.com/learn/latex} : \url{https://www.overleaf.com/learn/latex}
+        \item \tugC{https://www.tug.org/utilities/plain/cseq.html} : \url{https://www.tug.org/utilities/plain/cseq.html}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Distribution}\relax
+\begin{itemize}
+     \item the pdf-version of the presentation and all printed materials can be distributed under license Creative Commons Attribution-ShareAlike 4.0 \url{https://creativecommons.org/licenses/by-sa/4.0/}
+     \item The source code of the presentation is available on {\csk\url{https://github.com/Lavton/latexLectures}} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License\#License_terms}
+\end{itemize}
+     
+\end{frame}
+\end{document}

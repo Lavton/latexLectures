@@ -1,0 +1,100 @@
+\graphicspath{{sec0/images/}{sec0/code/}}
+\lstset{inputpath=sec0/code/}
+
+\section{Introduction}
+
+\begin{frame}{Separation ``how'' and ``what''}\relax
+
+    \outclasshigh{This is \textit{the} point of non-WYSiWYG}
+    \begin{itemize}
+        \item Focus on what you want to do, not how to do it. \outclass{Leave the creation of ``how'' to someone else}\inpause
+        \item But \textit{who} create these ``how'' rules?\inpause
+        \item Who needed to :). In these last lectures it will be you
+         
+    \end{itemize}
+     
+\end{frame}
+
+\begin{frame}[fragile]{Ugly ``backend'', beautiful ``frontend''}\relax
+
+    \outclasshigh{
+    \begin{itemize}
+        \item \TeX\ is a very old language
+        \item it allows you so many things, redefine almost anything...
+        \item but its syntax may be unclear
+    \end{itemize}
+    }
+    \begin{itemize}
+        \item Why figures and footnotes don't rendered where they appears, but sent where they must be?
+        \item Why can you write \verb|\pictofraction{xx}{blue}{3}{black!30}{3}{\tiny}| and the \string\tiny\ size will appears in the command result, and not {\tiny just change the following text?}
+        \item Why can I use something like \ccol\magicPage\ command and don't change the template itself? (And why now you see the command, not its result?) 
+    \end{itemize}
+\end{frame}
+
+{
+\supressprogressbarfalse
+
+\begin{frame}[fragile]{Examples\preMagicPage}\relax
+
+I need to write as simple as
+\begin{itemize}
+    \item \ccol\magicPage\ to create a ``magic hat''
+    \item \ccol\twocolImg\verb|{<anything>}{image}| to create the pattern ``code to the left, picture to the right''
+    \item \ccol\overC\verb|{https://www.overleaf.com/learn/latex/Page_size_and_margins}| to shorten this (with hyperref!) to \overC{https://www.overleaf.com/learn/latex/Page_size_and_margins}
+    \item no addition code for the progressbar at the top, except \verb|\usepackage{progressbar}| and define \texttt{progressbarcolor}
+     
+\end{itemize}
+\inpause but the tricks I use... 
+     
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{``Backend'' of the commands\magicPage}\relax
+    ``Magic hat'':
+    \inputminted[firstline=194, lastline=200, fontsize=\tiny]{latex}{sec0/code/latexLectures.sty}
+    
+    Code and image pattern:
+    \inputminted[firstline=55, lastline=70, fontsize=\tiny]{latex}{sec0/code/latexLectures.sty}
+    
+    Overleaf short view:
+    \inputminted[firstline=311, lastline=313, fontsize=\tiny]{latex}{sec0/code/latexLectures.sty}
+    
+    Progressbar:
+    \inputminted[fontsize=\tiny]{latex}{sec0/code/progressbar.sty}
+\end{frame}
+
+}
+
+\begin{frame}\relax
+
+\centering\large We will learn how to do things like the above 
+     
+\end{frame}
+
+\begin{frame}{\LaTeX\ vs \TeX}\relax
+    \begin{columns} 
+    \begin{column}{0.5\textwidth}
+    \begin{tikzpicture}[sibling distance=10em,
+      every node/.style = {shape=rectangle, rounded corners,
+        draw, align=center,
+        top color=white, bottom color=skoltechgreen!20}]]
+      \node {\TeX}
+        child { node {\LaTeX}
+          child { node {XeLaTeX} }
+          child { node {LuaTeX} }
+          } ;
+    \end{tikzpicture}
+    \end{column}
+    
+    \begin{column}{0.5\textwidth}
+    \small
+    \begin{itemize}
+        \item {\csk \LaTeX} --- is the most popular set of macro-extensions (or macro package) of the computer typesetting system \TeX, which facilitates a typesetting of complex documents.
+        \item {\csk \TeX} --- is a typesetting system designed and mostly written by Donald Knuth --- the ``father of modern Computer Science''. TeX was designed with two main goals in mind: to allow anybody to produce high-quality books using minimal effort and to provide a system that would give exactly the same results on all computers, at any point in time
+         
+    \end{itemize}
+    \end{column}
+    \end{columns}
+    \outclasshigh{
+    Now it is become important to separate the \LaTeX\ ideas from \TeX's ones
+    }
+\end{frame}

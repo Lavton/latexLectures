@@ -1,0 +1,90 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ifxetex}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xecyr}
+\usepackage{polyglossia}
+\usepackage{multicol}
+\usepackage{dsfont}
+
+\usepackage{minted}
+\usepackage{beamerskoltech} 
+% \renewcommand{\logoname}{sklogo.png} % <- default value for logo 
+% \renewcommand{\logoname}{} % <- if you want no logo
+\usepackage{cancel}
+
+
+\usepackage{progressbar}
+\colorlet{progressbarcolor}{skoltechgreen}
+\usepackage[mode=in]{inoutclass}
+\definecolor{inclasscolor}{RGB}{46, 228, 182}
+\definecolor{outclasscolor}{RGB}{41, 0, 204}
+\usepackage{xargs}
+\usepackage{latexLectures}
+
+
+\title{\LaTeX:\\ \Large from dummy to \TeX nician}
+\subtitle{Overview and basis}
+\author{Anton Lioznov, Pavel Kuzmin}
+\institute{Skoltech, \\Project Center of Omics Technologies and Advanced Mass Spectrometry}
+\date{ISP 2025,\\ \textit{lesson 1}}
+
+\begin{document}
+
+
+\input{technical}
+\begin{frame}{Special thanks to}\relax
+    Our TAs:
+     \begin{itemize}
+         \item Peter Borisovets
+         \item Pavel Kuzmin
+         \item Anna Litvin
+     \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Why \LaTeX? Beauty and fun}
+
+\input{sec01/main}
+
+\section{``Hello, world'':  first steps in \LaTeX}
+
+\input{sec02/main}
+
+\section{Mastering the base}
+
+\input{sec03/main}
+
+\progressend
+
+\begin{frame}\frametitle{What we have learned today?}\relax
+
+
+\tableofcontents
+\end{frame}
+
+\begin{frame}[allowframebreaks]{references}
+color from the footnotes corresponds to references' color.
+    \begin{itemize}
+        \item \knuthc{Knuth ``The \TeX Book''}
+        \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
+        \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+        \item \lmanc{``\LaTeX 2e: An unofficial reference manual''} also at website \url{https://latexref.xyz/}
+        \item \stExC{https://tex.stackexchange.com/questions} : \url{https://tex.stackexchange.com/questions}
+        \item \wikiC{https://en.wikibooks.org/wiki/LaTeX} : \url{https://en.wikibooks.org/wiki/LaTeX}
+        \item \overC{https://www.overleaf.com/learn/latex} : \url{https://www.overleaf.com/learn/latex}
+        \item \tugC{https://www.tug.org/utilities/plain/cseq.html} : \url{https://www.tug.org/utilities/plain/cseq.html}
+        \item \url{http://hostmath.com/} -- WYSiWYG math editor
+        \item \url{http://detexify.kirelabs.org/classify.html} -- find symbols
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Distribution}\relax
+\begin{itemize}
+     \item the pdf-version of the presentation and all printed materials can be distributed under license Creative Commons Attribution-ShareAlike 4.0 \url{https://creativecommons.org/licenses/by-sa/4.0/}
+     \item The source code of the presentation is available on {\csk\url{https://github.com/Lavton/latexLectures}} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License\#License_terms}
+\end{itemize}
+     
+\end{frame}
+\end{document}

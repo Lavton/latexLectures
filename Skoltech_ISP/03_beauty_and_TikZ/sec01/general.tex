@@ -1,0 +1,189 @@
+\begin{frame}{Path}
+     
+     Path is the main TikZ essence.
+    \inputminted[firstline=8, lastline=8]{latex}{sec01/code/pathmy.tex}
+    \inputminted[firstline= 11, lastline=13]{latex}{sec01/code/pathmy.tex}
+
+
+\inclassFrag{what do you think ``(0,0)'', ``(0,1)'' for?}
+
+``(0,0)'', ``(0,1)'' is the simplest coordinate assignment. The (x, y) coordinate in units (typically 1cm)
+The \ccol\path\ is not draw anything by itself!
+\end{frame}
+
+{\forcewidefootnote=1
+\begin{frame}[fragile]{Draw}\relax
+
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 14-16}]{drawmy1.tex}
+    \only<2>{\begin{tikzpicture}[overlay]
+            \draw[->, thick] (6.3, -1.2) to[out=0, in=180] (10, 0.3);
+            \draw[->, thick] (6.3, -1.9) to[out=0, in=180] (10, -0.7);
+        \end{tikzpicture}}
+    \inputminted[firstline=9, lastline=9]{latex}{sec01/code/draw_combined.tex}
+    \inputminted[firstline= 15, lastline=22]{latex}{sec01/code/draw_combined.tex}
+    }{draw_combined}
+    
+     \ccol{\draw} $\equiv$ \ocol\path[draw],\\ \ccol{\fill} $\equiv$ \ocol\path[fill]\\ etc
+
+\end{frame}
+}
+
+
+\begin{frame}{Nodes}\relax
+
+    \twocolImg{
+    \inputminted[firstline=9, lastline=9]{latex}{sec01/code/nodemy.tex}
+    \inputminted[firstline= 15, lastline=17]{latex}{sec01/code/nodemy.tex}
+    }{nodemy}
+    
+    \ccol\node\ or \ocol\path[node]. Without optional arguments a node has no border.\\[1cm]
+    
+    \inpause Nodes are important for graph creation
+     
+\end{frame}
+
+% \inclassframe{
+% \begin{frame}[fragile]{Draw a snowman!}\relax
+
+% \begin{columns}
+% \begin{column}{0.45\textwidth}
+%      \centering
+%     \begin{tikzpicture}
+%         \draw (0, 0) circle[radius=1.5cm];
+%         \draw (0, 2.4) circle[radius=1cm];
+%         \draw (0, 4) circle[radius=0.7cm];
+%         \filldraw[fill=gray] (-0.5, 4.5) rectangle (0.5, 5.5);
+%         \filldraw[fill=orange, draw=orange!50!red] (0.3, 4.1) -- (1.5, 4) -- (0.3, 3.9) -- cycle;
+%         \draw[very thick, ->] (-4, 4.2) -- (-1, 3); 
+%         \node at (-4, 4.5) {snowman!};
+%         \path (1, 3) -- (4, 5);
+%     \end{tikzpicture}
+% \end{column}
+
+% \begin{column}{0.45\textwidth}
+% \expandafter{\begin{minted}{latex}
+% \begin{tikzpicture}
+%     \draw (0, 0) circle[radius=1.5cm];
+%     \draw (0, 2.4) circle[radius=1cm];
+%     \draw (0, 4) circle[radius=0.7cm];
+%     \filldraw[fill=gray] (-0.5, 4.5) rectangle (0.5, 5.5);
+%     \filldraw[fill=orange, draw=orange!50!red] (0.3, 4.1) -- (1.5, 4) -- (0.3, 3.9) -- cycle;
+%     \draw[very thick, ->] (-4, 4.2) -- (-1, 3); 
+%     \node at (-4, 4.5) {snowman!};
+%     \path (1, 3) -- (4, 5);
+% \end{tikzpicture}
+% \end{minted}}
+% \end{column}
+% \end{columns}
+
+% \end{frame}
+% }
+
+% сократить часть про координаты, оставив node
+\begin{frame}[fragile]{``Node''-based coordinates \preMagicPage}\relax
+    \twocolImg{
+    \inputminted[firstline=15, lastline=22]{latex}{sec01/code/coordinatesNode.tex}%
+    \only<1>{\begin{tikzpicture}[overlay]
+        \path (0, 0) -- (1, 0);
+    \end{tikzpicture}}
+    \only<2>{\smash{\begin{tikzpicture}[overlay]
+        \fill[color=white, opacity=0.75] (0, 5.5) rectangle (6.5, 2.1);
+        \fill[color=white, opacity=0.75] (0, 0) rectangle (6.5, 1.9);
+        \draw[->, thick] (5.5, 2) to[out=0, in=180] (9.2, 2.3);
+    \end{tikzpicture}}}%
+    }{coordinatesNode}
+     
+    \begin{enumerate}
+        \item label node \verb|\node| \ccol{(<label>)}
+        \item refer to the node as \ccol{(node cs:name=<label>)} 
+        \item you can also use things like <label>.west or <label>.right
+         
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Vertical and horizontal\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={9-9, 15-17}]{curveverthor.tex}
+    \inputminted[firstline=9, lastline=9]{latex}{sec01/code/curveverthor.tex}
+    \inputminted[firstline= 15, lastline=17]{latex}{sec01/code/curveverthor.tex}
+    }{curveverthor}
+    
+    Use {\csk -|} for ``first horizontal, than vertical''. Use {\csk |-} for ``first vertical, than horizontal''
+    
+    
+    \skfootnote{\tikzc{14.2.2}[152]}
+     
+\end{frame}
+
+
+\begin{frame}{Curves\magicPage}\relax
+    \vspace{-0.5cm}
+    \twocolImg{
+    % \lstinputlisting[linerange={9-9, 15-20}]{curveinout.tex}
+    \inputminted[firstline=9, lastline=9]{latex}{sec01/code/curveinout.tex}
+    \inputminted[firstline= 15, lastline=20]{latex}{sec01/code/curveinout.tex}
+    }{curveinout}
+    \footnotesize
+    \ccol{to [out=.., in=..]} the angle on which curve flows out and the angle on which curve flows in.
+    
+    \twocolImg{
+    % \lstinputlisting[linerange={9-9, 15-19}]{curveibez.tex}
+    \inputminted[firstline=9, lastline=9]{latex}{sec01/code/curveibez.tex}
+    \inputminted[firstline= 15, lastline=19]{latex}{sec01/code/curveibez.tex}
+    }{curveibez}
+    
+    \ccol{ .. controls <coord> and <coord> .. }
+    
+    
+    \skfootnote{\url{https://en.wikipedia.org/wiki/Bezier_curve}}
+     
+\end{frame}
+
+
+\begin{frame}{Coordinates\magicPage}\relax
+    \twocolImg{
+        \inputminted[firstline=15, lastline=33]{latex}{sec01/code/coordinatesCombined.tex}
+    }{coordinatesCombined}
+    \skfootnote{\tikzc{13.2}[133]}
+\end{frame}
+
+
+\begin{frame}[fragile]{``++'' and ``+'' coordinates\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={14-21}]{coordinatesPlus.tex}
+    \inputminted[firstline=14, lastline=21]{latex}{sec01/code/coordinatesPlus.tex}
+    }{coordinatesPlus}
+     \begin{itemize}
+         \item ``++'' use relative coordinate and set this new coordinate as ``current''
+         \item ``+'' use relative coordinate and DOESN't set this new coordinate as ``current''
+          
+     \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Coordinate calculation\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={9-10, 15-20}]{coordinatesCalc.tex}
+    \inputminted[firstline=9, lastline=10]{latex}{sec01/code/coordinatesCalc.tex}
+    \inputminted[firstline= 15, lastline=20]{latex}{sec01/code/coordinatesCalc.tex}
+    }{coordinatesCalc}
+     
+    \begin{enumerate}
+        \item \ccol\usetikzlibrary\{calc\} 
+        \item syntax: {\csk \$<coord1>!fraction!<coord2>\$}
+        \item in this slide you can also see \ccol\foreach!
+         
+    \end{enumerate}
+     
+\end{frame}
+
+\begin{frame}{Coordinate intersection\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={9-10, 15-22}]{coordinatesInter.tex}
+    \inputminted[firstline=9, lastline=10]{latex}{sec01/code/coordinatesInter.tex}
+    \inputminted[firstline= 15, lastline=22]{latex}{sec01/code/coordinatesInter.tex}
+    }{coordinatesInter}
+ 
+\end{frame}
+

@@ -1,0 +1,90 @@
+\graphicspath{{sec/images/}{sec/code/}}
+\lstset{inputpath=sec/code/}
+
+\section{\TeX\ primitives}
+
+\begin{frame}{Entities}
+
+    \begin{enumerate}
+        \item Primitive commands
+        \item Counters (=integer numbers)
+        \item Lengths
+        \item Boxes
+        \item Glues
+        \item Spaces 
+        \item Toks (Strings)
+        \item Inserts 
+    \end{enumerate}
+    \inpause
+    commands and macros will wait in details the next lecture. No we discuss it just in a few words
+\end{frame}
+
+\subsection{Commands (Macros)}
+
+
+\begin{frame}[fragile]{Simple command creation \lW}\relax
+    \twocolImg{
+    \inputminted[firstline=8, lastline=8]{latex}{sec/code/commandSimple.tex}
+    \inputminted[firstline=13, lastline=20]{latex}{sec/code/commandSimple.tex}
+    }{commandSimple}
+    
+    \inpause
+    \inclasshigh{You are a developer now!}
+\end{frame}
+
+\subsection{Counters}
+\input{sec/counters.tex}
+\graphicspath{{sec/images/}{sec/code/}}
+\lstset{inputpath=sec/code/}
+
+\subsection{Lengths}
+\input{sec/subsec01.tex}
+\subsection{Boxes}
+\input{sec/subsec02.tex}
+\subsection{Glue}
+\input{sec/subsec03.tex}
+\subsection{Spaces}
+\input{sec/subsec04.tex}
+\subsection{Toks}
+\begin{frame}{Toks manipulation\tW\magicPage}\relax
+    \TeX\ has addition registers for storing strings. They have \ccol\toks\ prefix/suffix. The difference between toks and storage inside macros are in extension (We mention the extension mechanism at the last lecture). In toks \TeX store tokens (unexpanded).
+     
+     \skfootnote{\stExC{https://tex.stackexchange.com/questions/455208/token-register-vs-macro-register}}
+\end{frame}
+\subsection{Inserts}
+\begin{frame}{Inserts\tW\magicPage}\relax
+
+    \TeX\ has addition registers for storing floats. They have \ccol\insert\ prefix/suffix. 
+     
+     \skfootnote{\knuthc{15}[132] \stExC{https://tex.stackexchange.com/questions/527613/simple-example-of-using-newinsert-and-friends}\\ But I failed to make a working example...}
+\end{frame}
+
+
+\inclassframe{
+
+\begin{frame}{\exFrame{Make footnote center}}{lvl 1}\relax
+    Update the code of footnote generation from previous exercise and make the following change:
+    \begin{itemize}
+        \item Make a spaces between frame number, footnote an year (see next frame)
+        \item Please, use only glue commands
+         
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{\exFrame{Implement footnotes}}{lvl 1}\relax
+    \centering
+    \vspace*{-1cm}
+    \fbox{\includegraphics[scale=0.8]{exLvl1.pdf}}
+\end{frame}
+
+\begin{frame}{\exFrame{Make footnote center}}{lvl 2}\relax
+     Update the previous template. 
+     \begin{itemize}
+         \item Remove year information from the right
+         \item Make the footnote appears \textit{exactly} at the center independing of how width are slide number infrormation
+         \item Check one and multiline footnote 
+         \item You can use all build-in possibilities
+     \end{itemize}
+\end{frame}
+
+}

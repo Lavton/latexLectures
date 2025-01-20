@@ -1,0 +1,50 @@
+
+
+%%% tabels
+\begin{frame}[fragile]{Tables\magicPage}{tabbing}\relax
+    \cprotect\twocolImg{
+    \inputminted[firstline=10, lastline=14]{latex}{sec03/code/s3/tabbingmy.tex}
+    % \lstinputlisting[linerange={10-14}]{tabbingmy}
+}{tabbingmy}
+     \inpause
+     \begin{itemize}
+         \item ommit \verb|\kill| to show the first line
+         \item You can also reinstall tabular position inside the tabbing.
+     \end{itemize}
+     \skfootnote{\lvoc{VI.1}[206] \lmanc{8.21}[83] (advanced: \knuthc{22}[241])}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{color}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=6, lastline=6]{latex}{sec03/code/s3/tabularcolored.tex}
+    \inputminted[firstline=10, lastline=18]{latex}{sec03/code/s3/tabularcolored.tex}
+    % \lstinputlisting[linerange={6-6, 10-18}]{tabularcolored}
+}{tabularcolored}
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/5363/how-to-create-alternating-rows-in-a-table}. because of \normalfont \url{https://imgur.com/gallery/ZY8dKpA}}
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{more complex cells}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=10, lastline=14]{latex}{sec03/code/s3/tabularcomplex.tex}
+    % \lstinputlisting[linerange={10-14}]{tabularcomplex}
+}{tabularcomplex}
+
+\begin{itemize}
+     \item \ccol{\cline} is as \ccol{\hline} for several columns
+     \item \ccol{\multicolumn} is a multi column
+\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}[fragile]{Tabular: what else?\magicPage}{Preambula}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=10, lastline=16]{latex}{sec03/code/s3/tabularcopy.tex}
+    % \lstinputlisting[linerange={10-16}]{tabularcopy}
+}{tabularcopy}
+
+The word ``lunch'' isn't inside cells!
+\end{frame}

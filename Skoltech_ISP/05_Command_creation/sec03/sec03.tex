@@ -1,0 +1,118 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\graphicspath{{sec03/images/}{sec03/code/}}
+\lstset{inputpath=sec03/code/}
+
+\begin{frame}[fragile]{The first lines in .cls and .sty files}\relax
+     Class:
+     \begin{minted}{latex}
+     \NeedsTeXFormat{LaTeX2e}
+     \ProvidesClass{<class-name>}[<date in YYYY/MM/DD> <other info>]
+     \end{minted}
+     
+     Style:
+     \begin{minted}{latex}
+     \NeedsTeXFormat{LaTeX2e}
+     \ProvidesPackage{<package-name>}[<date in YYYY/MM/DD> <other info>]
+     \end{minted}
+     
+     \inclassFrag{Move your commands and \string\usepackage\{color\} into new .sty file}[-1]
+     
+     \skfootnote{\lmanc{3.3.1}[19] \normalfont\url{https://www.latex-project.org/help/documentation/clsguide.pdf}}
+    
+\end{frame}
+
+\begin{frame}{Special syntax}\relax
+    You can use the same commands: \ccol\newcommand\ and \ccol\usepackage\ inside .sty and .cls files, but it is better to change them to:
+    
+    \centering
+    \begin{tabular}{rcl}
+         \ccol\newcommand& $\to$ & \ccol\providecommand\\
+         \ccol\usepackage & $\to$ & \ccol\RequirePackage\\
+         \ccol\documentclass & $\to$ & \ccol\LoadClass
+    \end{tabular}
+    
+    \inclassFrag{Change the commands}[-1]
+\end{frame}
+
+\begin{frame}[fragile]{Passing options}\relax
+
+    To use a syntax like \verb|\documentclass[14pt]{beamer}| or \verb|\usepackage[english]{babel}| you need to declare options in you .sty/.cls file.
+    
+    examplepassing.sty:
+    \inputminted[fontsize=\tiny]{latex}{sec03/code/examplepassing.sty}
+    
+    .tex files: 
+    \twocolImg{
+        \inputminted[firstline=8, lastline=11]{latex}{sec03/code/passopt1.tex}
+    }{passopt1}
+    \twocolImg{
+        \inputminted[firstline=8, lastline=11]{latex}{sec03/code/passopt.tex}
+    }{passopt}
+
+\end{frame}
+
+\begin{frame}[fragile]{Passing previously unknown options\magicPage}\relax
+     Use \ccol\DeclareOption*\{<code with \ccol\CurrentOption\ variable>\} to process previously unknown options.
+     
+     Useful to pass commands to class:
+     
+     \begin{minted}{latex}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{letter}}
+\ProcessOptions\relax
+\LoadClass[a4paper]{letter}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]{New package with key=value syntax\magicPage}\relax
+
+% \vspace*{-1em}
+    % \lstinputlisting{packexample.sty}
+    packkvexample.sty:
+    \inputminted[fontsize=\tiny]{latex}{sec03/code/packkvexample.sty}
+    
+    .tex files: 
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec03/code/packagekeyval.tex}
+    \vspace*{-2ex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec03/code/packagekeyval.tex}
+    }{packagekeyval}
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval2.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec03/code/packagekeyval2.tex}
+    \vspace*{-2ex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec03/code/packagekeyval2.tex}
+    }{packagekeyval2}
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval3.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec03/code/packagekeyval3.tex}
+    \vspace*{-2ex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec03/code/packagekeyval3.tex}
+    }{packagekeyval3}
+    
+
+\end{frame}
+
+
+\begin{frame}{Class or package?}\relax
+     \begin{itemize}
+         \item No ``programming-level'' restrictions
+         \item The ``logical-level'' difference: If the commands could be used with any document class, then make them a package; and if not, then make them a class.
+          
+     \end{itemize}
+     
+     \skfootnote{\normalfont\url{https://www.latex-project.org/help/documentation/clsguide.pdf}: 2.3}
+\end{frame}
+
+\begin{frame}[fragile]{Code conventions}\relax
+     \begin{itemize}
+         \item if command is for author, try short name and lowcase: \string\section, \string\emph\ and \string\times
+         \item if command is for package and class creator, use CamelCase: \string\InputIfFileExists\ \string\RequirePackage\  \string\PassOptionsToClass
+         \item There are the internal commands used in the \LaTeX\ implementation, such as \verb|\@tempcnta|, \verb|\@ifnextchar| and \verb|\@eha|: most of these commands contain @
+in their name, which means they cannot be used in documents, only in class
+and package files
+     \end{itemize}
+     
+     If you wish to use command with @ in .tex, use \ccol\makeatletter, <use command>, \ccol\makeatother.
+\end{frame}

@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newlength{\myskip} % first glue
+\setlength{\myskip}{15pt plus 5pt minus 3pt}
+\newlength{\doubleskip} % second glue
+\setlength{\doubleskip}{\myskip}
+\multiply\doubleskip by 2 % it is double times bigger
+\addtolength{\doubleskip}{30pt plus 4pt}
+
+so, \\myskip is \the\myskip. While \\doubleskip is \the\doubleskip % print glue
+
+|\hskip\myskip TEST \hskip\doubleskip | % show glue
+
+\vspace*{\fill}
+\end{document} 

@@ -1,0 +1,28 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+
+\begin{frame}[t]{Beamer}
+    \begin{columns}
+    \begin{column}{0.65\textwidth}
+        \begin{block}{What is Beamer?}
+            Beamer is a \LaTeX\ document class for creating slides for presentations. \\
+            It supports pdflatex, latex+dvips, lualatex and xelatex.
+        \end{block}
+        \visible<2->{\url{https://ctan.org/pkg/beamer}}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+        \begin{center}
+            \includegraphics[width=.9\linewidth]{beamerlogo}
+        \end{center}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+\subsection{Document structure and style}
+\input{sec02/doc_struc.tex}
+
+\subsection{Tricks: overlays, animation, notes}
+\input{sec02/tricks.tex}

@@ -1,0 +1,37 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+
+\setbeamertemplate{navigation symbols}{}% <-- no navigation symbols
+\newcommand{\FootLineText}[1]{} % technical stuff. Don't look at it for now
+\newcommand{\footline}[1]{\renewcommand{\FootLineText}{#1}} % technical stuff.
+
+\newlength{\footnotelen}
+\setlength{\footnotelen}{\textwidth}
+\setlength{\footnotelen}{\dimexpr\textwidth * 2 / 3}
+\newcounter{nextyear}
+\setcounter{nextyear}{\year}
+\addtocounter{nextyear}{+1}
+
+\setbeamertemplate{footline}{%
+    \insertframenumber/\inserttotalframenumber%
+    \hfill %   <-------- modification #1
+    \newsavebox{\mybox}
+    \savebox{\mybox}{
+    \parbox[b]{\footnotelen}{\FootLineText}
+    }
+    \newlength{\boxheight}
+    \settoheight{\boxheight}{\usebox{\mybox}}
+    \ifdim\boxheight>30pt
+        \parbox[b]{1.5\footnotelen}{\FootLineText}
+    \else
+        \usebox{\mybox}
+    \fi
+    \hfill %   <-------- modification #2
+    \arabic{nextyear}
+ } 
+
+ \footline{AAAAA AAAAAAAAAAAAAAAAAAAAAAAAAA}
+
+\begin{document}
+    \frame{\frametitle{Frame}}
+\end{document} 

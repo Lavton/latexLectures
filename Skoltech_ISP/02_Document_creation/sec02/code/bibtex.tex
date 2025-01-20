@@ -1,0 +1,20 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\usecolortheme{default}
+\usepackage{appendixnumberbeamer}
+
+\title[Short Title]{Title As It Is In the Proceedings}
+
+\begin{document}
+\appendix
+
+\begin{frame}[allowframebreaks]{References}
+    See \cite{landau}.
+    
+    \bibliographystyle{amsalpha}
+    \setbeamertemplate{bibliography item}[text]
+    \bibliography{cites}
+\end{frame}
+
+
+\end{document}

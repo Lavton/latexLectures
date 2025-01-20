@@ -1,0 +1,376 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{lecturessk}[2024/12/19 The style file for additional commands for lecture creating]
+
+\RequirePackage{tikz}
+
+\RequirePackage{url}
+\urlstyle{sf}
+
+\RequirePackage{verbatim}
+\RequirePackage{cmap}
+\RequirePackage{color}
+\RequirePackage{cprotect}
+\RequirePackage{setspace}
+\RequirePackage{inoutclass}
+
+%%%%%%%%%%%%%% styles for latex code %%%%%%%%%5
+\RequirePackage{listings}
+\lstset
+{
+    language=[LaTeX]TeX,
+    breaklines=true,
+    basicstyle=\tt\scriptsize,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{magenta},
+    % numbers=right,
+    % stepnumber=1,
+}
+\RequirePackage{minted}
+\setminted{
+     breaklines,
+    fontsize=\tt\scriptsize, % Monospaced font in very small size
+    % Add other default options here if needed
+}
+
+%%%%%%%%%%%%%%%%%%%%%%% insert something in two columns %%%%%%%%%%%%%%%%%%%%%%%%%%
+%https://texfaq.org/FAQ-twooptarg
+\RequirePackage{xargs}
+% \newcommandx{\cwpa}[3][3=c]{ %% add a 2 columns with #3 allign. But was used only ines
+%     \begin{columns}[#3]
+%         \begin{column}{0.45\textwidth}
+%             #1
+%         \end{column}
+%         \pause
+%         \begin{column}{0.45\textwidth}
+%             #2
+%         \end{column}
+%     \end{columns}
+% }
+\RequirePackage{graphicx}
+% \newcommand{\insImg}[1]{  % add a image, but was used only ones
+%     \begin{center}
+%         \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{#1}%
+%     \end{center}
+% }
+\newbox\Abox
+\newlength{\myhh}
+\newcommand{\twocolImg}[2]{  % add two columns: (1) is some text (2) is an image.
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            #1
+        \end{column}
+        \begin{column}{0.45\textwidth}
+        % ниже мы делаем позиционирование, поднимая изображение на половину его высоты. Таким образом, центрированные слайды останутся центрированными и с т.з. изображения
+            % https://tex.stackexchange.com/questions/3166/how-can-the-dimensions-of-a-box-be-retrieved-with-latex
+            \savebox{\Abox}{\includegraphics[width=\textwidth, keepaspectratio]{#2}}
+            \settoheight{\myhh}{\usebox{\Abox}}
+            \raisebox{-0.5\myhh+1ex}[0pt][0pt]{\includegraphics[width=\textwidth, keepaspectratio]{#2}}
+        \end{column}
+    \end{columns}
+}
+
+\usepackage{minted} % For looping
+\usepackage{minted} % For string manipulation
+\RequirePackage{minted}
+
+\newcommand{\myminted}[3]{
+    \inputminted[firstline=#2, lastline=#3]{latex}{#1}
+}
+
+
+\newcommand{\samePosPictureI}[3]{  % add two columns: (1) some latex-code lines, (2) is image provide the code render
+    \begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \foreach \range in {#3} {%
+                \expandafter\StrBefore{\range}{-}[\start]%  % Extract the start value
+                \expandafter\StrBehind{\range}{-}[\eend]%   % Extract the end value
+                %
+                \expandafter\myminted\expandafter{#1/#2.tex}{\expandafter\start}{\expandafter\eend}%
+            }
+        \end{column}
+        \begin{column}{0.4\textwidth}
+        
+            \includegraphics[width=0.95\linewidth]{#2.pdf}
+            
+        \end{column}
+    \end{columns}
+}
+
+\newcommandx{\samePosPicture}[3][3={}]{  % add two columns: (1) some latex-code lines, (2) is image provide the code render
+    \begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \lstinputlisting[linerange={#2}#3]{#1.tex}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+        
+            \includegraphics[width=0.95\linewidth]{#1.pdf}
+            
+        \end{column}
+    \end{columns}
+}
+
+\newcommand{\logshow}[3]{ %%% add two columns: (1) some latex-code (2) the log file text produced by the code
+    \begin{columns}
+    \begin{column}{0.45\textwidth}
+         \lstinputlisting[linerange={#2}]{#1.tex}
+    \end{column}
+    
+    \begin{column}{0.45\textwidth}
+         \lstinputlisting[language={},linerange={#3}, keywordstyle=\color{black}, identifierstyle=\color{black},]{#1.logp}
+    \end{column}
+    \end{columns}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% отображение для одного слайда. 
+% аргументы:
+% 1. номер картинки = номер слайда, где это будет отображаться
+% 2. путь
+% 3. имя .tex файла
+% 4. какие строки кода будут участвовать
+% 5. текст, который будет сопровождать код 
+\def\sepOneLabel#1#2#3#4#5\relax{
+    \innerPicturesOverlay{#1}{#3}{#4}{#1}{#5}
+}
+
+% рекурсивная функция. Берёт кусочек от списка для парсинга, передаёт его и запускается дальше от остатка
+% 1. counter 
+% 2. path 
+% 3. fn
+% 4. current
+% 5. rest
+\def\sepBreaker#1#2#3#4, #5\relax{
+    \innerPicturesOverlay{\the#1}{#2}{#3}#4\relax
+    \ifx\relax#5\relax
+    \else
+        \advance#1 by 1
+        \sepBreaker{#1}{#2}{#3}#5\relax
+    \fi
+}
+
+% функция, которая делает реальную работу по последовательному раскрытию картинок. Аргументы:
+
+% 1. номер картинки = номер слайда, где это будет отображаться
+% 2. путь
+% 3. имя .tex файла
+% 4. какие строки кода будут участвовать
+% 5. текст, который будет сопровождать код 
+\def\innerPicturesOverlay#1#2#3#4#5\relax{
+    \only<#1>{\begin{columns}[t]
+        \begin{column}{0.42\textwidth}
+            \foreach \range in {#4} {%
+            %    
+                \expandafter\StrBefore{\range}{-}[\start]%  % Extract the start value
+                \expandafter\StrBehind{\range}{-}[\eend]%   % Extract the end value
+                \expandafter\myminted\expandafter{#2/#3.tex}{\expandafter\start}{\expandafter\eend}%
+            }
+        \end{column}
+        \begin{column}{0.4\textwidth}
+        
+            \includegraphics[width=0.95\linewidth, height=0.6\textheight, keepaspectratio]{#3#1.pdf}
+            
+        \end{column}
+    \end{columns}
+    
+    #5}
+}
+
+% делает последовательное раскрытие картинок и соответствующего им кода
+% аргументы: 1. путь к коду 2. текущий файл кода 3. список через запятую формата {38-41}{You even can set the box to negative size},
+\newcommand{\posesPicturesOverlayI}[3]{
+    \newcount\slideNum%
+    \slideNum=1%  устанавливает счётчик для показа кусков кода
+    \sepBreaker{\slideNum}{#1}{#2}#3, \relax
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UPPER inserts: TeX/LaTeX-way, "magic"
+\RequirePackage{pdfpages}
+
+\RequirePackage{tikzpagenodes}
+
+\def\magicPage{\ifinclassmode%  indicate page as "magic" -- some addition information that is not stricly required
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+\node[anchor=north east,xshift=-0cm,yshift=-0cm]{%
+{\includegraphics[width=1cm]{images/magic}}%
+};
+\end{tikzpicture}%
+\fi}
+
+\def\preMagicPage{\inclass{% show the next page will be "magic" (it will help the lector)
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+%\node[anchor=north east,xshift=-2cm,yshift=-2cm]{%
+%{
+\draw[fill, anchor=north east,xshift=-1cm,yshift=-0.7cm] circle [radius=0.06];
+%}%
+% };
+\end{tikzpicture}}%
+}
+
+% send something to the top of the frame
+\def\toFrameTop#1{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.0cm]{\normalfont\tiny #1};
+\end{tikzpicture}}
+
+% indicate that it is TeX way
+\def\tW{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.0cm]{\normalfont\tiny \TeX -way};
+\end{tikzpicture}}
+
+% indicate that it is LaTeX way
+\def\lW{\begin{tikzpicture}[remember picture,overlay,shift={(current page.north)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.0cm]{\normalfont\tiny \LaTeX -way};
+\end{tikzpicture}}
+
+\def\exercise{{\color{skoltechgreen}$\bigstar$\ }} % indicate exercise frame, put near title
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% shortcuts for references %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xcolor}
+\definecolor{knuthcolor}{RGB}{215, 125, 49}
+% \newcommand{\knuthc}[1]{{\normalfont\color{knuthcolor}knuth: #1}}
+\newcommandx{\knuthc}[2][2=0]{%
+{\normalfont\color{knuthcolor}%
+\href{%
+http://www.ctex.org/documents/shredder/src/texbook.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{kn:~#1}%
+}%
+}
+
+%Lvovsky
+\definecolor{lvocolor}{RGB}{0, 253, 250}
+% \newcommand{\lvoc}[1]{{\normalfont\color{lvocolor}\href{https://www.mccme.ru/free-books/llang/newllang.pdf}{lvovsky: #1}}}
+\newcommandx{\lvoc}[2][2=0]{%
+{\normalfont\color{lvocolor}%
+\href{%
+https://www.mccme.ru/free-books/llang/newllang.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{lv:~#1}%
+}%
+}
+
+%Lvovsky
+\definecolor{lmancolor}{RGB}{32, 21, 94}
+\newcommandx{\lmanc}[2][2=0]{%
+{\normalfont\color{lmancolor}%
+\href{%
+http://mirrors.mi.ras.ru/CTAN/info/latex2e-help-texinfo/latex2e.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{man:~#1}%
+}%
+}
+
+% TikZ manual 
+\definecolor{tikZcolor}{RGB}{243, 98, 35}
+\newcommandx{\tikzc}[2][2=0]{%
+{\normalfont\color{tikZcolor}%
+\href{%
+http://mirrors.ctan.org/graphics/pgf/base/doc/pgfmanual.pdf%
+\ifnum #2=0 %
+    %
+\else%
+    ?\#page=#2%
+\fi%
+}{TikZ:~#1}%
+}%
+}
+
+% lamport latex 
+
+\definecolor{lamcolor}{RGB}{184, 143, 255}
+\newcommand{\lamc}[1]{{\normalfont\color{lamcolor}lamport: #1}}
+
+% https://en.wikibooks.org/wiki/LaTeX/
+% https://www.overleaf.com/learn/latex/
+% https://tex.stackexchange.com/
+\RequirePackage{url}
+
+\def\stRepl https://tex.stackexchange.com/questions#1 {#1}
+\newcommand{\stExC}[1]{
+{\normalfont \href{https://tex.stackexchange.com/questions\stRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/se_icon}}\!\!\url{\stRepl #1 }}}}
+
+\def\wikiRepl https://en.wikibooks.org/wiki/LaTeX#1 {#1}
+\newcommand{\wikiC}[1]{
+{\normalfont \href{https://en.wikibooks.org/wiki/LaTeX\wikiRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/wikibooks}}\!\!\url{\wikiRepl #1 }}}}
+
+\def\overRepl https://www.overleaf.com/learn/latex#1 {#1}
+\newcommand{\overC}[1]{
+{\normalfont \href{https://www.overleaf.com/learn/latex\overRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/overleaflogo}}\!\!\url{\overRepl #1 }}}}
+
+\def\tugRepl https://www.tug.org/utilities/plain/cseq.html#1 {#1}
+\newcommand{\tugC}[1]{
+{\normalfont \href{https://www.tug.org/utilities/plain/cseq.html\tugRepl #1 }{\raisebox{-0.5ex}{\includegraphics[width=3ex,height=3ex,keepaspectratio]{images/tuglogo}}\!\url{\tugRepl #1 }}}}
+
+
+%%%%%%%  help with coloring stuff
+\newcommand{\ccol}[1]{{\tt\csk \string#1}}
+\def\ocol#1[#2]{{\tt\string#1[{\csk #2}]}}
+\def\ncol#1#2{{\tt \string#1\{{\csk #2}\}}}
+\def\Oncol#1[#2]#3{{\tt \string#1[{\csk#2}]\{#3\}}}
+
+
+%%%%%%%%%%%%%%%%%%% other 
+\let\skfootnote=\myfootnote
+\ifoutclassmode
+    \supressprogressbartrue  % at home will not show progress bar
+\fi
+\ifinclassmode
+    \supressprogressbarfalse
+\fi
+\ifinclassmode
+    \supressfootnotetrue
+\fi
+\ifoutclassmode
+    \supressfootnotefalse
+\fi
+
+\providecommand{\exFrame}[1]{
+\fbox{\exercise#1\exercise}
+}
+
+\newcommandx{\inclassFrag}[2][2=2]{{%
+    \inclass{%
+        \newcommand{\insidesOfInClassFrag}{%
+            \fbox{%
+            \parbox{\textwidth}{\inclasshigh{\exercise #1 \exercise}%
+            }}%
+
+        }%
+
+        % if 0 -- exists for whole period as a box. 
+        % if -1 -- it last appeared -- pause before, nothing after
+        % if 1 -- we starts with it, but pause after
+        \ifnum #2=0%
+            \insidesOfInClassFrag{}%
+        \else%
+            \ifnum #2=-1%
+                \inpause%
+                \insidesOfInClassFrag{}%
+            \else%
+                \only<#2>{%
+                    \insidesOfInClassFrag{}%
+                }%
+                \ifnum #2=1%
+                   \inpause% 
+                \else%
+                    \inpause\inpause%
+                \fi%
+            \fi%
+        \fi%
+    }%
+}}%

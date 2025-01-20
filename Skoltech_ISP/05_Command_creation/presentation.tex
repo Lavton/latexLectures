@@ -1,0 +1,164 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ifxetex}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xecyr}
+\usepackage{polyglossia}
+\usepackage{multicol}
+\usepackage{pdfpages} 
+
+
+\usepackage{beamerskoltech} 
+% \renewcommand{\logoname}{sklogo.png} % <- default value for logo 
+% \renewcommand{\logoname}{} % <- if you want no logo
+
+\usepackage{progressbar}
+\colorlet{progressbarcolor}{skoltechgreen}
+\usepackage[mode=out]{inoutclass}
+\definecolor{inclasscolor}{RGB}{46, 228, 182}
+\definecolor{outclasscolor}{RGB}{41, 0, 204}
+\usepackage{xargs}
+\usepackage{latexLectures}
+\usepackage{minted}
+\usetikzlibrary{intersections}
+\usetikzlibrary{calc}
+
+
+\title{\LaTeX:\\ \Large from dummy to \TeX nician}
+\subtitle{Command creation. How \TeX\ works-2}
+\author{Anton Lioznov}
+\institute{Skoltech, \\Project Center of Omics Technologies and Advanced Mass Spectrometry}
+\date{ISP 2025,\\ \textit{lesson 5}}
+\usetikzlibrary{decorations.pathreplacing}
+\def\hasError{\inclass{
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+\draw[fill, red, anchor=north east,xshift=-1cm,yshift=-0.7cm] circle [radius=0.06];
+\end{tikzpicture}}%
+}
+\begin{document}
+
+
+\input{technical}
+\begin{frame}{Special thanks to}\relax
+
+     Our TAs:
+     \begin{itemize}
+         \item Peter Borisovets
+         \item Pavel Kuzmin
+         \item Anna Litvin
+     \end{itemize}
+
+\end{frame}
+\supressfootnotefalse
+\ifinclasstrue
+\def\skfootnote#1{\myfootnote{{\color{white!70!black}#1}}}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% MAIN SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Simple command creation and style files creation} 
+\input{sec01/sec01}
+\subsection{Command creation}
+\input{sec02/sec02}
+\subsection{Style and class files}
+\input{sec03/sec03}
+
+\section{Programming}
+\input{sec06/sec06}
+\subsection{Relatate stuff}
+\input{sec08/sec08}
+% %write/read, expand,...
+
+\section{Debugging}
+\input{sec05/sec05}
+
+\graphicspath{{code_ex/}}
+\lstset{inputpath=code_ex/}
+\cprotect\inclassframe{
+\begin{frame}{\exFrame{Implement for loop}}{lvl 1}
+
+     Implement a function that, given the syntax in the code on the left, would output the result as in the image on the right.
+    \twocolImg{
+    \inputminted[firstline=24, lastline=27]{latex}{code_ex/exForLvl1.tex}
+    }{exForLvl1.pdf}
+    
+    Tips: 
+    \begin{itemize}
+        \item You need a counter
+        \item Use \ccol\foreach
+        \item if you increment counter, but it remains the same, try increment in with \ccol\global
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{\exFrame{Implement for loop}}{lvl 2}
+     Implement a function that, given the syntax in the code on the left, would output the result as in the image on the right. You can use \ccol\foreach, but not any of addition packages
+    \twocolImg{
+    \inputminted[firstline=24, lastline=28]{latex}{code_ex/exForLvl2.tex}
+    }{exForLvl2.pdf}
+    
+    Tips: 
+    \begin{itemize}
+        \item The problem will be how to to split \{2-5\}\{Caption 1\}
+        \item You may need a \ccol\expandafter
+        \item Create a helper function that would do 1 line and play around with how you can pass parameters to it
+    \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{\exFrame{Implement for loop}}{lvl 2. Hardcore mode!}
+     Implement a function that, given the syntax in the code on the left, would output the result as in the image on the right. You can't use \ccol\foreach\ or any of addition packages! Try use \TeX\ power
+    \twocolImg{
+    \inputminted[firstline=31, lastline=35]{latex}{code_ex/exForLvl2.5.tex}
+    }{exForLvl2.pdf}
+    
+    Tips: 
+    \begin{itemize}
+        \item You need to use pattern matching tehnique
+        \item You need to use reqursion
+        \item One of your helper macros may have the following declaration: \verb|\def\<funName>#1#2, #3\relax|
+    \end{itemize}
+\end{frame}
+}
+\cprotect\inclassframe{
+\begin{frame}[fragile]{\exFrame{Implement for loop}}{lvl 1: more tips}\relax
+\pause
+\begin{itemize}
+    \item Firstly try to make it without counter \pause
+    \item The \ccol\foreach\ command was in the slide \ref{sl:for} \pause
+    \item There the format like ``\verb|apples,burgers,cake|'', you have ``\verb|{Caption 1}, {Caption, 2}|''. But braces just indicates atomicy (slide \ref{sl:atom})! \pause
+    \item So, ``\verb|\foreach \n in {apples,burgers,cake}|'' is the same as ``\verb|\foreach \n in {{Caption 1}, {Caption, 2}}|''\pause
+    \item The only difference if you just pass ``\verb|\foreach \n in #1|'' it will be expanded as ``\verb|\foreach \n in {Caption 1}, {Caption, 2}|'', not ``\verb|\foreach \n in {{Caption 1}, {Caption, 2}}|''. Guess what to do!\pause
+    \item After stuff without counter works, try to add a counter. How to make counter see at previous lecture. Don't forget to use \ccol\global\ if you try to add 1 to it at it is not working
+\end{itemize}
+     
+\end{frame}
+}
+
+\progressend
+
+
+\begin{frame}\frametitle{What we have learned today?}\relax
+    \tableofcontents
+\end{frame}
+
+\begin{frame}[allowframebreaks]{references}
+color from the footnotes corresponds to references' color.
+    \begin{itemize}
+        \item \knuthc{Knuth ``The \TeX Book''}
+        \item \lvoc{L'vovsky ``Nabor i verstka v sisteme \LaTeX''}
+        \item \lamc{Lamport. ``\LaTeX. A Document Preparation System, User’s Guide and Reference Manual''}
+        \item \lmanc{``\LaTeX 2e: An unofficial reference manual''} also at website \url{https://latexref.xyz/}
+        \item \stExC{https://tex.stackexchange.com/questions} : \url{https://tex.stackexchange.com/questions}
+        \item \wikiC{https://en.wikibooks.org/wiki/LaTeX} : \url{https://en.wikibooks.org/wiki/LaTeX}
+        \item \overC{https://www.overleaf.com/learn/latex} : \url{https://www.overleaf.com/learn/latex}
+        \item \tugC{https://www.tug.org/utilities/plain/cseq.html} : \url{https://www.tug.org/utilities/plain/cseq.html}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Distribution}\relax
+\begin{itemize}
+     \item the pdf-version of the presentation and all printed materials can be distributed under license Creative Commons Attribution-ShareAlike 4.0 \url{https://creativecommons.org/licenses/by-sa/4.0/}
+     \item The source code of the presentation is available on {\csk\url{https://github.com/Lavton/latexLectures}} and can be distributed under the MIT license \url{https://en.wikipedia.org/wiki/MIT_License\#License_terms}
+\end{itemize}
+     
+\end{frame}
+\end{document}

@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=50mm, left=2mm, top=0mm, right=2mm, bottom=0mm}
+\parindent=0pt
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+\tikzset{int/.style  = {draw, circle, fill=blue!20, minimum size=2em}}
+\begin{tikzpicture}[auto,>=latex, remember picture]
+  \node [int] (a) {$b=3$};
+  \node (b) [below of=a, left of=a, node distance=1cm, coordinate] {a};
+  \node (c) [above of=a, left of=a, node distance=1cm, coordinate] {a};
+  \node [int] (bnode) [left of=b, distance=0cm] {$x_1$};
+  \node [int] (cnode) [left of=c, distance=0cm] {$x_2$};
+  \path[->] (bnode) edge node[below] {$-2$} (a);
+  \path[->] (cnode) edge node[above] {$-2$} (a);
+\end{tikzpicture}
+\\ \\ 
+
+It is \tikz[overlay,remember picture] \draw (0,0) to[out=90, in=-90] (a.south); some scheme
+% https://tikz.net/nand-perceptron/
+\end{document}

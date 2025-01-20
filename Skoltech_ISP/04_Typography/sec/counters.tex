@@ -1,0 +1,230 @@
+\graphicspath{{sec/images/}{sec/code/counters/}}
+\lstset{inputpath=sec/code/counters}
+
+\begin{frame}{What is ``counter''}\relax
+
+    ``Counter'' is just an integer number.
+    
+    It's using in multiple places to count everything in \LaTeX: sections, equations, references, citation, enumerate lists,...
+     
+\end{frame}
+
+\begin{frame}{Define and simple manipulation with counters \lW}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={11-18}]{countersimp.tex}
+    \inputminted[firstline=11, lastline=18]{latex}{sec/code/counters/countersimp.tex}
+    }{countersimp}
+    
+    \begin{itemize}
+        \item \ccol\newcounter\ to define new counter 
+        \item \ccol\setcounter\ to set counter to new value
+        \item \ccol\addtocounter\ to add a number to the counter
+    \end{itemize}
+    
+    \skfootnote{\lvoc{VII.3.1}[244] \lmanc{12.5}[117] \lmanc{13.4-5}[128] \wikiC{https://en.wikibooks.org/wiki/LaTeX/Counters\#Counter_manipulation}}
+     
+\end{frame}
+
+\newcounter{tmptt}
+\begin{frame}[fragile]{Print counter\lW}\relax
+     
+     \newcommand{\countab}[1]{
+     \ccol#1\{countname\}&
+     \setcounter{tmptt}{1} #1{tmptt} &
+     \setcounter{tmptt}{2} #1{tmptt} &
+     \setcounter{tmptt}{3} #1{tmptt} &
+     \setcounter{tmptt}{4} #1{tmptt} &
+     \setcounter{tmptt}{5} #1{tmptt} &
+     \setcounter{tmptt}{6} #1{tmptt} &
+     \setcounter{tmptt}{7} #1{tmptt} &
+     \setcounter{tmptt}{8} #1{tmptt} &
+     \setcounter{tmptt}{9} #1{tmptt}
+     \\}
+     
+     \begin{tabular}{l|ccccccccc}
+          \countab{\arabic}
+          \countab{\alph}
+          \countab{\Alph}
+          \countab{\roman}
+          \countab{\Roman}
+          \countab{\fnsymbol}
+     \end{tabular}
+     \vspace{1ex}
+     
+     P.S. \ccol\value\ to get ``raw'' value of the counter
+     \skfootnote{ \wikiC{https://en.wikibooks.org/wiki/LaTeX/Counters\#Counter_style} \lmanc{13.1}[126]\\ 
+     see \lvoc{IX.2.3}[295] for russian analog of \ccol\alph}
+\end{frame}
+
+\begin{frame}[fragile]{pre-defined counters in standart classes}\relax
+    \newlength{\myboxlen}%
+    \setlength{\myboxlen}{5em}
+    
+    \newcommand{\showC}[1]{%
+    \makebox[\myboxlen]{#1\hfill}%
+    }
+    
+    \showC{part}\hfill
+    \showC{chapter}\hfill
+    \showC{section}\hfill
+    \showC{subsection}\hfill
+    \showC{subsubsection}\hfill
+    \showC{paragraph}\hfill
+    \showC{subparagraph}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    
+    \showC{page}\hfill
+    \showC{figure}\hfill
+    \showC{table}\hfill
+    \showC{footnote}\hfill
+    \showC{equation}\hfill
+    
+    \showC{enumi}\hfill
+    \showC{enumii}\hfill
+    \showC{enumiii}\hfill
+    \showC{enumiv}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    
+    \TeX's counters (will talk later)
+    \showC{\ccol\year}\hfill
+    \showC{\ccol\month}\hfill
+    \showC{\ccol\day}\hfill
+    \showC{\ccol\time}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    \showC{}\hfill
+    
+    
+    
+    \skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Counters\#LaTeX_default_counters} \lmanc{13}[126]}
+\end{frame}
+
+\begin{frame}{Counter Domination\inclasshigh{\textit{(, conquering, humiliation)}}}{problem}\relax
+    \begin{columns}
+    \begin{column}{0.45\textwidth}
+         You may want to write something like
+         
+         \vspace{-5ex}
+         \includegraphics[width=\linewidth]{counterdom}
+    \end{column}
+    \inpause
+    \begin{column}{0.45\textwidth}
+    But the straightforward solution will give you 
+    
+    \vspace{-5ex}
+    \includegraphics[width=\linewidth]{counterdomno}
+         
+    \end{column}
+         
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Counter Domination\inclasshigh{\textit{(, conquering, humiliation)}}}{straightforward solution}\relax
+
+    \twocolImg{
+    % \lstinputlisting[linerange={11-20}]{counterdomno.tex}
+    \inputminted[firstline=8, lastline=19]{latex}{sec/code/counters/counterdomno.tex}
+    }{counterdomno}
+    
+    \inclassFrag{Try to compile it by your own}[0]
+\end{frame}
+
+\begin{frame}[fragile]{Counter Domination\inclasshigh{\textit{(, conquering, humiliation)}}}{The Way}\relax
+
+    \newcommand{\modif}[3]{\fbox{\parbox{\textwidth}{\makebox[\textwidth]{\small\makebox[0.47\textwidth]{#1}\hfill$\to$\hfill\makebox[0.47\textwidth]{#2}}\\ #3}}}
+    
+    \centering
+    \modif{\string\newcounter\{task\}}{\ocol\newcounter\{task\}[section]}{\ocol\newcounter\{<slave>\}[<master>] will resets the value of <slave> if the value of <master> is change}
+    
+    \inclassFrag{Please, modify your code after this and every step in this frame}
+    % \inpause
+    
+    \modif{\ccol\addtocounter\{task\}\{1\}}{\ccol\refstepcounter\{task\}}{
+    \ccol\refstepcounter\{<counter>\} use it to update \ccol\label--\ccol\ref\ mechanism
+    }
+    
+    \inpause
+    \modif{\string\textbf\{Task \string\#\string\arabic\{task\}.}{\tiny\string\textbf\{Task \string\#\string\arabic\{section\}.\string\arabic\{task\}.}{Inside \string\newcommand\{\string\tsk\} to redefine the labels}
+    
+    \inpause
+    \modif{}{\tiny\string\renewcommand\{\ccol\thetask\}\{\string\arabic\{section\}.\string\arabic\{task\}\}}{\string\renewcommand\{\ccol{\the<counter>}\} to redefine the reference}
+    
+    \skfootnote{\lvoc{VII.3.3}[250] \lmanc{13.6}[128]}
+\end{frame}
+
+\begin{frame}{Counter Domination\inclasshigh{\textit{(, conquering, humiliation)}}}{solution}\relax
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+             \inputminted[firstline=8, lastline=19]{latex}{sec/code/counters/counterdomno.tex}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+             \inputminted[firstline=8, lastline=19]{latex}{sec/code/counters/counterdom.tex}
+        \end{column}
+         
+    \end{columns}
+     
+\end{frame}
+
+\begin{frame}{Counter Domination\inclasshigh{\textit{(, conquering, humiliation)}}}{solution}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={11-20}]{counterdom.tex}
+    \inputminted[firstline=8, lastline=19]{latex}{sec/code/counters/counterdom.tex}
+    }{counterdom}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Redefine existing counter domination\magicPage}{``equation'' example}\relax
+    Package based solution:
+    
+    \lstinline|\usepackage{chngcntr}| 
+    
+    and \lstinline|\counterwith{equation}{chapter}|  to make the ``equation'' a slave or \lstinline|\counterwithout{equation}{chapter}| to ``free'' the counter.
+    
+    Core-based solution:
+
+\begin{minted}{latex}
+\makeatletter
+\@removefromreset{equation}{section}
+\@addtoreset{equation}{chapter}
+\renewcommand{\theequation}{\thechapter.\@arabic\c@equation}
+\makeatother
+\end{minted}
+
+
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/61756/how-to-change-equation-numbering-style} \stExC{https://tex.stackexchange.com/questions/54241/change-the-type-of-equation-numbering-in-document-class-article} \stExC{https://tex.stackexchange.com/questions/28333/continuous-v-per-chapter-section-numbering-of-figures-tables-and-other-docume} \normalfont\url{https://texfaq.org/FAQ-running-nos} \lvoc{IX.2.1}[293].\\ Also see \ccol{\p@} prefix \lvoc{IX.2.2}[295] and \stExC{https://tex.stackexchange.com/questions/61426/how-to-make-ref-display-only-subsection}}     
+\end{frame}
+
+
+\begin{frame}[fragile]{Define and simple manipulation\tW}\relax
+
+
+     \textbf{Define new} \ccol\newcount\ccol{\<countname>} as \verb|\newcount\mycounter|
+     
+     \textbf{Set number} \ccol{\<countname>=<number>}  Or use \ccol\countdef. Like \verb|\countdef\mynumber=43|
+     
+     \textbf{Add number}  \ccol{\advance\string\<countname>\ by <number>}. Also there are \ccol\multiply\ and \ccol\divide. As well as \ccol\numexp.
+     
+     \textbf{Show number} \ccol{\the\string\<countname>} or \ccol\number\ or \ccol\romannumeral
+     
+     \skfootnote{\vspace{-3ex}\knuthc{15}[129] \stExC{https://tex.stackexchange.com/questions/245635/formal-syntax-rules-of-dimexpr-numexpr-glueexpr}\\Actually you can use \ccol\count<number> like \ccol\count212. What \ccol\newcount\ do is just find a free number and fix it to your defined name.}
+\end{frame}
+
+\begin{frame}{Define and simple manipulation\tW}{Example}\relax
+
+    \twocolImg{
+    % \lstinputlisting[linerange={11-16}]{counterTeX.tex}
+        \inputminted[firstline=11, lastline=16]{latex}{sec/code/counters/counterTeX.tex}
+    }{counterTeX}
+
+\end{frame}

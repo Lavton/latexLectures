@@ -1,0 +1,20 @@
+%
+%
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=50mm, paperheight=50mm, left=0mm, top=0mm, right=0mm, bottom=0mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay,shift={(3cm, -1cm)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.1cm]{\noindent Hello!};
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.center)}]
+\node[anchor=north ,xshift=-0cm,yshift=0.0cm]{\noindent world!};
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%% NOT WORKING (((((((((((((((((((( %%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/527613/simple-example-of-using-newinsert-and-friends
+
+% \documentclass{article}
+% \usepackage{fontspec}
+% % \pagestyle{empty}
+% % \usepackage{geometry}
+% % \geometry{paperwidth=80mm, paperheight=80mm, left=10mm, top=10mm, right=10mm, bottom=10mm}
+% % \parindent=0pt
+% % \begin{document}
+
+% % \newinsert\marginotes
+
+% % % Set parameters for the insertion
+% % \dimen\marginotes=2in        % Maximum height for each insertion
+% % \count\marginotes=1000       % Multiplier for cost of splitting
+% % \skip\marginotes=\bigskipamount % Space between insertions
+
+% % % Create a command to use the insertion
+% % \def\marginote#1{%
+% %     \insert\marginotes{%
+% %         \rightline{\small #1}  % Format the inserted text
+% %         \vskip 2pt            % Add some vertical space
+% %     }%
+% % }
+
+% % % In the document:
+% % Some text here\marginote{This is a margin note} and more text.
+
+% % \end{document}
+% % Define a new insert (e.g., for a custom appendage like a footnote area)
+% % Create a new insertion class
+% \newinsert\myinsert
+% \skip\myinsert=\bigskipamount
+% \dimen\myinsert=8in
+% % Define a command to add content to the insertion
+% \newcommand{\addtomyinsert}[1]{%
+%   \setbox\myinsert=\vbox{#1}% Store the content in the insertion box
+%   \insert\myinsert{}\relax% Register the insertion for placement
+% }
+
+% \begin{document}
+
+% This is some text in the main document.
+
+% % Add content to the custom insertion
+% \addtomyinsert{%
+%   This is content added to the custom insertion.%
+% }
+
+% More text in the main document?
+
+% % Force the insertion to be placed
+% \insert\myinsert{}\relax
+% \clearpage
+% % \box\myinsert
+
+% \end{document}
+
+
+% \documentclass{article}
+
+% % Define a new insert box named 'mybox'
+% \newinsert\mybox
+
+% \begin{document}
+
+% % Insert some content into 'mybox'
+% \insert\mybox{%
+% \begin{minipage}{0.5\textwidth}
+% This is the content of the insert box.
+% It can contain text, equations, or any other LaTeX elements.
+% For example, an equation:
+% %[E = mc^2]
+% \end{minipage}%
+% }
+
+% % Place the content of 'mybox' at the current position
+% \begin{figure}[h]
+% \centering
+% \usebox\mybox
+% \caption{Content from the insert box}
+% \end{figure}
+
+% \end{document}
+
+\documentclass{article}
+
+% Define a new insertion register
+\newinsert\myinsert
+
+% Set parameters for the insert
+\skip\myinsert=0pt      % No extra vertical space
+\count\myinsert=1000    % Maximum number of inserts per page
+\dimen\myinsert=8in     % Maximum height of inserts per page
+
+% Define a command to use the insert
+\newcommand{\myfootnote}[1]{%
+  \insert\myinsert{%
+    % Material to be inserted at the bottom of the page
+    \footnotesize
+    \interlinepenalty100 % Prevents page breaks within the insert
+    \noindent\hbox to \hsize{\hfil\footnotemark}%
+    \footnotetext{#1}%
+  }%
+  % Place the footnote mark in the text
+  \footnotemark
+}
+
+\begin{document}
+
+This is some text with a custom footnote\myfootnote{This is a custom footnote using \texttt{insert}.} ooo
+\newpage \clearpage
+v
+\end{document}

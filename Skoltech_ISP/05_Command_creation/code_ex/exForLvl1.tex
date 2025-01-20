@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\usepackage{pgffor}
+
+\newcommand{\allFigures}[1]{
+    \newcount\myNum%
+    \myNum=1% 
+    \foreach \capt in {#1}{
+        \oneFigure{\capt}{\the\myNum}\relax
+        \global\advance\myNum by 1\relax
+    } 
+}
+\newcommand{\oneFigure}[2]{
+    num: #2, caption: #1\\
+}
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+\allFigures{
+    {Caption 1},
+    {Caption, 2}
+}
+
+\vspace*{\fill}
+\end{document} 

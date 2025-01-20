@@ -1,0 +1,84 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+\subsection{Text position}
+
+\begin{frame}[fragile]{textpos\magicPage}\relax
+\cprotect\twocolImg{
+    % \lstinputlisting[linerange={9-10,13-21}]{texpos01}
+    \inputminted[firstline=9, lastline=10]{latex}{sec02/code/texpos01.tex}
+    \inputminted[firstline=13, lastline=21]{latex}{sec02/code/texpos01.tex}
+}{texpos01}
+     
+     \skfootnote{\normalfont\url{http://mirrors.ctan.org/macros/latex/contrib/textpos/textpos.pdf}}
+\end{frame}
+
+\begin{frame}[fragile]{Textpos: man\magicPage}\relax
+
+we have
+
+\verb|{textblock}{block_height}(position_x, position_y)|
+
+in \ccol{textblock*} all values are in length units.
+
+in \ccol{textblock} all values are in units of mesh that is stretches on the page. See \ccol{\TPoptions}, \ccol{\TPGrid} in manual for more
+     \skfootnote{\normalfont\url{http://mirrors.ctan.org/macros/latex/contrib/textpos/textpos.pdf}}
+\end{frame}
+
+\begin{frame}[fragile]{Absolute position with TikZ\magicPage}\relax
+\cprotect\twocolImg{
+    % \lstinputlisting[linerange={9-9,12-18}]{tikzmy}
+    \inputminted[firstline=9, lastline=9]{latex}{sec02/code/tikzmy.tex}
+    \inputminted[firstline=12, lastline=18]{latex}{sec02/code/tikzmy.tex}
+}{tikzmy}
+\begin{itemize}
+\item \ccol{remember picture} to reference outside the current position
+\item \ccol{shift} to shift
+\end{itemize}
+
+     \skfootnote{\tikzc{17.13}[248]}
+\end{frame}
+
+\subsection{Other}
+\begin{frame}{Rules}
+% Rules are using in headers and footers, as a rectangles to show something...
+
+     \twocolImg{
+    % \lstinputlisting[linerange={14-19}]{rulesmy.tex}
+    \inputminted[firstline=14, lastline=19]{latex}{sec02/code/rulesmy.tex}
+    }{rulesmy}
+    \ccol\rule\ provide rectangle 
+    \ccol\hrule\ and \ccol\vrule\ provides a horizontal and veritcal lines. The keywords for them are \ccol{width}, \ccol{height}, \ccol{depth} and all can be ommited 
+    \skfootnote{\knuthc{21}[232]\\ In these lectures we use rules in frame style and to show length and box.}
+\end{frame}
+
+\begin{frame}[fragile]{Leaders}\relax
+     Leaders are generic for glue. They are using in tables of content.
+     
+     Like \leaders\hbox to 1em{\hss.\hss}\hfill this
+     
+     \verb|\leaders\hbox to 1em{\hss.\hss}\hfill}|
+     \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#leaders-rp}}
+\end{frame}
+% liders, rules
+
+\begin{frame}[fragile]{Geometry\magicPage}\relax
+     \lstinline[basicstyle=\tt]|\usepackage{geometry}|
+     
+\lstinline[basicstyle=\tt]|\geometry{a4paper,paperwidth=70mm, paperheight=65mm, left=5mm, top=5mm, right=5mm, bottom=5mm, layoutwidth=60mm, layoutheight=35mm}|
+     
+     change the shape of the paper as you like
+\end{frame}
+
+\begin{frame}[fragile]{Lorem ipsum\magicPage}\relax
+\cprotect\twocolImg{
+    % \lstinputlisting[linerange={9-9,12-12}]{loremmy}
+    \inputminted[firstline=9, lastline=9]{latex}{sec02/code/loremmy.tex}
+    \inputminted[firstline=12, lastline=13]{latex}{sec02/code/loremmy.tex}
+}{loremmy}
+     
+     \skfootnote{\normalfont\url{http://mirrors.ctan.org/macros/latex/contrib/lipsum/lipsum.pdf}}
+\end{frame}
+
+\subsection{Fonts}
+\input{sec02/subsec01.tex}

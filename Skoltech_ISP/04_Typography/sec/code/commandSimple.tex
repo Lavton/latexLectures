@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+\usepackage{printlen}
+\usepackage{xcolor}
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+% without arguments
+\newcommand{\sk}{Skolkovo institute of science and technology}
+% with arguments
+\newcommand{\pointIt}[1]{\fbox{\textit{#1}}}
+% With two arguments
+\newcommand{\highlight}[2]{\textcolor{#2}{#1}}
+
+\sk\ is a \pointIt{great} university! \highlight{We love}{red} \sk!
+
+
+
+
+\vspace*{\fill}
+\end{document}

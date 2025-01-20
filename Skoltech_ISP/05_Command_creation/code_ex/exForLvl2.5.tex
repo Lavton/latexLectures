@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=40mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+
+\newcommand{\allFigures}[1]{
+    \newcount\myNum%
+    \myNum=1% 
+    \sepBreaker{\myNum}#1, \relax
+}
+
+% #1 -- the counter. #2 - the start line before "," #3 -- the tail
+\def\sepBreaker#1#2, #3\relax{
+    \oneFigure#2{\the#1}\relax
+    \ifx\relax#3\relax% the tail is empty
+    \else%run recursively
+        \advance#1 by 1
+        \sepBreaker{#1}#3\relax
+    \fi
+}
+
+\newcommand{\oneFigure}[3]{
+    num: #3, lines: #1, caption: #2\\
+}
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+\allFigures{
+    {2-5}{Caption 1},
+    {2-5, 7-8}{Caption 2},
+    {9-10}{Caption 3}
+}
+
+
+\vspace*{\fill}
+\end{document} 
+

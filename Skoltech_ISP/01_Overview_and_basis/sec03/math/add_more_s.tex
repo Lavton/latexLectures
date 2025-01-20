@@ -1,0 +1,222 @@
+\begin{frame}[fragile]{More symbols\magicPage}{Greek letters}\relax
+\footnotesize
+
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1$\hfill}\hfill}%
+}
+\showmsym{\alpha}\hfill
+\showmsym{\beta}\hfill
+\showmsym{\gamma}\hfill
+\showmsym{\delta}\hfill
+\showmsym{\epsilon}\hfill
+\showmsym{\zeta}\hfill
+\showmsym{\eta}\hfill
+\showmsym{\iota}\hfill
+\showmsym{\kappa}\hfill
+\showmsym{\lambda}\hfill
+\showmsym{\mu}\hfill
+\showmsym{\nu}\hfill
+\showmsym{\xi}\hfill
+\showmsym{\tau}\hfill
+\showmsym{\upsilon}\hfill
+\showmsym{\rho}\hfill
+\showmsym{\sigma}\hfill
+\showmsym{\pi}\hfill
+\showmsym{\phi}\hfill
+\showmsym{\chi}\hfill
+\showmsym{\psi}\hfill
+\showmsym{\omega}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\showmsym{\varepsilon}\hfill
+\showmsym{\vartheta}\hfill
+\showmsym{\varkappa}\hfill
+\showmsym{\varrho}\hfill
+\showmsym{\varphi}\hfill
+
+~\\
+\showmsym{\Gamma}\hfill
+\showmsym{\Delta}\hfill
+\showmsym{\Lambda}\hfill
+\showmsym{\Xi}\hfill
+\showmsym{\Sigma}\hfill
+\showmsym{\Upsilon}\hfill
+\showmsym{\Pi}\hfill
+\showmsym{\Phi}\hfill
+\showmsym{\Psi}\hfill
+\showmsym{\Omega}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Other commonly used symbols}\relax
+\footnotesize
+
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1$\hfill}\hfill}%
+}
+\showmsym{\infty}\hfill
+\showmsym{\nabla}\hfill
+\showmsym{\forall}\hfill
+\showmsym{\partial}\hfill
+\showmsym{\backslash}\hfill
+\showmsym{\aleph}\hfill
+\showmsym{\hbar}\hfill
+\showmsym{\Re}\hfill
+\showmsym{\Im}\hfill
+\showmsym{\cdot}\hfill
+\showmsym{\cdots}\hfill
+\showmsym{\ldots}\hfill
+\showmsym{\to}\hfill
+\showmsym{\times}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+\makebox[\myboxlen]{}\hfill
+
+\normalsize
+ \showmsym{\imath}\hfill \showmsym{\jmath}\hfill are useful for accents.
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Accents}\relax
+% \footnotesize
+
+\skfootnote{\knuthc{17}}
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmacc}[2]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\hfill{\csk\string#1}\{#2\}}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$#1{#2}$\hfill}\hfill}%
+}
+\showmacc{\hat}{a}\hfill
+\showmacc{\check}{a}\hfill
+\showmacc{\tilde}{a}\hfill
+\showmacc{\acute}{a}\hfill
+\showmacc{\grave}{a}\hfill
+\showmacc{\dot}{a}\hfill
+\showmacc{\ddot}{a}\hfill
+\showmacc{\breve}{a}\hfill
+\showmacc{\vec}{a}\hfill
+~\\[2ex]
+\pause
+
+\setlength{\myboxlen}{12em}
+\Large \showmacc{\check}{a}\hfill $\to$ \hfill
+\setlength{\myboxlen}{13em}
+{\csk \textbackslash{}skew5\textbackslash{}check}\{a\}{$\to$}$\skew5\check{a}$%
+
+\end{frame}
+
+
+\begin{frame}[fragile]{More symbols\magicPage}{Math fonts}\relax
+    \begin{tabbing}
+    ааaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa \= \kill
+    \texttt{\textbackslash mathrm\{\textit{letters,etc}\}} \> $\mathrm{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathbf\{\textit{letters,etc}\}} \> $\mathbf{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathsf\{\textit{letters,etc}\}} \> $\mathsf{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathtt\{\textit{letters,etc}\}} \> $\mathtt{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathit\{\textit{letters,etc}\}} \> $\mathit{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathnormal\{\textit{letters,etc}\}} \> $\mathnormal{ABCabc,123,\hat{a},\tilde{b},\tilde{c},\Psi\Omega}$ \\
+    \texttt{\textbackslash mathcal\{\textit{capital letters}\}} \> $\mathcal{ABC}$ \\ 
+    \texttt{\textbackslash mathds\{\textit{capital letters}\}} \> $\mathds{ABCRN}$\\ 
+    \end{tabbing}
+    \cprotect\skfootnote{\lstinline|\usepackage{dsfont}| for the last}
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Limiters}\relax
+\skfootnote{\knuthc{17}}
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{7em}
+% \small
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\small\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$\ensuremath{#1}$$\hfill}\hfill}%
+}
+\newcommand{\showidenti}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill$#1$}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$#1$$\hfill}\hfill}%
+}
+{\bfseries Brackets}
+
+\showidenti{(}\hfill
+\showidenti{)}\hfill
+\showmsym{\langle}\hfill
+\showmsym{\rangle}\hfill
+\showidenti{[}\hfill
+\showidenti{]}\hfill
+\showmsym{\lbrack}\hfill
+\showmsym{\rbrack}\hfill
+\showmsym{\{}\hfill
+\showmsym{\}}\hfill
+\showmsym{\lbrace}\hfill
+\showmsym{\rbrace}\hfill
+\showmsym{\lfloor}\hfill
+\showmsym{\rfloor}\hfill
+\showmsym{\lceil}\hfill
+\showmsym{\rceil}\hfill
+
+{\bfseries Other}
+\renewcommand{\to}{}
+
+\showidenti{/}\hfill
+\showmsym{\backslash}\hfill
+\showidenti{|}\hfill
+\showmsym{\vert}\hfill
+\showmsym{\|}\hfill
+\showmsym{\Vert}\hfill
+\showmsym{\updownarrow}\hfill
+\showmsym{\Updownarrow}\hfill
+\showmsym{\uparrow}\hfill
+\showmsym{\Uparrow}\hfill
+\showmsym{\downarrow}\hfill
+\showmsym{\Downarrow}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Limiters with {\csk \string\Big} prefix}\relax
+\skfootnote{\knuthc{17}[147]}
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{10em}
+% \small
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\scriptsize\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$\ensuremath{\Big#1}$$\hfill}\hfill}%
+}
+
+
+\showmsym{\vert}\hfill
+\showmsym{\Vert}\hfill
+\showmsym{\arrowvert}\hfill
+\showmsym{\Arrowvert}\hfill
+\showmsym{\lgroup}\hfill
+\showmsym{\rgroup}\hfill
+\showmsym{\lmoustache}\hfill
+\showmsym{\rmoustache}\hfill
+\showmsym{\bracevert}\hfill
+
+\end{frame}
+
+\begin{frame}[fragile]{More symbols\magicPage}{Operators}\relax
+\skfootnote{\overC{https://www.overleaf.com/learn/latex/Integrals,_sums_and_limits}}
+
+% \newlength{\myboxlen}%
+\setlength{\myboxlen}{9em}
+
+\newcommand{\showmsym}[1]{%
+\makebox[\myboxlen]{\hfill\makebox[0.45\myboxlen]{\csk\hfill\string#1}\makebox[0.25\myboxlen]{$\to$}\makebox[0.3\myboxlen]{$$\ensuremath{#1}$$\hfill}\hfill}%
+}
+\showmsym{\prod}\hfill
+\showmsym{\sum}\hfill
+\showmsym{\int}\hfill
+\showmsym{\iint}\hfill
+\showmsym{\oint}\hfill
+\showmsym{\idotsint}\hfill
+
+\end{frame}

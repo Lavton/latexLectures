@@ -1,0 +1,484 @@
+% \knuthc  knuth the TeXBook
+% \lvoc   Lvovsky
+% \lamc  lamport latex 
+% \slshape different font for footnote
+\graphicspath{{sec03/images/}{sec03/images/s1/}{sec03/code/s1/}}
+\lstset{inputpath=sec03/code/s1/}
+
+\begin{frame}[fragile]{Going $\to$ Math}\relax
+
+\cprotect\skfootnote{
+ \lvoc{I.3.29}, \lamc{3.1}, \knuthc{16}[137] \\ {\slshape 
+ also try \verb|\(x=y\)| and \verb|\[x=y\]| and environment \verb|equation*|}
+}
+
+\twocolImg{
+Math environments
+    \inputminted[firstline=15, lastline=16]{latex}{sec03/code/s1/mdollar.tex}
+    \inputminted[firstline=19, lastline=19]{latex}{sec03/code/s1/mdollar.tex}
+    \inputminted[firstline=22, lastline=25]{latex}{sec03/code/s1/mdollar.tex}
+% \lstinputlisting[linerange={15-16,19-19,22-25}]{mdollar.tex}
+}{mdollar}
+
+\end{frame}
+
+\begin{frame}{Going $\to$ Math}\relax
+{\centering \Large
+``Because mathematics is supposedly expensive.''\par} 
+
+\hfill \textcopyright D.~Knuth``the \TeX Book''
+     \skfootnote{\knuthc{16}[138]}
+\end{frame}
+
+%%%%%%%%%%%%% indexes %%%%%%%%%%%
+\begin{frame}[fragile]{Indexes}\relax
+
+\newcommand{\appendTline}[3]{
+\makebox[10em]{#1\hfill} \hfill\hfill \makebox[5em]{\hfill #2\hfill} \hfill \makebox[5em]{\hfill #3\hfill} \hfill\hfill \strut
+    \hrule
+    \vspace{1ex}
+}
+
+\cprotect[mm]\appendTline{upper ind}{\lstinline[basicstyle=\tt\normalsize,]|$x^2$|}{ $x^2$}
+
+\cprotect[mm]\appendTline{lower ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_2$|}{ $x_2$}
+\cprotect[mm]\appendTline{lower and upper ind}{\lstinline[basicstyle=\tt\normalsize,]|$x^4_2$|}{ $x^4_2$}
+\cprotect\inclassFrag{
+Try to put more then one letter to the index}
+\cprotect[mm]\appendTline{more letters in ind}{\lstinline[basicstyle=\tt\normalsize,]|$x_{ij}$|}{ $x_{ij}$}
+\cprotect\inclassFrag{
+
+How can you create ${}^3_2 He$?}[4]
+\cprotect[mm]\appendTline{empty block}{\lstinline[basicstyle=\tt\normalsize,]|${}^3_2He$|}{ ${}^3_2He$}
+\cprotect[mm]\appendTline{index in index}{\lstinline[basicstyle=\tt\normalsize,]|$x^{4^2}$|}{ $x^{4^2}$}
+
+\skfootnote{\knuthc{16}[139]\\You really don't want to know, what code generate these lines...}
+\end{frame}
+
+%%%%%%%%%% fractions 
+\begin{frame}[fragile]{Fractions and (square) root}\relax
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\frac{x+z^2}{y-1}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\frac{x+z^2}{y-1}$$
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    \vphantom) 
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\sqrt{x}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\sqrt{x}$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \hrule
+    \vphantom) 
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]|$\sqrt[y]{x}$| 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             $$\sqrt[y]{x}$$
+        \end{column}
+    \end{columns}
+    
+\cprotect\skfootnote{\lmanc{16.7.3}[159] \lmanc{16.7.5}[160] \overC{https://www.overleaf.com/learn/latex/Fractions_and_Binomials} \slshape sometimes, if you want use fraction into fraction it is better to use \verb|\cfrac{x}{y}|. See typeography section or \lvoc{II.4.1, II.5.1}
+also $\sphericalangle$ \verb|\genfrac|
+}
+\end{frame}
+
+%%%%%%%% BRACKETS %%%%%%%%%
+\begin{frame}[fragile]{Round brackets}\relax
+
+You can't write just \inclass{\only<2>{(Actually, you can, but it won't be as pretty)}}
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$(\frac{x}{y})$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$(\frac{x}{y})$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \inpause\inpause
+use \ccol{\left} and \ccol{\right}
+     \vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$\left(\frac{x}{y}\right)$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$\left(\frac{x}{y}\right)$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    \inpause
+or even like 
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$\left.\frac{x}{y}\right|_a^b$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$\left.\frac{x}{y}\right|_a^b$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+\end{frame}
+
+\outclassframe{
+\input{sec03/math/add_brackets}
+}
+
+
+
+\begin{frame}[fragile]{Text inside equations}\relax
+Sometimes, you need to write a text \textit{inside} an equation
+
+$$\frac{x+1}{y} = z; \hbox{if $x - 1 < y$, but not always!}$$
+
+\cprotect\inclassFrag{try to type \lstinline[basicstyle=\tt]|$$\frac{x+1}{y} = z; if x - 1 < y, but not always!$$|}
+but the direct solution removes all spaces! 
+$$\frac{x+1}{y} = z; if x - 1 < y, but not always!$$
+\inpause
+Use \ccol{\hbox}:
+
+\lstinline[basicstyle=\tt]|$$\frac{x+1}{y} = z; \hbox{if $x - 1 < y$, but not always!}$$| \inpause \hfill or~\ccol\text~from~{\csk amsmath}~package.  Or \ccol\mbox.
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%% MORE SYMBOLS 
+\begin{frame}[fragile]{More symbols}\relax
+    {\Large \url{http://detexify.kirelabs.org/classify.html}}
+    
+    \inclassFrag{\centering
+    Try to find the following symbols: \\ $\exists$,  $\to$, $\notin$, $\sim$, $\equiv$
+    }[-1]
+    
+    \skfootnote{
+    \wikiC{https://en.wikibooks.org/wiki/LaTeX/Special_Characters} \\
+    \url{ftp://sunsite.icm.edu.pl/pub/CTAN/info/symbols/comprehensive/symbols-a4.pdf} (338 pages) \\ \url{https://www.rpi.edu/dept/arc/training/latex/LaTeX_symbols.pdf} (22 pages)}
+\end{frame}
+
+\begin{frame}{Detexify: example}\relax
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+             \includegraphics[width=0.8\textwidth]{detex1.png}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \includegraphics[width=0.8\textwidth]{detex2.png}
+        \end{column}
+    \end{columns}    
+    
+\end{frame}
+
+\outclassframe{
+\input{sec03/math/add_more_s}
+}
+
+\begin{frame}[fragile]{More symbols}{Operators}\relax
+Mathematical tradition: write not $sin (x)$, but {\csk$\sin (x)$}.\inpause
+
+\begin{center}
+     \Large use \ccol{\sin}
+\end{center}
+\inpause
+sometimes more effect is displayed:
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\hfill\lstinline[basicstyle=\tt]|$$\min_{x\to 0} f$$|     
+\end{column}
+\begin{column}{0.5\textwidth}
+$$\min_{x\to 0} f$$
+\end{column}
+\end{columns}
+
+
+    \skfootnote{\overC{https://www.overleaf.com/learn/latex/Operators} \knuthc{18}[173] \url{https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols}}
+\end{frame}
+
+%%%%%%%%%%%%%%% MULTIPLE EXUATIONS %%%%%%%%%%%
+\begin{frame}[fragile]{Multiline equations}\relax
+     \cprotect\twocolImg{
+        % \lstinputlisting[linerange={9-14}]{arraySimple}
+        \inputminted[firstline=9, lastline=14]{latex}{sec03/code/s1/arraySimple.tex}
+    }{arraySimple}
+
+\inpause
+notice {\csk \{clcl\}}, {\csk \&}, \ccol{\\}
+\inclassFrag{Does it reminds you something?}[3]
+
+\ccol{array} is a \ccol{tabular} for math mode!
+
+\cprotect\skfootnote{{ } \lvoc{II.3}[75], \lvoc{II.4.2}[84] \lmanc{8.2}[55]}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Multiline equations}\relax
+ it is better to use 
+ \begin{center}
+ \Large \csk \verb|\usepackage{amsmath}|
+ \end{center}
+ 
+ \begin{itemize}
+     \item \ccol{\begin\{multiline\}} for long equations
+     \item \ccol{\begin\{gather\}} for several equations
+     \item \ccol{\begin\{align\}} for alignment
+    \item  \ccol{\begin\{aligned\}},  \ccol{\begin\{cases\}} for cases
+     \item \ccol{\begin\{pmatrix\}} for matrixes
+      
+ \end{itemize}
+ 
+\cprotect\skfootnote{\normalfont \url{http://mirrors.mi.ras.ru/CTAN/macros/latex/required/amsmath/amsmath.pdf} \url{http://texdoc.net/texmf-dist/doc/latex/amsmath/amsldoc.pdf}}
+\end{frame}
+
+\outclassframe{
+\input{sec03/math/add_multi}
+}
+
+
+
+
+\cprotect\inclassframe{
+\begin{frame}[fragile]{\exFrame{Try to type the following}}\relax
+\small
+\verb!$$\sum_a^b x$$!, \hfill\verb!$$\sum\nolimits_a^b x$$!, \hfill\verb!$$\sum\limits_a^b x$$!
+
+\verb!$\sum_a^b x$!, \hfill\verb!$\sum\nolimits_a^b x$!, \hfill\verb!$\sum\limits_a^b x$!
+
+\verb!$$\int_a^b x$$!, \hfill\verb!$$\int\nolimits_a^b x$$!, \hfill\verb!$$\int\limits_a^b x$$!
+
+\verb!$\int_a^b x$!, \hfill\verb!$\int\nolimits_a^b x$!, \hfill\verb!$\int\limits_a^b x$!
+~\\[2ex]
+compare the index position and the operator size
+     
+\end{frame}
+}
+
+\begin{frame}[fragile]{One over another\preMagicPage}{operators}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk operator}
+    \hrule height 0.05pt
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$$\int\limits_0^\pi$$|}{$$\int\limits_0^\pi$$}
+    \cprotect[mm]\appendTline{\lstinline[basicstyle=\tt\normalsize,]|$$\int\nolimits_0^\pi$$|}{$$\int\nolimits_0^\pi$$}
+
+\end{frame}
+
+\begin{frame}[fragile]{One over another\magicPage}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk result}
+    \hrule height 0.05pt
+    \cprotect[mm]\appendTline{\lstinline|$\stackrel {\Leftrightarrow}{A}$|}{$\stackrel {\Leftrightarrow}{A}$}
+    \cprotect[mm]\appendTline{\lstinline|$A \stackrel{a'}{\rightarrow} D$|}{$A \stackrel{a'}{\rightarrow} D$}
+    \cprotect[mm]\appendTline{\lstinline|$$\sum_{\substack{i\in[0;n]\\j\in[0;m]}} a_{ij}$$|}{$$\sum_{\substack{i\in[0;n]\\j\in[0;m]}} a_{ij}$$}
+    
+\end{frame}
+
+\begin{frame}[fragile]{One over another\magicPage}\relax
+
+\newcommand{\appendTline}[2]{\vspace*{10pt}\begin{columns}
+        \begin{column}{0.45\textwidth}
+          \hfill #1 
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \hfill #2\hfill \hfill
+        \end{column}
+    \end{columns}
+    \vphantom.
+    \hrule
+    }
+
+    \cprotect[mm]\appendTline{\csk source}{\csk result}
+    \hrule height 0.05pt
+    
+    \cprotect[mm]\appendTline{\lstinline|$\underbrace{a+\overbrace{b+c}+d}_{m}$|}{$\underbrace{a+\overbrace{b+c}+d}_{m}$}
+    
+    \cprotect[mm]\appendTline{\lstinline|$\lefteqn{\overbrace{ \phantom{1+2+3}}} 1+\underbrace{2+3+4}$|}{$\lefteqn{\overbrace{ \phantom{1+2+3}}} 1+\underbrace{2+3+4}$}
+    
+\end{frame}
+
+\begin{frame}{Domain-specific packages\magicPage}{Lots of them!}\relax
+You can use 
+    \begin{description}
+        \item[Physics] \url{https://ctan.org/pkg/physics}
+        \item[Chemistry] \url{http://www.mychemistry.eu/known-packages/}, \url{https://ru.overleaf.com/learn/latex/Chemistry_formulae}, \url{https://ctan.org/pkg/mhchem}
+        \item[Biology] \url{https://www.tug.org/pracjourn/2007-4/senthil/senthil.pdf} 
+    \end{description}
+     
+\end{frame}
+
+\begin{frame}{Also to type equations\magicPage}\relax
+     \begin{itemize}
+         \item \url{http://hostmath.com/} -- WYSiWYG math editor
+         \item MathPix -- (paid) neural network to parse images into \LaTeX
+         \item *GPT can also parse some images
+     \end{itemize}
+     
+     You can use \LaTeX\ syntax in multiple other places: GitHub, Obsidian, Jupyter Notebook,..
+\end{frame}
+
+\inclassframe{
+\input{sec03/math/add_brackets}
+\input{sec03/math/add_more_s}
+\input{sec03/math/add_multi}
+}
+
+
+\inclassframe{
+\begin{frame}{\exFrame{Type these equations}}{lvl 1}\relax
+\begin{equation}
+     \sqrt{h/(2a)}=t\tag{1}
+\end{equation}
+
+\begin{equation}
+     \frac{x+y}{z_2 - \frac{1}{2}}=m\tag{2}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}{\exFrame{Type these equations}}{lvl 2}\relax
+
+\begin{equation}
+     x^2-2y = h_{l_0^k}\tag{1}
+\end{equation}
+
+\begin{equation}
+     \left(\frac{x+y}{z}\right)=q\tag{2}
+\end{equation}
+
+\begin{equation}
+    T_{N_1}(t) = \left.\frac{d}{dx_i} f^{\sqrt{n}}(z)\right/\left(\sqrt{\frac{m+\sin(\pi \cdot e)}{a}}-N\right) \tag{3}
+\end{equation}
+
+\end{frame}
+
+
+\begin{frame}{\exFrame{Type these equations}}{lvl 2}\relax
+
+\begin{align}
+    2 + 2 &= 4 \tag 1\\
+    2 &= 4 - 2 && \text{substacking 2}\notag\\ 
+    2 &= 2 \tag a
+\end{align}
+
+\end{frame}
+
+\begin{frame}{\exFrame{Type these equations}}{lvl 2}\relax
+    $$\widehat{\dbinom{\odot_{\color{Red} \text{v} }\odot}{\wr}}$$
+\end{frame}
+
+\begin{frame}{\exFrame{Type these equations}}{lvl 2}\relax
+    $$(\cos x + \sin x)^2 = \underbrace{\cos^2 x + \sin^2 x}_{1} + \overbrace{2\sin x \cos x}^{\sin 2x}$$
+\end{frame}
+
+}
+
+\begin{frame}{Briefly: \LaTeX\ escaped symbols}\relax
+\begin{columns}
+\begin{column}{0.1\textwidth}
+\begin{center}
+\vspace{-1ex}
+    \%
+
+    $\sim$ 
+    
+    \&
+    
+    \textbackslash 
+    
+    \{ 
+    
+    \} 
+    
+    $\_$ 
+    
+    $\^$
+    
+    \$ 
+    
+    \#
+\end{center}
+\end{column}
+\begin{column}{0.9\textwidth}
+\inclassFrag{let us name all assignments of symbols togeter!}
+
+\vspace{1ex} \inpause
+comments \inpause
+
+non-breaking space \inpause
+
+table indent \inpause
+
+command-start symbol \inpause
+
+start of group \inpause
+
+end of group \inpause
+
+subscript \inpause
+
+superscript \inpause
+
+math mode \inpause
+
+\hbox{for params in macros creation (will discuss at the last lecture)}
+
+\end{column}
+     
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Briefly: \LaTeX\ escaped symbols}\relax
+\newcommand{\mccol}[1]{{\csk \$\ccol{#1}\$}}
+
+\begin{center}
+\begin{tabular}{c|cc}
+    symbol & textmode & mathmode\\\hline
+    \% & \ccol{\%} & \mccol{\%}\\ 
+    $\sim$ & \ccol{\~} \ccol{\textasciitilde} & \mccol{\sim}\\ 
+    \& &  \ccol{\&} &\mccol{\&}\\ 
+    \textbackslash  & \ccol{\textbackslash} & \mccol{\backslash}\\ 
+    \{ & \ccol{\{} \ccol{\textbraceleft} \ccol{\lbrace} & \mccol{\{} \mccol{\lbrace}\\
+    \} & \ccol{\}} \ccol{\textbraceright} \ccol{\rbrace} & \mccol{\}} \mccol{\rbrace}\\
+    $\_$ & \ccol{\_} & \mccol{\_}\\ 
+    $\^$ & \ccol{\^} \ccol{\textasciicircum} & \mccol{\^}\\ 
+    \$ & \ccol{\$} & \mccol{\$}\\ 
+    \# & \ccol{\#} & \mccol{\#}
+    
+\end{tabular}
+\end{center}
+\end{frame}

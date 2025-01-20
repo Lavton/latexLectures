@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\newskip\myskip % first glue
+\myskip=15pt plus 5pt minus 3pt
+\newskip\doubleskip % second glue
+\doubleskip=\myskip
+\multiply\doubleskip by 2 % it is double times bigger
+\advance\doubleskip by 30pt plus 4pt
+so, \\myskip is \the\myskip. While \\doubleskip is \the\doubleskip % print glue
+
+|\hskip\myskip TEST \hskip\doubleskip | % show glue
+
+\newmuskip\mathspace % for math mode
+\mathspace=18mu plus 2mu minus 1mu
+
+$$|\mskip\mathspace T |$$ % show glue in math mode
+\vspace*{\fill}
+\end{document} 

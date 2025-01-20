@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=140mm, paperheight=150mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+\usepackage{graphicx}
+\graphicspath{{../../images/}} % optional
+\usepackage{lipsum}
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+Text with some picture 
+\begin{figure}[tbp]
+    \begin{center}
+        \includegraphics{papeeria.png}
+    \end{center}
+    \caption{Floating pic}
+\end{figure}
+
+
+\vspace*{\fill}
+\end{document}

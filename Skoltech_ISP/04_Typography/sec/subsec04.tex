@@ -1,0 +1,62 @@
+\graphicspath{{sec/images/}{sec/code/}}
+\lstset{inputpath=sec/code/}
+
+% phantom, smash
+\begin{frame}[fragile]{What spaces we have?}
+     \def\showLength#1{\newbox\boxtodimen%
+\newdimen\wb%
+\setbox\boxtodimen=\hbox{#1}%
+\wb=\the\wd\boxtodimen%
+     \leavevmode\raise4pt\hbox{\vrule height 6pt depth2pt{\csk\rule{\wb}{4pt}}\vrule height 6pt depth2pt}%
+     }
+     
+    \begin{columns}
+    \begin{column}{0.45\textwidth}
+    
+\centering\Large
+     \begin{tabular}{rl}
+          \ccol\qquad& \showLength{\qquad}\\ 
+          \ccol\quad& \showLength{\quad}\\ 
+          \ccol\enspace & \showLength\enspace\\
+          \ccol\  & \showLength{\ }\\
+     \end{tabular}
+     
+     \ccol\quad\ is used below:
+     $$x=y\quad\hbox{if y=0}$$
+    \end{column}
+    \begin{column}{0.45\textwidth}
+    
+\centering\Large
+     \begin{tabular}{rl}
+          \multicolumn{2}{c}{useful for math:}\\
+          \ccol{\;} & \showLength{\;}\\
+          \ccol{\>} & \showLength{$\>$}\\
+          \ccol{\,} & \showLength{\,}\\
+          \ccol{\!} & \showLength{\!}\\
+     \end{tabular}
+     
+     the last one is negative space
+    \end{column}
+    \end{columns}
+     
+     
+     \skfootnote{\knuthc{18}[178] \lmanc{19.1}[167]}
+\end{frame}
+
+\begin{frame}{Phantoms}\relax
+    
+    Phantoms have the same size as it's an argument without drawing.\inpause 
+    
+    \twocolImg{
+    % \lstinputlisting[linerange={39-45}]{phantomsmy.tex}
+    \inputminted[firstline=39, lastline=45]{latex}{sec/code/phantomsmy.tex}
+    }{phantomsmy}
+    \ccol\phantom\ leaves both dimentions. \ccol\hphantom\ and \ccol\vphantom\ leaves only one dimention.
+    
+    \ccol\strut\ is short for \ccol\vphantom\{(\}
+    
+    \ccol\smash\ is using to leave only the horizontal coordinate of a formula
+    
+    \skfootnote{\lmanc{16.6}[156] \knuthc{18}[178]}
+     
+\end{frame}

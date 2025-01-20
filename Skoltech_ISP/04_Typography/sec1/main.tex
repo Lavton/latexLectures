@@ -1,0 +1,401 @@
+\graphicspath{{sec1/images/}{sec1/code/}}
+\lstset{inputpath=sec/code1/}
+
+\section{How \TeX\ ``sees'' the document}
+
+
+%%%%%%%%%%%%%%%%%%%% MODES %%%%%%%%%%%%%%%%%%%%%
+\subsection{Modes}
+
+\begin{frame}[fragile]{Modes}\relax
+
+    \cprotect\inclassFrag{
+    
+    Try the following and see the difference:
+\begin{minted}{latex}
+     
+$$\sum_0^1$$
+$\sum_0^1$
+
+---
+
+Hello world, we love spaces. $Hello world, we love spaces.$
+
+---
+b{\centering Test}e
+
+b{\centering Test
+ 
+}e
+\end{minted}
+    
+    }[1]
+    
+        \TeX\ has 3(6) modes:
+    \begin{enumerate}
+        \item {\bfseries {\csk Vertical} mode.} [Building the main vertical list, from which the pages of
+    output are derived.]
+    \item {\bfseries Internal {\csk vertical} mode.} [Building a vertical list for a vbox.]
+    \item {\bfseries {\csk Horizontal} mode.} [Building a horizontal list for a paragraph.]
+    \item {\bfseries Restricted {\csk horizontal} mode.} [Building a horizontal list for an hbox.]
+    \item {\bfseries {\csk Math} mode.} [Building a mathematical formula to be placed in a horizontal list.]
+    \item {\bfseries Display {\csk math} mode.} [Building a mathematical formula to be placed on
+    a line by itself, temporarily interrupting the current paragraph.]
+         
+    \end{enumerate}
+     
+     \skfootnote{\knuthc{13}[95]}
+
+     
+\end{frame}
+
+
+\begin{frame}{Difference between modes\preMagicPage}
+
+    The modes have lots of differences. For example:
+    \begin{itemize}
+        \item in horizontal mode only first space is taking into account
+        \item in math mode generic font is italic, all spaces are ignored
+        \item in Display math mode operators are drawing bigger, than in the regular one 
+        \item in vertical mode all spaces and <return>s are ignored 
+         
+    \end{itemize}
+     \skfootnote{use \ccol\leavevmode\ to leave vertical mode}
+\end{frame}
+
+\begin{frame}{More about math mode\magicPage}
+     Math actually has 4 different styles. When you see that superscript $x^y$ is smaller then the text --- it is a different style. The styles are:
+     
+     \centering 
+     \begin{tabular}{l|l|l|p{7em}}
+     \hline
+     Display style & \ccol\displaystyle & $\displaystyle A$ & main style for displayed formula\\
+     Text style & \ccol\textstyle & $\textstyle A$ & main style for in-text formula\\
+     Script style & \ccol\scriptstyle & $\scriptstyle A$ & main style for scripts\\
+     Script-script style & \ccol\scriptscriptstyle & $\scriptscriptstyle A$ & main style for scripts in scripts\\
+     \end{tabular}
+     
+ \skfootnote{\knuthc{17}[151]}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%% BOXES AND GLUE %%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boxes and glue}
+
+\begin{frame}{Boxes and Glue}\relax
+    \outclasshigh{\TeX\ sees the document as boxes and glue}
+    
+    {\centering \Huge {\csk Boxes} and {\csk Glue}
+     
+    }
+    
+    \outclasshigh{\begin{itemize}
+        \item Box is a rectangle with width, heigh and depth
+        \item Glue is a tensile space
+         
+    \end{itemize}}
+     
+\end{frame}
+
+\begin{frame}{Main idea}\relax
+    \centering \large
+    \tabcolsep=0.15em
+    
+    \begin{tabular}{rl}
+         A symbol is a & \csk box\\
+         it is part of a word, that is a & \csk box\\ 
+         the words are connected with & \csk glue\\ 
+         into sentances and paragraphs.&\\ 
+         A paragraph is a & \csk box\\
+         it connected with another one with & \csk glue\\
+         to the page. Which is a & \csk box\\
+         &\\ 
+         by the way: table, picture, ... is a & \csk box 
+    \end{tabular}
+    
+    \skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Boxes} \knuthc{11}[73]}
+\end{frame}
+
+\begin{frame}{Box params}
+     
+    \centering
+    \newbox\boxtodimen%
+    \newdimen\hb%
+    \newdimen\db%
+    \newdimen\wb%
+    
+    \setbox\boxtodimen=\hbox{\fontsize{120}{126}\selectfont y}%
+    \hb=\ht\boxtodimen%
+    \db=\dp\boxtodimen%
+    \wb=\wd\boxtodimen%
+    
+    \newcommand{\boxingDimF}{%
+    \leavevmode 
+    
+    \hbox to \wb{%
+        \hbox to 0pt{\box\boxtodimen}%
+        \hbox to 0pt{\vbox to 0pt{\hbox{%
+            \leavevmode 
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\rule{\wb}{0.4pt}}}%width2
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{1.7pt}{\hb}}}%height
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{1.7pt}{\db}}}%depth
+        }}}%
+        \hbox to 0pt{\vbox to 0pt{\hbox{%
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+            \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+            \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+        }}}%
+    }%
+    }
+    
+    \centering
+    \begin{tikzpicture}
+        \uncover<1>{\node at (0.5\wb, 0) {\raisebox{\hb}{\fontsize{120}{126}\selectfont y}};}
+         \uncover<2,3>{\node at (0.5\wb, 0) {\raisebox{\hb}{\boxingDimF}};}
+         \uncover<3>{\fill(0,0) circle (0.1cm);
+         \node(rp) at (0,0) {};
+         \node(rpt) at (-6em, 0) {reference point};
+         \draw[->] (rpt) -- (rp);
+         \node(bl) at (\wb+8em, 0) {base line};
+         \draw (\wb,0) -- (bl);
+         
+         \node(wdth) at (0.5\wb, -\db-1.4ex) {\color{green!40!black}width};
+         \draw[<-] (0, -\db-1.4ex) -- (wdth);
+         \draw[->] (wdth) -- (\wb, -\db-1.4ex);
+         \draw (0, -\db) -- +(0, -2.8ex);
+         \draw (\wb, -\db) -- +(0, -2.8ex);
+         
+         \node(dpth) at (\wb+1.6em, -0.5\db) {\color{red!40!yellow}depth};
+         \draw[<-] (\wb+1.6em, 0) -- (dpth.north);
+         \draw[->] (dpth.south) -- (\wb+1.6em, -\db);
+         \draw (\wb, -\db) -- +(3.2em, 0);
+    
+         \node(hght) at (\wb+1.6em, +0.5\hb) {\color{red}height};
+         \draw[<-] (\wb+1.6em, 0) -- (hght.south);
+         \draw[->] (hght.north) -- (\wb+1.6em, \hb);
+         \draw (\wb, \hb) -- +(3.2em, 0);}
+    \end{tikzpicture}
+     
+     \skfootnote{\stExC{https://tex.stackexchange.com/questions/40977/confused-with-tex-terminology-height-depth-width}}
+\end{frame}
+
+\begin{frame}[fragile]
+     
+    \newcommand{\boxingDim}[1]{{%
+    \ifcsname boxtodimen\endcsname%
+    \else%
+    \newbox\boxtodimen%
+    \newdimen\hb%
+    \newdimen\db%
+    \newdimen\wb%
+    \fi%
+    \leavevmode 
+    \setbox\boxtodimen=\hbox{#1}%
+    \hb=\the\ht\boxtodimen%
+    \db=\the\dp\boxtodimen%
+    \wb=\the\wd\boxtodimen%
+    \hbox to \wb{%
+        \hbox to 0pt{\box\boxtodimen}%
+        \hbox to 0pt{\vbox to 0pt{\hbox{%
+            \leavevmode 
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\rule{\wb}{0.4pt}}}%width2
+            \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{1.7pt}{\hb}}}%height
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{1.7pt}{\db}}}%depth
+        }}}%
+        \hbox to 0pt{\vbox to 0pt{\hbox{%
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+            \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+            \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+            \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+        }}}%
+    }%
+    }%
+    }
+    
+    \centering
+    % \boxingDim{
+    \only<1,2,3>{\leavevmode\hbox{\fontsize{120}{126}\selectfont\boxingDim{{g}}\pause\boxingDim{f}\pause\boxingDim{\textit{y}}\boxingDim{\textit{:}}\boxingDim{.}}}
+    % }
+    \only<4>{\boxingDim{{\fontsize{120}{126}\selectfont\boxingDim{{g}}\pause\boxingDim{f}\pause\boxingDim{\textit{y}}\boxingDim{\textit{:}}\boxingDim{.}}}}
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%% PAGE CREATION %%%%%%%%%%%%%%%%%%%%%%
+\subsection{Paragraphs and pages creation}
+
+\begin{frame}\relax
+    \Huge\centering ``this, in fact, is probably the most interesting aspect of the whole TEX system''\\\hfill \large D. Knuth, the \TeX Book
+
+\end{frame}
+
+\begin{frame}{Slide for perfectionists}{how many word-breaks are}\relax
+    \centering
+    \includegraphics[width=0.6\textwidth]{twcomp.png}
+    
+    \includegraphics[width=0.6\textwidth]{twcomp2.png}
+    
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/110133/visual-comparison-between-latex-and-word-output-hyphenation-typesetting-ligat} \url{http://www.rtznet.nl/zink/latex.php?lang=en}}
+\end{frame}
+
+
+\begin{frame}{Paragraph creation overview\preMagicPage}\relax
+    \begin{itemize}
+        \item All paragraph is considered as one: the words in the last line can change the typesetting in the first line.
+        \item \TeX\ will never put words narrow than the glue allow.
+        \item \TeX\ tries out all possible varients for line breaks. For each varient and each line \TeX\ calculates the \textit{badness}. If it is lower than \ccol\tolerance, \TeX\ will try to create paragraph with the minimum of hyphenation.
+        \item if \TeX\ fails, it provides \textbf{Overfull} or \textbf{Underfull} warnings.
+    \end{itemize}
+    \skfootnote{\knuthc{14}[101] \lvoc{3.6}[114] \lmanc{9}[100]}
+\end{frame}
+
+\begin{frame}[fragile]{How to suggest a hyphentation\magicPage}\relax
+
+    Locally: use \ccol\- \verb|as in this ve\-ry long se\-nta\-nce|
+    
+    Globally: \ccol\hyphenation\verb|{some-thing poss-ible}|
+    
+    \cprotect\skfootnote{\ccol\- is just a short version for \ccol\discretionary\verb|{hpre-break texti}{hpost-break texti}{hno-break texti}|\\ 
+    also: \TeX\ will never hyphenate the word with ``/''. Use \ccol\slash\ if you want to allow it. And \ccol\uchyph=0 will prohibit hyphenation in words on uppercase letter.}
+\end{frame}
+
+\begin{frame}[fragile]{Manual line break manipulation\magicPage}\relax
+
+    Never break: non-breaking space \verb|~|, \ccol\nobreak, \ccol\nolinebreak
+    
+    Always: \ccol\\, \ccol\break, \ccol\linebreak
+    
+    You can use \ccol\obeylines\ to follow the line breaks in the source code.
+     
+     \skfootnote{by the way: \ccol\\ \ has an optional parameter: the vertical space after the command. Also \ccol\smallskipamount, \ccol\medskipamount\ and \ccol\bigskipamount\ responsible for skipping after paragraph. \ccol\linebreak\ has an optional parameter: [0-4] how much you want to have the break here.}
+\end{frame}
+
+\begin{frame}{Algorithm: part 1\magicPage}\relax
+    
+    \begin{enumerate}
+        \item \TeX\ produce varients without word breaks. It compare the \textit{badness} with \ccol\pretolerance\ param. 
+        \item \textit{badness} is $\simeq$ 100$\cdot$<proportion-between-the-normal-glue-and-its-stretching/compression>$^3$
+        \item if \ccol\pretolerance-try fall, \TeX will try to use all posible line breaks to make each badness less than \ccol\tolerance
+         
+    \end{enumerate}
+     
+     \skfootnote{defaults: \ccol\pretolerance=100, \ccol\tolerance=200. \ccol\pretolerance>=10000, the first try will always succeed}
+\end{frame}
+
+\begin{frame}{Algorithm: part 2\magicPage}\relax
+
+    \begin{enumerate}
+        \item line breaks are allowed only in certain places:
+        \begin{enumerate}
+            \item glue
+            \item kern with glue after 
+            \item and of math (\$) and glue after 
+            \item the manual or auto-passed penalty
+            \item  discretionary break
+        \end{enumerate}
+        \item The penalty to the first three is $0$. For the last one, it is defined by \ccol\hyphenpenalty=\ or \ccol\exhyphenpenalty=. The penalty can be manually added as \ccol\penalty
+        \item Penalty can both positive and negative. If it is $>10^4$ there will be no break ever, if it is $<-10^4$ there always will be a break
+         
+    \end{enumerate}
+         
+    \skfootnote{defaults: \ccol\hyphenpenalty=50, \ccol\exhyphenpenalty=50\\ 
+you can put addition spaces between math and text with \ccol\mathsurround}
+\end{frame}
+
+
+\begin{frame}{Algorithm: part 3\magicPage}\relax
+    
+    \begin{enumerate}
+    \item in reality, \TeX\ tries to minimize the \textit{demerits}. It is proportional to the {\csk badnesses}, \ccol\linepenalty (determines how much you want tex to produce a minimum amount of lines) and {\csk penalty}
+    \item \TeX\ also takes into account and add penalty if two lines one after another has a hyphenation (\ccol\doublehyphendemerits), if lines are \textit{visually incompatible} (ex: if a tight line is next to a loose one) (\ccol\adjdemerits) and if the second-last line of the entire paragraph ends with a discretionary (\ccol\finalhyphendemerits)
+    
+    \end{enumerate}
+         
+     \skfootnote{defaults: \ccol\linepenalty=10, \ccol\adjdemerits=10000, \ccol\doublehyphendemerits=10000, \ccol\finalhyphendemerits=5000.\\ 
+     \ccol\hfuzz=... will add the maximum length of string's aligment}
+\end{frame}
+
+\begin{frame}{What else? \magicPage}\relax 
+    \def\strutdepth{\dp\strutbox}
+    \def\marginalstar{\strut\vadjust{\kern-\strutdepth\specialstar}}
+    \def\specialstar{\vtop to \strutdepth{
+    \baselineskip\strutdepth
+    \vss\llap{* }\null}}
+    
+    \begin{itemize}
+        \item Use \ccol\narrow\ to make lines narrow
+        \item Use \ccol\looseness=-1 to ask \TeX\ to try make one line less in paragraph
+        \item \ccol\prevgraf\ shows the curent line in the paragraph.
+        \item \ccol\vadjust\ adds something at the vertical list after current line. With it we add the star to the left \marginalstar
+        \item \ccol\everypar adds something in each paragraph
+        \item \ccol\parfillskip --- the glue after last line 
+        \item \ccol\parskip --- the vertical glue between paragraphs
+         
+    \end{itemize}
+     
+\end{frame}
+
+\begin{frame}{Non-standart paragraph form\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={13-21}]{handmy.tex}
+    \inputminted[firstline=13, lastline=21]{latex}{sec1/code/handmy.tex}
+    }{handmy}
+    \footnotesize
+    \ccol\hangindent=[>0] --- the addition indent to the left. ...=[<0] --- indent to the right.
+    
+    \ccol\hangafter=[>0] --- the indent to all lines after. ...=[<0] --- before.
+    \end{frame}
+    
+    \begin{frame}{Non-standart paragraph form\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={13-19}]{parshapemy.tex}
+    \inputminted[firstline=13, lastline=19]{latex}{sec1/code/parshapemy.tex}
+    }{parshapemy}
+\end{frame}
+
+
+\begin{frame}{Page creation}
+    \begin{itemize}
+        \item \TeX\ was created in time when it was not enough memory to optimize pages globally.
+        \item \TeX\ finds the best break to the current page and then erase it from memory.
+        \item More or less the algorithms are the same.
+        \item You can use \ccol\penalty\ or \ccol\nobreak\ in vertical mode
+        \item You can use \raggedbottom\ to remove bottom page alignment 
+        \item Also as in paragraph, you allow to use \ccol\newpage, \ccol\pagebreak, \ccol\nopagebreak
+         
+    \end{itemize}
+     
+     \skfootnote{\knuthc{15}[119] \lvoc{III.9}[141] \lmanc{10}[105]}
+\end{frame}
+
+
+%%%%%%%%%%% задание %%%%%%%%%%%%%
+% с boxing 
+\cprotect\inclassframe{
+\begin{frame}[fragile]{\exFrame{Try make the box sizes visible}}{lvl 1}\relax
+    \begin{enumerate}
+        \item Download and use {\csk boxplay.sty} package (\mintinline[fontsize=\normalsize]{latex}{\usepackage{boxplay}})
+        \item use \ccol\boxingDim\ command around some objects (like ``\mintinline[fontsize=\normalsize]{latex}{\boxingDim{$$\int_0^1$$}}'' or ``\mintinline[fontsize=\normalsize]{latex}{Test of letter \boxingDim{g}}'')
+        \item use \ccol\leavevmode\ to enter horizontal mode when needed
+    \end{enumerate} 
+    
+    The lines to be wrapped are the following:
+    
+    \inputminted[firstline=13, lastline=26]{latex}{sec1/code/exLvl1.tex}
+    
+\end{frame}
+
+\begin{frame}[fragile]{\exFrame{Try make the box sizes visible}}{lvl 2}\relax
+
+    Command like \mintinline[fontsize=\normalsize]{latex}{\vspace{1cm}} or \mintinline[fontsize=\normalsize]{latex}{\vspace{-1cm}} change the height of the box 
+    
+    Command like \mintinline[fontsize=\normalsize]{latex}{\hspace{1cm}} or \mintinline[fontsize=\normalsize]{latex}{\hspace{-1cm}}  change the width of the box.
+    
+    Try to add the commands somehere in the lines from lvl1 exercise and see what happends.
+    
+    Especially look at what happens if the width or height of the box becomes negative :)
+      
+\end{frame}
+
+}

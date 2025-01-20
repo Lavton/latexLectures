@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+
+\geometry{paperwidth=80mm, paperheight=35mm, left=5mm, top=1mm, right=5mm, bottom=1mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\usepackage{idxlayout}
+\usepackage{makeidx} \makeindex
+\begin{document}
+Letter A is a letter \index{A}
+\newpage
+Letter B comes after letter A \index{A} \index{B}
+
+\printindex % need to run `makeindex <name>.idx` command
+\end{document}

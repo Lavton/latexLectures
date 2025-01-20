@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=2mm, top=0mm, right=2mm, bottom=0mm}
+\parindent=0pt
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+% from Hipster CV
+\newcommand{\icon}[3]{\phantom{x}{#3\color{#2}#1}\phantom{x}}
+%------------------- pictogram Fraction: pictoFraction
+\newcommand{\pictofraction}[6]{%
+    \pgfmathparse{#3 - 1}\foreach \n in {0,...,\pgfmathresult}{\icon{#1}{#2}{#6}}%
+    \pgfmathparse{#5 - 1}\foreach \n in {0,...,\pgfmathresult}{\icon{#1}{#4}{#6}}%
+}
+%%%%% add all above before "begin{document}
+\usetikzlibrary {mindmap} % for mind map
+\begin{document}
+    
+    %add this to the document
+    \textbf{French} --  \pictofraction{xx}{blue}{3}{black!30}{3}{\normalsize} \\
+
+\tikz[mindmap,text=white, % mindmap part 
+      root concept/.style={concept color=blue},
+      level 1 concept/.append style=
+{every child/.style={concept color=blue!50}}]
+  \node [concept] {Root concept}
+    child[grow=30] {node[concept] {child}}
+    child[grow=0 ] {node[concept] {child}};
+    
+\end{document}
+%7-17, 21-22

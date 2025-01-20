@@ -1,0 +1,52 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\graphicspath{{sec01/images/}{sec01/code/}}
+\lstset{inputpath=sec01/code/}
+
+
+\begin{frame}{How to structure \& refer the document}\relax
+    \begin{center}
+        \includegraphics{s2/refBegin2}
+    \end{center}
+    
+\end{frame}
+
+\begin{frame}{How to structure \& refer the document}\relax
+    \begin{enumerate}
+         $\left.
+         \begin{tabular}{p{.5\textwidth}} \vspace{-2ex}
+         \item add structure element. \TeX\ will automatically calculate it's serial number incrementing the previous one. 
+         \item refer to the element added before or after label. Refer to specific page, to specific equation, to specific biblio record or item
+         \end{tabular}
+         \right\}\text{\TeX\ use ``counters'' implicitly}$
+     \end{enumerate}     
+\end{frame}
+
+% общая идея: счётчики, подчинение счётчиков, двойной прогон
+\begin{frame}{how all this works}\relax
+% отдельно счётчики
+% отдельно labels
+% и слайд что это отдельно 
+\begin{enumerate}
+    \item \TeX\ has a counter for... lots of stuff 
+    \item When you add an element (section, equation, etc), the command updates its counter and prints it near the element\inpause
+    \item To reference an element, you need to explicitly tell \TeX\ about it.
+    \item When \TeX\ ``sees'' this guideline, it saves the related counter to {\csk external} file
+    \item When \TeX\ runs {\csk second time} and finds the place where you need to insert the reference, it looks at the file and gets counter value from the file \inpause
+    \item Sometimes (e.g.: bibliography) you run external command (e.g.: bibtex) to create the mentioned file \inpause
+    \item By the way: \TeX\ always ``reads'' document from top to bottom. \outclasshigh{The only way some command to affect anything \textit{before} the command appears is throw external file. The set of commands that do this is quite small}
+\end{enumerate}
+
+\inpause 
+(We will look more precisely at the last lecture.)
+     
+\end{frame}
+
+\subsection{Structural elements}
+\input{sec01/structural.tex}
+
+\subsection{References}
+\input{sec01/refs.tex}
+
+\subsection{Useful commands}
+\input{sec01/other.tex}

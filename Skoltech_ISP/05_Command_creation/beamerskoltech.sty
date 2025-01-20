@@ -1,0 +1,301 @@
+%% created by Anton Lioznov 
+%% Lavton@gmail.com
+% https://github.com/Lavton/SkoltechLaTeXtemplates
+%% It may be distributed and/or modified under the
+%% conditions of the MIT public license 
+%% USAGE: 
+% \usepackage[logo=sklogo]{beamerskoltech} 
+%   if you have a stand-alone image file for Sk logo 
+% or
+% \usepackage[logo]{beamerskoltech} 
+%   if you has no logo-file, but want LaTeX to generate it. 
+%   In this case you probably will need to use `--enable-write18 -interaction=nonstopmode` arguments running the latex command.
+%   in papeeria and overleaf all works fine
+% or 
+% \usepackage{beamerskoltech}
+%   In case you don't want logo at all 
+%
+% provided commands:
+% color `skoltechgreen` -- the dark-green color for structure elements 
+% command `\logoname` -- the name of logo file if exist 
+% command `{\csk <text>}` -- the shortcut from `\color{skoltechgreen}`
+% command `skfootnote{text}` -- put some text for current slide
+% `\renewcommand{\skbeforetitle}{\vspace{-3ex}}` is useful in case you use `aspectratio=169`
+%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{beamerskoltech}[2024/12/17 The style file for beamer class and Skolkovo Institute of Science and Techology]
+
+
+\RequirePackage{kvoptions} %  <-- proceed parameters to package 
+
+% process the arguments for the package
+\SetupKeyvalOptions{
+    family=KVAR,
+    prefix=KVAR@
+}
+
+
+
+\ProcessKeyvalOptions*
+\newcommand{\logoname}{Skoltech_Logo.eps} % <- you can recreate the command to pass different logo image
+\RequirePackage{ifthen}
+
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xcolor}
+% https://latex.org/forum/viewtopic.php?t=4392 <-- link about creating beamer thems
+% define colors (green -- for structure and gray -- for titles)
+\definecolor{skoltechgreen}{cmyk}{0.06, 0, 0.86, 0.35}
+% \definecolor{skoltechgreen}{RGB}{142, 154, 47}
+\definecolor{titlegray}{RGB}{0, 0, 0}
+\setbeamercolor{title}{fg=titlegray}
+\setbeamercolor{frametitle}{fg=titlegray}
+\setbeamercolor{structure}{fg=skoltechgreen}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% design %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% left border 
+% https://tex.stackexchange.com/questions/415968/beamer-right-and-left-borders
+% \setbeamertemplate{background canvas}{%
+% {\color{skoltechgreen}\rule{6pt}{\dimexpr\paperheight-30pt\relax}}%    
+% }
+
+
+
+
+% new command to point some ideas 
+\newcommand{\csk}{\color{skoltechgreen}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%  frametitle %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://tex.stackexchange.com/questions/415621/how-to-customize-the-frame-title-subtitle-main-text-in-terms-of-position-and?rq=1
+% to print vars https://texfaq.org/FAQ-printvar
+\makeatletter%
+\setbeamertemplate{frametitle}{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  % `\advance` add to \@tempdima the next margins 
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=1em, left,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \if@tempswa\else\csname beamer@fteleft\endcsname\fi%
+        \vskip-0.5em%
+    \strut%
+\insertframetitle%
+    \strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \if@tempswa\else\vskip-.5cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   SLIDE FOOTER   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamerfont{footnote}{size=\tiny}
+\newcount\forcewidefootnote% <-- широкие ли заметки будут. 1=да, -1=нет, 0=зависит от того, насколько она большая
+\forcewidefootnote=0
+\newif\ifsupressfootnote % <-- не показывать футнот
+\def\ifnot#1{#1\else\expandafter\expandafter\fi\iffalse\iftrue\fi} % <-- нам понадобится инверсия условия if. См https://tex.stackexchange.com/questions/108911/negating-ifeof
+\def\ifnottitle#1{\ifnot{\ifnum\insertframenumber=1}\relax#1\fi} % на первом слайде (где заголовок) не используем многие элементы
+
+\newif\iffootnotefullwidth% <-- определим, "широкая" ли заметка будет или нет. Если широкая -- она занимает весь низ, лого и номер страницы исчезают
+\newcommand{\check@footwidth}[1]{%
+    \setbox\footnote@box=#1\relax%
+    \ifnum \forcewidefootnote=1\relax%
+        \footnotefullwidthtrue% 
+    \else%
+        \ifnum\forcewidefootnote=-1\relax% 
+            \footnotefullwidthfalse%
+        \else%
+            \ifdim\ht\footnote@box>36pt\relax% 
+                \footnotefullwidthtrue% 
+            \else%
+                \footnotefullwidthfalse% 
+            \fi%
+        \fi%
+    \fi%
+}
+
+\newdimen\fromBorderLogo%  <-- насколько отходим от краёв
+\fromBorderLogo=0.2\beamer@leftmargin
+\newdimen\fromBottonLogo% < -- насколько отходим от низа
+\fromBottonLogo=2pt
+
+\def\sk@widefootnote@box{%  <-- на случай широкой заметки
+    \raisebox{0em}[0pt][0pt]{
+        \hbox{
+            \parbox[b]{\dimexpr\paperwidth-30pt}{%
+                \usebeamerfont{footnote}\centering% 
+                \ifnot{\ifsupressfootnote}%
+                    \sk@footnote%
+                \fi%
+            }%
+        }% 
+    }%
+}
+\def\sk@logo@box{% <-- бокс для логотипа
+    \raisebox{0pt}[0pt][0pt]{%
+        \makebox[0pt]{%
+            \includegraphics[width=1.5cm]{\logoname}%
+            \hspace{1.5cm}\hspace{2\fromBorderLogo}%
+            
+        }%
+    }%
+}
+\def\sk@pagenumbers@box{% <-- бокс для числа страниц
+    \hspace{5pt}%
+    % \makebox[0pt]{%
+        \makebox[20pt][l]{%
+            \ifnottitle{%
+                \insertframenumber\,/\,\inserttotalframenumber%
+            }%
+        % }%
+    }% 
+}
+
+\setbeamertemplate{navigation symbols}{}% <-- без символов навигации
+\newbox\footnote@box % 
+
+\setbeamertemplate{footline}{% <-- отображаем футер
+    \usebeamercolor[fg]{page number}%
+    \check@footwidth{%
+        \hbox{\parbox[b]{\cscfootnotelen}{%
+            \usebeamerfont{footnote}\centering% 
+            \ifnot{\ifsupressfootnote}%
+                \sk@footnote%
+            \fi%
+        }}%
+    }%
+    \iffootnotefullwidth\relax% <-- если заметка должна быть широкая, кроме неё ничего не будет внизу
+        \hfill%
+        \sk@widefootnote@box
+        \hfill%
+    \else%   
+        % номер слайда - заметку на полях - лого
+        {\usebeamerfont{page number}\sk@pagenumbers@box}%
+        \hfill% 
+        \raisebox{0em}[0pt][0pt]{\box\footnote@box}%
+        \hfill% 
+        \sk@logo@box%
+        
+    \fi%
+    \vspace{\fromBottonLogo}%
+    \myfootnote{}% <-- обнуляем текст в заметке
+}%
+
+\def\gnewcommand{\g@star@or@long\new@command}
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{% 
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}} 
+  
+\newcommand{\sk@footnote}{}
+\newcommand{\myfootnote}[1]{%
+    \grenewcommand{\sk@footnote}{% 
+        {#1}% 
+    }%
+}
+\newcount\is@wide@slide
+\ifdim\paperwidth>370pt % <-- 16:9
+    \is@wide@slide=1
+\else                   % <--  4:3
+    \is@wide@slide=0
+\fi
+\newlength{\cscfootnotelen}%
+\ifnum\is@wide@slide=1%
+    \setlength{\cscfootnotelen}{12cm}
+\else
+    \setlength{\cscfootnotelen}{9cm}
+\fi
+
+
+% % global renewcommand. From https://tex.stackexchange.com/questions/51733/global-renewcommand-equivalent-of-global-def
+% \def\gnewcommand{\g@star@or@long\new@command}
+% \def\grenewcommand{\g@star@or@long\renew@command}
+% \def\g@star@or@long#1{% 
+%   \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+% \makeatother
+% \newcommand{\myfootnote}{}
+% \newcommand{\skfootnote}[1]{%
+%     \grenewcommand{\myfootnote}{%
+%         #1%
+%     }%
+% }
+
+% \newlength{\skfootnotelen}%
+% \setlength{\skfootnotelen}{8cm}
+
+% % add footer with page number and logo. 
+% \setbeamertemplate{footline}{%
+%         %
+%         % \show\insertframenumber%
+%         \usebeamercolor[fg]{page number in head/foot}%
+%         \usebeamerfont{page number in head/foot}%
+%         % force LaTeX to think, that the page-block has no horizontal value.
+%         % thus we can centerize the footnote
+%         \makebox[0em]{%
+%              % move from the border
+%             \hspace{40pt}%
+%             % remove page number from the first slide
+%             \ifthenelse{\equal{\insertframenumber}{1}}{}{\insertframenumber\,/\,\inserttotalframenumber}%
+%         }%
+%         % centerize footnote. skip from the page border
+%         \hfill% 
+%         {%
+%             \makebox[0em]{{%
+%                 \hfill\hfill%
+%                 \raisebox{0ex}[0pt][0pt]{
+%                 \parbox{\skfootnotelen}{%
+%                     \begin{center}%
+%                       \myfootnote%
+%                     \end{center}%
+%                 }}\hfill%
+%             }}%
+%         }%
+%         \hfill\medskip%
+%         \skfootnote{}
+%         \ifthenelse{%
+%             \equal{\logoname}{}%
+%         } {%
+%             % if no logo -- pass 
+%         }
+%         {%
+%           % if logo exists  
+%             % force LaTeX to think, the logo starts at -1em and has no size
+%             \raisebox{-1em}[0pt][0pt]{%
+%                 \makebox[0em]{%
+%                     \includegraphics[height=0.7cm,width=1.5cm,keepaspectratio]{\logoname}%
+%                     \hspace{2.0cm}%
+%                 }%
+%             }%
+%             % move from the border
+%         }%
+%  }
+
+% \mode<presentation>
+ 
+% \usefonttheme{default}
+
+% \useinnertheme{default}
+% \useoutertheme{default}
+ 
+% \setbeamerfont{author}{size=\large}
+% \setbeamerfont{date}{size=\large}
+% \setbeamerfont{example text}{series=\bfseries}
+% \setbeamerfont{frametitle}{series=\bfseries,size=\large}
+% \setbeamerfont{framesubtitle}{series=\mdseries,size=\large}
+\setbeamerfont{section}{series=\bfseries}
+\setbeamerfont{title}{series=\bfseries}
+ 
+% \setbeamertemplate{navigation symbols}{}
+ 
+\mode
+<all>

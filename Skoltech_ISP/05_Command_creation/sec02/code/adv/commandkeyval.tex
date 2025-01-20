@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=80mm, left=1mm, top=1mm, right=1mm, bottom=1mm}
+\parindent=0pt
+
+\makeatletter % not needed in a .sty file
+\usepackage{keyval}
+\define@key{test}{color}{%
+  \def\thiscolor{#1}}
+  
+\newcommand{\mycommand}[1]{%
+  \def\thiscolor{}% default
+  \setkeys{test}{#1}%
+   the color is \thiscolor}
+
+
+\begin{document}
+\vspace*{\fill}\vspace{-5ex}
+
+\mycommand{color=red}
+
+\vspace*{\fill}
+\end{document}

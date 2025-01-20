@@ -1,0 +1,124 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\graphicspath{{sec05/images/}{sec05/code/}}
+\lstset{inputpath=sec05/code/}
+
+\newcommand{\logshowI}[3]{ %%% add two columns: (1) some latex-code (2) the log file text produced by the code
+    \begin{columns}
+    \begin{column}{0.45\textwidth}
+        %  \lstinputlisting[linerange={#2}]{#1.tex}
+          \foreach \range in {#2} {%
+                \expandafter\StrBefore{\range}{-}[\start]%  % Extract the start value
+                \expandafter\StrBehind{\range}{-}[\eend]%   % Extract the end value
+                %
+                \expandafter\myminted\expandafter{sec05/code/#1.tex}{\expandafter\start}{\expandafter\eend}%
+            }
+    \end{column}
+    
+    \begin{column}{0.45\textwidth}
+         \lstinputlisting[language={},linerange={#3}, keywordstyle=\color{black}, identifierstyle=\color{black},]{#1.logp}
+    \end{column}
+    \end{columns}
+}
+
+\subsection{Show-family}
+
+\begin{frame}[fragile]{Expand macros\magicPage}\relax
+
+    \logshowI{showmy}{7-10,38-41}{1-18}
+    
+    \ccol{\show<macros>} 
+     \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#show-rp} \knuthc{3}[21] \stExC{https://tex.stackexchange.com/questions/364942/show-family-debugging-commands}}
+\end{frame}
+
+\begin{frame}[fragile]{Expand macros\magicPage}{\ccol{show} with not macros}\relax
+    
+    \logshowI{showmy}{12-15,43-44}{21-26}
+\end{frame}
+
+\begin{frame}[fragile]{Show length and counts\tW\magicPage}\relax
+
+    \logshowI{showthemy}{12-20,39-45}{1-14}
+    \ccol{\showthe<var>}
+    % TODO: \showthe\font
+    \skfootnote{\url{https://texfaq.org/FAQ-printvar} \tugC{https://www.tug.org/utilities/plain/cseq.html\#showthe-rp} \knuthc{15}[132]}
+\end{frame}
+
+
+\begin{frame}[fragile]{Show boxes\tW\magicPage}\relax
+
+    \logshowI{showboxmy}{31-39}{1-14}
+    \ccol{\showbox<box>}
+    
+    \skfootnote{\url{https://texfaq.org/FAQ-printvar} \tugC{https://www.tug.org/utilities/plain/cseq.html\#showbox-rp} \tugC{https://www.tug.org/utilities/plain/cseq.html\#showboxbreadth-rp} \tugC{https://www.tug.org/utilities/plain/cseq.html\#showboxdepth-rp} \knuthc{11}[77]\\ \ccol{\showboxbreadth} and \ccol{\showboxdepth} provides how much info to show}
+\end{frame}
+
+% \begin{frame}[fragile]{Show stack of modes\tW\magicPage}\relax
+
+% \logshow{showlistsmy}{12-17}{1-18}
+% \ccol{\showlists}
+% \skfootnote{\vspace{-3ex}\tugC{https://www.tug.org/utilities/plain/cseq.html\#showlists-rp}  \knuthc{13}[99]\\``it causes TEX to display the lists that are being worked
+% on, in the current mode and in all enclosing modes where the work has been suspended:''}
+% \end{frame}
+
+\begin{frame}{Show-family list}\relax
+    \small
+    \begin{description}
+        \item[\ccol{\show}] log macros insides
+        \item[\ccol\showthe] log length or counter value
+        \item[\ccol\showbox] log box insides 
+        \begin{description}
+            \item[\ccol\showboxdepth] the value of the deepest level of box nesting
+            \item[\ccol\showboxbreadth] the maximum number of items shown per level 
+        \end{description}
+        \item[\ccol\showlists] writes the content of partial box lists in all of the 4 non-math TeX modes
+        \item[\ccol\showhyphens\{W\}] displays the hyphenation of W on the terminal/log according to the hyphenation rules.
+    \end{description}
+     \skfootnote{\stExC{https://tex.stackexchange.com/questions/364942/show-family-debugging-commands}}
+\end{frame}
+
+\subsection{Tracing-family}
+
+\begin{frame}[fragile]{Trace modes and commands\tW\magicPage}\relax
+    \logshowI{tracingcommandsmy}{11-11,16-18}{1-10}
+    \ccol{\tracingcommands=1}
+    
+    \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#tracingcommands-rp} \knuthc{13}[99]}
+\end{frame}
+
+\begin{frame}[fragile]{Trace macros (recursively)\tW\magicPage}\relax
+    \logshowI{tracingmacrosmy}{7-10,15-20}{1-15}
+    \ccol{\tracingmacros=1}
+    
+    \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#tracingmacros-rp} \knuthc{20}[216]}
+\end{frame}
+
+
+\begin{frame}{Tracing-family list}\relax
+    \footnotesize
+    
+    \begin{description}
+        \item[\ccol\tracingcommands] if positive, writes commands to the .log file
+        \item[\ccol\tracinglostchars] if positive, writes characters not in the current font to the .log file
+        \item[\ccol\tracingmacros] if positive, writes to the .log file when expanding macros and arguments
+        \item[\ccol\tracingonline] if positive, writes diagnostic output to the terminal as well as to the .log file
+        \item[\ccol\tracingoutput] if positive, writes contents of shipped out boxes to the .log file
+        \item[\ccol\tracingpages] if positive, writes the page-cost calculations to the .log file
+        \item[\ccol\tracingparagraphs] if positive, writes a summary of the line-breaking calculations to the .log file
+        \item[\ccol\tracingrestores] if positive, writes save-stack details to the .log file
+        \item[\ccol\tracingstats] if positive, writes memory usage statistics to the .log file
+        \item[\ccol\tracingall] turns on every possible mode of interaction
+    \end{description}
+     \skfootnote{\stExC{https://tex.stackexchange.com/questions/60491/latex-tracing-commands-list}}
+\end{frame}
+
+\subsection{Other debugging ways}
+
+\begin{frame}[fragile]{Message to log file\magicPage}\relax
+    \logshowI{messagemy}{7-7,14-15,17-18,31-32,15-20}{1-2}
+    \ccol{\message\{<msg>\}} -- \TeX-command, \ccol{\typeout\{<msg>\}} -- \LaTeX-command
+    
+    \skfootnote{\tugC{https://www.tug.org/utilities/plain/cseq.html\#message-rp} \knuthc{20}[228] \lmanc{27.2}[228]}
+\end{frame}
+
+% 

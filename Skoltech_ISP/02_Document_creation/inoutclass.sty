@@ -1,0 +1,87 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{inoutclass}[2024/12/17 Add oppotunity to mark something as shown only in or out class]
+
+\RequirePackage{kvoptions} %  <-- передаём параметры в пакет
+
+% process the arguments for the package
+\SetupKeyvalOptions{
+    family=KVIO,
+    prefix=KVIO@
+}
+\DeclareStringOption[all]{mode}[inclass]
+\ProcessKeyvalOptions*
+
+
+\newif\ifinclassmode
+\newif\ifoutclassmode
+\inclassmodetrue
+\outclassmodetrue
+\def\io@inclass@check{inclass}
+\def\io@outclass@check{outclass}
+\def\io@in@check{in}
+\def\io@out@check{out}
+
+\ifx\KVIO@mode\io@inclass@check
+    \outclassmodefalse
+    % \supressfootnotetrue
+\fi
+\ifx\KVIO@mode\io@outclass@check
+    \inclassmodefalse
+    % \supressprogressbartrue
+\fi
+\ifx\KVIO@mode\io@in@check
+    \outclassmodefalse
+\fi
+\ifx\KVIO@mode\io@out@check
+    \inclassmodefalse
+\fi
+
+
+\ifinclassmode
+    \providecommand{\inclass}[1]{#1}
+\else
+    \providecommand{\inclass}[1]{}
+\fi 
+\ifoutclassmode
+    \providecommand{\outclass}[1]{#1}
+\else
+    \providecommand{\outclass}[1]{}
+\fi
+
+\def\strut@depth{\dp\strutbox}%
+\def\io@marginalsymbol#1{%
+    \strut\vadjust{%
+        \kern-\strut@depth%
+        \vtop to \strut@depth{%
+            \baselineskip\strut@depth%
+            \vss\llap{%
+                #1\hspace{15pt}%
+            }\null%
+        }%
+    }%
+}
+
+\long\def\io@high#1#2#3{%
+    #1{% <-- inclass/outclass % ---\llap{>}
+        \io@marginalsymbol{#2{$\rightarrow$}\hspace{-4pt}}% <-- #2 = highlight
+        #3% <-- content % \rlap{<}---
+        \io@marginalsymbol{#2{$\leftarrow$}}%
+    }%
+}
+
+% \def\insertframetitle{AAAAAAA\old@insertframetitle}
+\let\old@insertframetitle=\beamer@@tmpl@frametitle
+\long\def\io@classframe#1#2#3{%
+    #1{%
+    {%
+    \def\beamer@@tmpl@frametitle{\io@marginalsymbol{#2{\smash{\raise1ex\hbox{|\hspace{-3pt}|}}}}\old@insertframetitle}%
+    #3%
+    }}%
+}
+\providecommand\inclasshigh[1]{\io@high{\inclass}{\color{inclasscolor}}{#1}}
+\providecommand\outclasshigh[1]{\io@high{\outclass}{\color{outclasscolor}}{#1}}
+
+\providecommand\inclassframe[1]{\io@classframe{\inclass}{\color{inclasscolor}}{#1}}
+\providecommand\outclassframe[1]{\io@classframe{\outclass}{\color{outclasscolor}}{#1}}
+
+\providecommand\inpause{\inclass{\pause}}

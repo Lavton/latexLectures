@@ -1,0 +1,19 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{plain}
+\usepackage{geometry}
+\geometry{paperwidth=80mm, paperheight=50mm, left=5mm, top=5mm, right=5mm, bottom=15mm} %, layoutwidth=60mm, layoutheight=35mm,
+
+\setcounter{page}{7}
+\setcounter{section}{37}
+\setcounter{equation}{2}
+
+\usepackage{amsmath}
+\numberwithin{equation}{section} % Number equations within sections
+\begin{document}
+    \section{Nice section \label{sec:nice}}
+    \begin{equation}
+         y=\frac{x+1}{b} \label{niceeq}
+    \end{equation}
+    We have a nice equation (\ref{niceeq}) on page \pageref{niceeq} inside the section \ref{sec:nice}.
+\end{document}

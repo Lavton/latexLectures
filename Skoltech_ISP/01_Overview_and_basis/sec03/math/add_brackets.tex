@@ -1,0 +1,28 @@
+\begin{frame}[fragile]{Brackets\magicPage}\relax
+
+Sometimes you need to manually set the bracket size. Then use something like this 
+\vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$(\bigl( \Bigl( \biggl( \Biggl($$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$(\bigl( \Bigl( \biggl( \Biggl($$
+        \end{column}
+    \end{columns}
+    \vphantom(
+    
+    \vphantom. 
+    \begin{columns}
+        \begin{column}{0.70\textwidth}
+          \hfill \lstinline[basicstyle=\tt\normalsize]"$$]\bigr] \Bigr] \biggr] \Biggr]$$" 
+        \end{column}
+        \begin{column}{0.3\textwidth}
+             $$]\bigr] \Bigr] \biggr] \Biggr]$$
+        \end{column}
+    \end{columns}
+    \vphantom(
+
+\skfootnote{\knuthc{17}[147] \overC{https://www.overleaf.com/learn/latex/Brackets_and_Parentheses}}
+     
+\end{frame}

@@ -1,0 +1,142 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{boxplay}[2018/11/03 The style file for adding box around the box]
+
+\RequirePackage{color}
+\RequirePackage{xcolor}
+
+% command for put a box around something in horizontal mode and made it's width dimention visible
+\newcommand{\boxing}[1]{{%
+\ifcsname boxtodimen\endcsname% % check if  \boxtodimen is defined and define some variables if not
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen% height
+\db=\the\dp\boxtodimen% depth 
+\wb=\the\wd\boxtodimen% width
+{%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+    \color{blue}
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}%
+}%
+}}
+
+% command for put a box around something in and made it's height and depth visible
+\newcommand{\boxingV}[1]{{%
+\ifcsname boxtodimen\endcsname% % check if  \boxtodimen is defined and define some variables if not
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+%
+\leavevmode%
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \leavevmode 
+        % \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!60!black}\rule{\wb}{0.4pt}}}%width2
+        % \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{0.4pt}{\hb}}}%height
+        % \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{0.4pt}{\db}}}%depth
+    }}}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        % \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        % \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}%
+}%
+}
+
+% command for put a box around something and made it's dimention visible (with thick lines)
+\newcommand{\boxingDimHuge}[1]{{%
+\ifvmode%
+    \newcommand\boxArg[0]{\vbox{#1}}%
+\else%
+\newcommand\boxArg[0]{#1}%
+\fi%
+\ifcsname boxtodimen\endcsname% % check if  \boxtodimen is defined and define some variables if not
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{#1}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \leavevmode 
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{1.7pt}}}%width
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\rule{\wb}{0.4pt}}}%width2
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{1.7pt}{\hb}}}%height
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{1.7pt}{\db}}}%depth
+    }}}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+}%
+}%
+}
+
+% command for put a box around something and made it's dimention visible
+\newcommand{\boxingDim}[1]{{%
+\ifvmode%
+    \newcommand\boxArg[0]{\vbox{#1}}%
+\else%
+\newcommand\boxArg[0]{#1}%
+\fi%
+\ifcsname boxtodimen\endcsname% % check if  \boxtodimen is defined and define some variables if not
+\else%
+\newbox\boxtodimen%
+\newdimen\hb%
+\newdimen\db%
+\newdimen\wb%
+\fi%
+\leavevmode 
+\setbox\boxtodimen=\hbox{\boxArg}%
+\hb=\the\ht\boxtodimen%
+\db=\the\dp\boxtodimen%
+\wb=\the\wd\boxtodimen%
+\hbox to \wb{%
+    \hbox to 0pt{\box\boxtodimen}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%left
+        \hbox to 0pt{\hbox to \wb{}\raisebox{-\db}[0pt][0pt]{\rule{0.4pt}{\dimexpr\hb+\db}}}%right
+        \hbox to 0pt{\raisebox{\hb}[0pt][0pt]{\rule{\wb}{0.4pt}}}%top
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\rule{\wb}{0.4pt}}}%bottom
+    }}}%
+    \hbox to 0pt{\vbox to 0pt{\hbox{%
+        \leavevmode 
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{green!40!black}\rule{\wb}{0.6pt}}}%width
+        \hbox to 0pt{\raisebox{0pt}[0pt][0pt]{\color{red}\rule{0.6pt}{\hb}}}%height
+        \hbox to 0pt{\raisebox{-\db}[0pt][0pt]{\color{red!40!yellow}\rule{0.6pt}{\db}}}%depth
+    }}}%
+}%
+}%
+}

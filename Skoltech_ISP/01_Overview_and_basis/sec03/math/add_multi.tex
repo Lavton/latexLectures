@@ -1,0 +1,114 @@
+\begin{frame}[fragile]{Also array\magicPage}\relax
+     \cprotect\twocolImg{
+         \inputminted[firstline=11, lastline=17]{latex}{sec03/code/s1/matrixesno.tex}
+        % \lstinputlisting[linerange={11-17}]{matrixesno}
+    }{matrixesno}
+    \cprotect\twocolImg{
+     \inputminted[firstline=9, lastline=16]{latex}{sec03/code/s1/equcaseno.tex}
+    % \lstinputlisting[linerange={9-16}]{equcaseno}
+    }{equcaseno}
+
+\cprotect\skfootnote{advanced: \knuthc{18}[186] \tugC{https://www.tug.org/utilities/plain/cseq.html\#vcenter-rp}}
+\end{frame}
+
+\begin{frame}[fragile]{Formula in multiple line\magicPage}\relax
+\skfootnote{{ }\lvoc{II.4.2}[81]\\ You can modify the line gaps, push string to left or right,..}
+
+    \cprotect\twocolImg{
+        \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/multilines.tex}
+        \inputminted[firstline=17, lastline=20]{latex}{sec03/code/s1/multilines.tex}
+% \lstinputlisting[linerange={13-14, 17-20}]{multilines.tex}
+}{multilines}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Multiple formulas\magicPage}\relax
+
+% \vspace{-10ex}
+    \cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/gathermy.tex}
+    \inputminted[firstline=17, lastline=21]{latex}{sec03/code/s1/gathermy.tex}
+% \lstinputlisting[linerange={13-14, 17-21}]{gathermy.tex}
+}{gathermy}
+
+\inpause
+% \vspace{-10ex}
+notice \lstinline[basicstyle=\tt\normalsize]|\notag| !
+
+\cprotect\skfootnote{{} \lvoc{II.4.2}[81]\\ \slshape  also see \verb'gather*' to ban numeration}
+
+\end{frame}
+
+\begin{frame}[fragile]{Multiple formulas and lines: alignment\magicPage}\relax
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/alignmy.tex}
+    \inputminted[firstline=17, lastline=20]{latex}{sec03/code/s1/alignmy.tex}
+    % \lstinputlisting[linerange={13-14, 17-20}]{alignmy.tex}
+}{alignmy}
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/splitmy.tex}
+    \inputminted[firstline=17, lastline=22]{latex}{sec03/code/s1/splitmy.tex}
+    % \lstinputlisting[linerange={13-14, 17-22}]{splitmy}
+}{splitmy}
+
+
+ampersand {\csk \&} is stands for indent (as in tables)
+\cprotect\skfootnote{{ }\lvoc{II.4.2}[82]\\  also see \verb'align*' to ban numeration}
+\end{frame}
+
+\begin{frame}[fragile, t]{Text inside equations\magicPage}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/alignetextwrong1.tex}
+    \inputminted[firstline=17, lastline=23]{latex}{sec03/code/s1/alignetextwrong1.tex}
+    % \lstinputlisting[linerange={13-14, 17-23}]{alignetextwrong1.tex}
+}{alignetextwrong1}
+
+Problem:
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/alignetextwrong.tex}
+    \inputminted[firstline=17, lastline=23]{latex}{sec03/code/s1/alignetextwrong.tex}
+    % \lstinputlisting[linerange={13-14, 17-23}]{alignetextwrong.tex}
+}{alignetextwrong}
+
+\end{frame}
+\begin{frame}[fragile]{Text inside equations\magicPage}{solution}\relax
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/alignetext.tex}
+    \inputminted[firstline=17, lastline=23]{latex}{sec03/code/s1/alignetext.tex}
+    % \lstinputlisting[linerange={13-14, 17-23}]{alignetext.tex}
+}{alignetext}
+\ccol{\text} and \ccol{\intertext}
+% \inclassFrag{How will you type $g = 9.8 \frac{\text{m}}{\text{s}^2}$?}[-1]
+\skfootnote{{} \lvoc{II.4.2}[83]}
+\end{frame}
+
+\begin{frame}[fragile]{System of equations\magicPage}\relax
+% \vspace{-1.3cm}
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/equsis.tex}
+    \inputminted[firstline=17, lastline=24]{latex}{sec03/code/s1/equsis.tex}
+
+    % \lstinputlisting[linerange={13-14, 17-24}]{equsis.tex}
+}{equsis}
+% \vspace{-2cm}
+\cprotect\twocolImg{
+    \inputminted[firstline=13, lastline=14]{latex}{sec03/code/s1/equcase.tex}
+    \inputminted[firstline=17, lastline=23]{latex}{sec03/code/s1/equcase.tex}
+    % \lstinputlisting[linerange={13-14, 17-23}]{equcase}
+}{equcase}
+\skfootnote{{} \lvoc{II.4.2}[84]}
+\end{frame}
+
+
+\begin{frame}[fragile]{Matrix\magicPage}\relax
+    \cprotect\twocolImg{
+    \inputminted[firstline=7, lastline=7]{latex}{sec03/code/s1/matrixes.tex}
+    \inputminted[firstline=11, lastline=18]{latex}{sec03/code/s1/matrixes.tex}
+    % \lstinputlisting[linerange={7-7, 11-18}]{matrixes}
+}{matrixes}
+\cprotect\skfootnote{{ } \lvoc{II.3}[74]\\ \slshape Also see \lstinline!matrix! without borders and \lstinline!vmpatrix! for |border|}
+     
+\end{frame}

@@ -1,0 +1,17 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+\setbeamertemplate{navigation symbols}{}% <-- no navigation symbols
+\newcommand{\FootLineText}[1]{} % technical stuff. Don't look at it for now
+\newcommand{\footline}[1]{\renewcommand{\FootLineText}{#1}} % technical stuff.
+
+%%%%%%%%%%%%% the main workfield is below %%%%%%%%%%%%%%
+\setbeamertemplate{footline}{% make something inside this template
+    \FootLineText  
+ }
+%%%%%%%%%%%%% the main workfield is above %%%%%%%%%%%%%%
+
+\footline{AAAAAAAAAAAA}
+
+\begin{document}
+    \frame{\frametitle{Frame}}
+\end{document} 

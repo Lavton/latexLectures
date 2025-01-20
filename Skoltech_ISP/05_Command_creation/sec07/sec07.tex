@@ -1,0 +1,74 @@
+%% It is just an empty TeX file.
+%% Write your code here.
+\graphicspath{{sec07/images/}{sec07/code/}}
+\lstset{inputpath=sec07/code/}
+
+\begin{frame}[fragile]{New command with optional arguments\magicPage}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={10-16}]{commandoptdef.tex}
+    \inputminted[firstline=10, lastline=16]{latex}{sec07/code/commandoptdef.tex}
+    }{commandoptdef}
+    
+    Use syntax \verb|\newcommand{\<cmdname>}[total_arg_num][defaults]{<code>}|
+\end{frame}
+
+\begin{frame}[fragile]{New command with optional arguments\magicPage}{using package}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={7-7, 11-18}]{commandoptpack.tex}
+    \inputminted[firstline=7, lastline=7]{latex}{sec07/code/commandoptpack.tex}
+    \inputminted[firstline= 11, lastline=18]{latex}{sec07/code/commandoptpack.tex}
+    }{commandoptpack}
+    
+    Use \ncol\usepackage{xargs}\ and \ccol\newcommandx\ (notice \textbf{x} at the end)
+
+\end{frame}
+
+\begin{frame}[fragile]{New command with key=value syntax\magicPage}{keyval package}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={9-16, 22-22}]{commandkeyval.tex}
+    \inputminted[firstline=9, lastline=16]{latex}{sec07/code/commandkeyval.tex}
+    \inputminted[firstline= 22, lastline=22]{latex}{sec07/code/commandkeyval.tex}
+    }{commandkeyval}
+    
+    Use \ncol\usepackage{keyval}\ and \ccol{\define@key}, \ccol{\setkeys}
+    
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/58069/newcommand-key-value}}
+\end{frame}
+
+
+\begin{frame}[fragile]{New command with key=value syntax\magicPage}{keyval package}\relax
+    \twocolImg{
+    % \lstinputlisting[linerange={9-9, 15-16}]{commandkeyvalpgf.tex}
+        \inputminted[firstline=9, lastline=9]{latex}{sec07/code/commandkeyvalpgf.tex}
+        \inputminted[firstline= 15, lastline=16]{latex}{sec07/code/commandkeyvalpgf.tex}
+    }{commandkeyvalpgf}
+    
+    Use \ncol\usepackage{pgfkeys}
+    
+    \skfootnote{\stExC{https://tex.stackexchange.com/questions/34312/how-to-create-a-command-with-key-values}}
+\end{frame}
+
+
+\begin{frame}[fragile]{New package with key=value syntax\magicPage}\relax
+
+    % \lstinputlisting{packexample.sty}
+    \inputminted[fontsize=\tiny]{latex}{sec07/code/packexample.sty.tex}
+    
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec07/code/packagekeyval.tex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec07/code/packagekeyval.tex}
+    }{packagekeyval}
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval2.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec07/code/packagekeyval2.tex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec07/code/packagekeyval2.tex}
+    }{packagekeyval2}
+    \twocolImg{
+    % \lstinputlisting[linerange={8-8, 12-12}]{packagekeyval3.tex}
+    \inputminted[firstline=8, lastline=8]{latex}{sec07/code/packagekeyval3.tex}
+    \inputminted[firstline= 12, lastline=12]{latex}{sec07/code/packagekeyval3.tex}
+    }{packagekeyval3}
+    
+
+\end{frame}

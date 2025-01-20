@@ -1,0 +1,64 @@
+
+%%% code 
+\begin{frame}[fragile]{Verbatim\magicPage}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=6, lastline=6]{latex}{sec03/code/s3/vemy.tex}
+    \inputminted[firstline=11, lastline=11]{latex}{sec03/code/s3/vemy.tex}
+    % \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{vemy}
+}{vemy}
+
+\skfootnote{\lmanc{8.27}[87]}
+\end{frame}
+
+\begin{frame}[fragile]{Listings\magicPage}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=6, lastline=6]{latex}{sec03/code/s3/lstmyf.tex}
+    \inputminted[firstline=11, lastline=11]{latex}{sec03/code/s3/lstmyf.tex}
+    % \lstinputlisting[linerange={6-6, 11-11},basicstyle=\tt\small]{lstmyf}
+}{lstmyf}
+\end{frame}
+
+\begin{frame}[fragile]{Listings (also)\magicPage}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=6, lastline=18]{latex}{sec03/code/s3/lstmys.tex}
+    \inputminted[firstline=22, lastline=22]{latex}{sec03/code/s3/lstmys.tex}
+
+    % \lstinputlisting[linerange={6-18, 22-22}]{lstmys}
+}{lstmys}
+
+ \skfootnote{\wikiC{https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings\#Settings} setting for lstlisting}
+ 
+\end{frame}
+
+\begin{frame}[fragile]{Minted\magicPage}\relax
+
+\cprotect\twocolImg{
+    \inputminted[firstline=6, lastline=6]{latex}{sec03/code/s3/mintmy.tex}
+    \inputminted[firstline=11, lastline=11]{latex}{sec03/code/s3/mintmy.tex}
+    % \lstinputlisting[linerange={6-6, 11-11}]{mintmy}
+}{mintmy}
+\skfootnote{\overC{https://www.overleaf.com/learn/latex/Code_Highlighting_with_minted} \stExC{https://tex.stackexchange.com/questions/389191/minted-vs-listings-pros-and-cons}}
+\end{frame}
+
+\begin{frame}[fragile]{Comparison\magicPage}\relax
+    \begin{description}
+         \item[verbatim] is the default package when you need just to add code 
+         \item[minted] is the verbatim on steroids --- it will color your code in proper style, but it works through a python library
+         \item[listings] is a package, that you must tune by yourself, but it is the most ``tunable'' package
+    \end{description}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Tips about the code packages\magicPage\preMagicPage}\relax
+    \begin{itemize}
+         \item you must use {\csk \verb|[fragile]|} option in presentation slides (beamer) in the slides with code 
+         \item use {\csk \verb|\cprotect|} package and command if you want to bring code to the command
+         \item you can include only part of the code and provide a path to your src folder
+         \item you can find lots about the code usage in the source of this presentation  
+    \end{itemize}
+    \skfootnote{\normalfont \url{http://mirror.macomnet.net/pub/CTAN/macros/latex/contrib/cprotect/cprotect.pdf}}
+\end{frame}
+

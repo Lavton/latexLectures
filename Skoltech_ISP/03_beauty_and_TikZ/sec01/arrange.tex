@@ -1,0 +1,145 @@
+\outclassframe{
+\begin{frame}{\ }\relax
+    Very few people make full-fledged charts in tikZ. But it is much more common to add tikZ as text decoration element.
+\end{frame}
+}
+
+
+\begin{frame}[fragile]{Introduction}\relax
+
+TikZ is often used not as ``independent picture'', but as a part of the presentation or document. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Example: CV\magicPage}\relax
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+              \only<1>{
+              \expandafter{\inputminted[firstline= 16, lastline=20]{latex}{sec01/code/cv_examples.tex}
+                }
+                }
+                \only<2>{\expandafter{\inputminted[firstline= 22, lastline=32]{latex}{sec01/code/cv_examples.tex}}}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+             \includegraphics[width=\textwidth, keepaspectratio]{cv_examples}
+        \end{column}
+    \end{columns}
+
+    % \cprotect\twocolImg{
+    % \only<1>{\inputminted[firstline= 16, lastline=20]{latex}{sec01/code/cv_examples.tex}}
+    % \only<2>{\inputminted[firstline= 22, lastline=32]{latex}{sec01/code/cv_examples.tex}}
+    % }{cv_examples}  
+    
+\end{frame}
+
+\begin{frame}[fragile]{``Magic''}\relax
+
+    How to produce ``magic'' \only<1>{\tikz[overlay, remember picture] \draw[->] (0, 0.1) to[out=0,in=180] (endM);}
+
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+    \node[anchor=north east,xshift=-0cm,yshift=-0cm](endM) {%
+        {\includegraphics[width=1cm]{black_magic}}%
+};
+\end{tikzpicture}%
+
+\inpause
+\begin{minted}{latex}
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+\node[anchor=north east,xshift=-0cm,yshift=-0cm](endM) {%
+    {\includegraphics[width=1cm]{images/magic}}%
+};
+\end{tikzpicture}
+\end{minted}
+
+\inpause
+Notice \ccol{shift=\{(current page.north east)\}}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{arrow to magic}\relax
+
+How to produce this \tikz[overlay, remember picture] \node (arrstart) {}; arrow \tikz[overlay, remember picture] \node (startMMM) {};
+
+\begin{tikzpicture}[remember picture,overlay,shift={(current page.north east)}]
+    \node[anchor=north east,xshift=-0cm,yshift=-0cm](endMMM) {%
+        {\includegraphics[width=1cm]{black_magic}}%
+};
+\end{tikzpicture}%
+
+\tikz[overlay, remember picture] \draw[->, ultra thick] ($(startMMM)+(0,0.1)$) to[out=0,in=180] (endMMM);
+\only<1>{\begin{tikzpicture}[overlay, remember picture]
+     \path[->, ultra thick, name path=point c] ($(startMMM)+(0,0.1)$) to[out=0,in=180] (endMMM);
+     
+     \path[->, name path=point a] ($(startMMM)+(5,-1)$) -- +(-1, 3);
+     \path[name intersections={of=point c and point a, by={intersection}}];
+     \draw[thick, thick, ->] ($(arrstart)-(0.4ex,-0.6ex)$) to[out=45, in=110] (intersection);
+\end{tikzpicture}}
+
+\inpause
+
+\begin{minted}{latex}
+% remember position of (startM) node (and (endM) node from previous slide)
+How to produce this arrow \tikz[overlay, remember picture] \node (startM) {};
+
+% go from (startM) to (endM)
+\tikz[overlay, remember picture] \draw[->, ultra thick] ($(startM)+(0,0.1)$) to[out=0,in=180] (endM);
+
+\end{minted}
+
+\skfootnote{What about arrow pointed on the thick arrow? It was produced with intersections library}
+     
+\end{frame}
+
+
+\begin{frame}[fragile]{``Common belief''\magicPage}\relax
+     \begin{center}
+        \begin{tikzpicture}
+             \node[align=center] (0,0) {
+             \huge \LaTeX\ is only for use\\ \huge  in academic area
+             };
+             \uncover<2,3>{\node[rotate=30, bottom color=red!50, top color=red!50] (0,0) {\Huge WRONG};}
+        \end{tikzpicture}
+         
+    \end{center}
+    
+\pause\pause was produce by 
+\begin{minted}{latex}
+\begin{tikzpicture}
+    \node[align=center] (0,0) {
+    \huge \LaTeX\ is only for use\\ \huge  in academic area
+    };
+    \uncover<2,3>{\node[rotate=30, bottom color=red!50, top color=red!50] (0,0) {\Huge WRONG}};
+\end{tikzpicture}
+\end{minted}
+    
+\end{frame}
+
+
+\cprotect\inclassframe{
+\begin{frame}[fragile]{\exFrame{Try to use other people's work}}{lvl 1}\relax
+
+    \begin{enumerate}
+        \item You have the code as below. Copy it to you document and make sure it is compiling. ``Play'' with the params and of \ccol\pictofraction\ and as the result give the enumerate list in pdf of what all params means. Ex: ``1. printed symbol, 2...''
+         \item Go to \url{https://tikz.dev/library-mindmaps} and try to create your own mindmap
+    \end{enumerate}
+
+    \inputminted[firstline=7, lastline=17]{latex}{sec01/code/exExtLvl1.tex}
+    \inputminted[firstline=21, lastline=22]{latex}{sec01/code/exExtLvl1.tex}
+%7-17, 21-22
+    %  \includegraphics[width=0.4\textwidth]{exLvl1}
+\end{frame}
+
+\begin{frame}[fragile, allowframebreaks]{\exFrame{Try to use other people's work}}{lvl 2}\relax
+You copy a code, that produce a ``day cyrcle'' (from AltaCV). But some libraries and packages are missing. See logs and google errors, make this code works :)
+
+\includegraphics[width=0.8\textwidth]{exExtLvl2full}
+
+     \inputminted[fontsize=\tiny]{latex}{sec01/code/exExtLvl2notfull.tex}
+    %  \includegraphics[width=0.4\textwidth]{exLvl2}
+\end{frame}
+
+}
+
+
+

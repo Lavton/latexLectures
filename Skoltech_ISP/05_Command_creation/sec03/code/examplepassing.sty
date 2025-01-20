@@ -1,0 +1,11 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{examplepassing}[2018/01/16 the simple package with passing options]
+
+\newcommand{\hello}{}
+\DeclareOption{first}{
+    \renewcommand{\hello}{Username}
+}
+\DeclareOption{second}{
+    \renewcommand{\hello}{World}
+}
+\ProcessOptions

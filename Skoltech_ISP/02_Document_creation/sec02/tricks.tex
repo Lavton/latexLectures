@@ -1,0 +1,137 @@
+\graphicspath{{sec02/images/}{sec02/code/}}
+\lstset{inputpath=sec02/code/}
+
+\begin{frame}[fragile]{Stepwise viewing: \ccol\pause \preMagicPage}
+
+    The \inpause main \inpause command \inpause to create \inpause pauses \inpause is \ccol\pause
+\end{frame}
+
+\begin{frame}[fragile]{Stepwise viewing\magicPage}
+\skfootnote{\href{https://ctan.org/pkg/beamer}{man: sec 9.1}}
+    Command \lstinline[basicstyle=\tt]|\pause|\pause\
+    is the simplest way to create an overlay.
+    \pause
+    \[
+        \zeta(s) = \sum^{\infty}_{k=1}{\frac{1}{k^s}},  \quad  \operatorname{Re}s > 1.
+    \]
+    \onslide\lstinline[basicstyle=\tt]|\onslide| command tells to show material from the first slide.\\
+    \onslide+<3->\lstinline[basicstyle=\tt]|\onslide<3->| tells to show material from the third slide on.\\ 
+    \pause \lstinline[basicstyle=\tt]|\pause| command then leads to the next slide.
+\end{frame}
+
+\begin{frame}[fragile]{Stepwise viewing\magicPage}
+\skfootnote{\href{https://ctan.org/pkg/beamer}{man: sec 9}}
+    Most of the commands are self--explanatory.\\
+    \lstinline[basicstyle=\tt]|\pause<#>| --- following text shown only after slide \#  \\
+    \lstinline[basicstyle=\tt]|\onslide<#>|  --- visible only slide \#\\
+    \lstinline[basicstyle=\tt]|\FromSlide{#}| --- equivalent to \lstinline[basicstyle=\tt]|\onslide<#->|. \\
+    \lstinline[basicstyle=\tt]|\only<#>| --- visible on particular slides, otherwise absent  \\
+    \lstinline[basicstyle=\tt]|\uncover<#>| --- visible on particular slides, otherwise transparent \\
+    \lstinline[basicstyle=\tt]|\visble<#>|  --- visible on particular slides, otherwise invisible  \\
+    \lstinline[basicstyle=\tt]|\invisble<#>| --- opposite of \lstinline[basicstyle=\tt]|\visble<#>|. \\
+    % \inclassFrag{Check the difference between \texttt{only} and \texttt{onslide} }[-1]
+\end{frame}
+
+\begin{frame}[fragile]{Overlays\magicPage}
+    Overlay specifications can also be written together with some commands like 
+    \lstinline[basicstyle=\tt]|\textbf|,
+    \lstinline[basicstyle=\tt]|\item|,
+    \lstinline[basicstyle=\tt]|\color|,
+    \lstinline[basicstyle=\tt]|\alert|. \\
+    \pause
+    \lstinline[basicstyle=\tt]|\begin{enumerate}| \\
+    \lstinline[basicstyle=\tt]|    \item<1-> Every \alert<3>{thing}|   \\
+    \lstinline[basicstyle=\tt]|    \item<only@3,4> that has|   \\
+    \lstinline[basicstyle=\tt]|    \item<2-> beginning| \\
+    \lstinline[basicstyle=\tt]|    \item<1,4>  has end.|   \\
+    \lstinline[basicstyle=\tt]|\end{enumerate}|
+\end{frame}
+
+\begin{frame}{Overlays\magicPage}
+    \begin{enumerate}
+        \item<1-> Every \alert<3>{thing}
+        \item<only@3,4> that has
+        \item<2-> beginning
+        \item<1,4> has end.
+    \end{enumerate}
+\end{frame}
+
+% \cprotect\inclassFrame{
+% \begin{frame}[fragile]{Can you guess what does this code produce?}\relax
+%     \lstinline[basicstyle=\tt]|\begin{itemize}[<+->]| \\
+%     \lstinline[basicstyle=\tt]|    \item Every thing|   \\
+%     \lstinline[basicstyle=\tt]|    \item that has|   \\
+%     \lstinline[basicstyle=\tt]|    \item beginning| \\
+%     \lstinline[basicstyle=\tt]|    \item has end.|   \\
+%     \lstinline[basicstyle=\tt]|\end{itemize}|
+% \end{frame}
+% }
+
+\begin{frame}{Overlays}
+    \begin{itemize}[<+->]
+        \item Every thing
+        \item that has
+        \item beginning
+        \item has end.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Animation\magicPage}
+
+    \transduration<1-4>{.5}
+    \begin{itemize}
+        \temporal<1>{\color{gray}}{\color{blue}}{\color{red!75}}{\item Every thing}
+        \temporal<2>{\color{gray}}{\color{blue}}{\color{red!75}}{\item that has}
+        \temporal<3>{\color{gray}}{\color{blue}}{\color{red!75}}{\item beginning}
+        \temporal<4>{\color{gray}}{\color{blue}}{\color{red!75}}{\item has end.}
+    \end{itemize}\vspace{5mm}
+    \visible<5>{Cool, right?}
+\end{frame}
+
+\begin{frame}[fragile]{Animation\magicPage}
+    \lstinline[basicstyle=\tt]|\animate<1-4>| \\
+    \lstinline[basicstyle=\tt]|\begin{itemize}[<+->]| \\
+    \lstinline[basicstyle=\tt]|    \item Every thing|   \\
+    \lstinline[basicstyle=\tt]|    \item that has|   \\
+    \lstinline[basicstyle=\tt]|    \item beginning| \\
+    \lstinline[basicstyle=\tt]|    \item has end.|   \\
+    \lstinline[basicstyle=\tt]|\end{itemize}|
+\end{frame}
+
+\begin{frame}[fragile]{Animation\magicPage}
+    \lstinline[basicstyle=\tt]|\transduration<1-4>{.5}| \\
+    \lstinline[basicstyle=\tt]|\begin{itemize}[<+->]| \\
+    \lstinline[basicstyle=\tt]|    \item Every thing|   \\
+    \lstinline[basicstyle=\tt]|    \item that has|   \\
+    \lstinline[basicstyle=\tt]|    \item beginning| \\
+    \lstinline[basicstyle=\tt]|    \item has end.|   \\
+    \lstinline[basicstyle=\tt]|\end{itemize}|
+\end{frame}
+
+\inclassframe{
+\begin{frame}{\exFrame{Create a presentation}}{lvl 1}\relax
+     Create a beamer presentation with
+     \begin{itemize}
+         \item at least two slides
+         \item title slide 
+         \item at least two sections and table of content
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{\exFrame{Create a presentation}}{lvl 2}\relax
+     Create a beamer presentation with
+     \begin{itemize}
+         \item at least two slides
+         \item title slide 
+         \item at least two sections and table of content
+         \item at least two subsections
+         \item with a slide at begin of every section and every subsection
+         \item with any of the themes not uncovered above
+         \item with overlayed list:
+         \begin{itemize}
+             \item firstly show only 1, 3, 5 item 
+             \item secondly show only 1, 2 and 4 item
+         \end{itemize}
+     \end{itemize}
+\end{frame}
+}

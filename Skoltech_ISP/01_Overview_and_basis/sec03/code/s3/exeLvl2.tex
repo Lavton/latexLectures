@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=140mm, paperheight=150mm, left=5mm, top=5mm, right=5mm, bottom=5mm} %, layoutwidth=60mm, layoutheight=35mm,
+\usepackage{graphicx}
+\graphicspath{{../../images/}} % optional
+\usepackage{lipsum}
+\begin{document}
+\vspace*{\fill} \vspace*{-5ex}
+
+Text with some picture (\includegraphics[scale=0.3]{papeeria.png})
+\begin{figure}[tbp]
+
+        \includegraphics{papeeria.png}
+    \caption{Floating pic}
+\end{figure}
+
+\begin{tabular}{|cc|c|}
+\hline
+tab 1 & tab 2&\\\hline
+tab 3 & tab4&tab5\\\hline\hline
+\end{tabular}
+
+
+\vspace*{\fill}
+\end{document}

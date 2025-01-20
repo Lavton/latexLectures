@@ -1,0 +1,71 @@
+\documentclass{beamer}
+\usepackage{fontspec}
+\usepackage{listings}
+\makeatletter
+\newread\source@reader
+\openin\source@reader=\jobname.secw\relax
+
+% Open the destination file for writing
+\newwrite\dest@writer
+\immediate\openout\dest@writer=\jobname.secw2\relax
+
+% Copy the contents of the source file to the destination file
+\loop
+  \read\source@reader to \line@content % Read a line from the source file
+  \unless\ifeof\source@reader % Check if end of file is reached
+  \immediate\write\dest@writer{\line@content} % Write the line to the destination file
+\repeat
+
+% Close both files
+\closein\source@reader
+\immediate\closeout\dest@writer
+
+
+%% 2. записываем в файл 
+\newcommand{\readallsections}{%
+    % \renewcommand{\readallsections}{
+    % aaa
+    % \lstinputlisting{\jobname.secw2}
+    % }
+    \ifeof\sectionfile@reader
+        no more!
+    \else
+        \read\sectionfile@reader to\newline\relax
+        frame: \newline
+    \fi\relax
+}
+% \readallsections
+\newwrite\sfile@writer
+\openout\sfile@writer=\jobname.secw\relax
+\newcommand{\sendToFile}{%
+
+    \write\sfile@writer{\insertframenumber}%
+    %\immediate
+    % \closeout\sfile@writer % Close the file after writing
+}
+\newread\sectionfile@reader
+\openin\sectionfile@reader=\jobname.secw2\relax
+
+\makeatother
+
+\begin{document}
+    \frame{Hello
+
+
+    \sendToFile\relax
+
+    }
+
+    \begin{frame}[fragile]\relax
+    bb
+    \lstinputlisting{\jobname.secw}
+    aa
+    \sendToFile\relax
+
+    \readallsections
+    \readallsections
+    \readallsections
+    \readallsections
+    \end{frame}
+
+\end{document} 

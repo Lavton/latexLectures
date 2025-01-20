@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{fontspec}
+\pagestyle{empty}
+\usepackage{geometry}
+\geometry{paperwidth=70mm, paperheight=85mm, left=2mm, top=0mm, right=2mm, bottom=0mm}
+\parindent=0pt
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+\begin{document}
+\centering
+\vspace*{\fill} \vspace*{-5ex}
+
+\hrule
+(1) \tikz \path (0,0) -- (1,1) -- (0, 1); \par \hrule
+(2) \tikz \draw (0,0) -- (1,1) -- (0, 1); \par \hrule
+(3) \tikz \fill (0,0) -- (1,1) -- (0, 1) -- cycle; \par \hrule
+(4) \tikz \filldraw[fill=green!20!white,draw=green!40!black] (0,0) -- (1,1) -- (0, 1) -- cycle; \par\hrule
+(5) \tikz\draw[->, very thick, dotted] (0,0) -- (1,1) -- (0, 1);\par\hrule
+(6) \tikz \draw (0,0) circle [radius=1cm];\par\hrule
+(7) \tikz \draw (0,0) rectangle (0.5, 0.6);\par\hrule
+
+\vspace*{\fill} 
+\end{document}
